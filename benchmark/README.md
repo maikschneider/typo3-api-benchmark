@@ -104,8 +104,8 @@ What the numbers say:
 |---|---|
 | tca_api | [#204](https://github.com/maikschneider/tca-api/issues/204): reverse MM columns like `sys_category.items` are resolved per row |
 | tca_api | [#206](https://github.com/maikschneider/tca-api/issues/206): `CacheInvalidationHook::clearCachePostProc()` passes integer tags to `flushByTags()` when DataHandler clears caches via `TCEMAIN.clearCacheCmd` (`tags` is then a list, not a map): every such save throws a `TypeError` |
-| tca_api | Embedded records of tables without their own resource get an `@id` like `/_api/tx_campdemo_author/4` that no endpoint serves |
-| tca_api | `MaikSchneider\TcaApi\Testing\EventCollector` is registered as an event listener in production |
+| tca_api | [#207](https://github.com/maikschneider/tca-api/issues/207): Embedded records of tables without their own resource get an `@id` like `/_api/tx_campdemo_author/4` that no endpoint serves |
+| tca_api | [#208](https://github.com/maikschneider/tca-api/issues/208): `MaikSchneider\TcaApi\Testing\EventCollector` is registered as an event listener in production |
 | t3api | The same `TypeError` in `ResponseCacheService::clearCachePostProc()` (`array_keys($params['tags'])`) |
 | t3api | 12 deprecations per request on TYPO3 v14; v14 support is unreleased |
 | sg_apicore | No invalidation on DataHandler edits; `type=category` and `type=datetime` (emitted as integer) not handled by its mapper |
