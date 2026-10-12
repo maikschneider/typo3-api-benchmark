@@ -53,4 +53,4 @@ Every frontend response carries `X-Query-Count`, `Server-Timing: app;dur=…` (v
 ## Known issues found while building this
 
 - tca_api [#204](https://github.com/maikschneider/tca-api/issues/204): `sys_category.items` is resolved per row. `camp_tcaapi` therefore exposes only `title` for categories.
-- tca_api and t3api: their `clearCachePostProc` hooks pass integer tags to `flushByTags()` when DataHandler clears caches through `TCEMAIN.clearCacheCmd`, which turns every save into a TypeError. `camp_extbase` uses cache tags instead of `clearCacheCmd` for that reason.
+- tca_api [#206](https://github.com/maikschneider/tca-api/issues/206) and t3api: their `clearCachePostProc` hooks pass integer tags to `flushByTags()` when DataHandler clears caches through `TCEMAIN.clearCacheCmd`, which turns every save into a TypeError. `camp_extbase` uses cache tags instead of `clearCacheCmd` for that reason.

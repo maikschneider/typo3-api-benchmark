@@ -103,7 +103,7 @@ What the numbers say:
 | Extension | Bug |
 |---|---|
 | tca_api | [#204](https://github.com/maikschneider/tca-api/issues/204): reverse MM columns like `sys_category.items` are resolved per row |
-| tca_api | `CacheInvalidationHook::clearCachePostProc()` passes integer tags to `flushByTags()` when DataHandler clears caches via `TCEMAIN.clearCacheCmd` (`tags` is then a list, not a map): every such save throws a `TypeError` |
+| tca_api | [#206](https://github.com/maikschneider/tca-api/issues/206): `CacheInvalidationHook::clearCachePostProc()` passes integer tags to `flushByTags()` when DataHandler clears caches via `TCEMAIN.clearCacheCmd` (`tags` is then a list, not a map): every such save throws a `TypeError` |
 | tca_api | Embedded records of tables without their own resource get an `@id` like `/_api/tx_campdemo_author/4` that no endpoint serves |
 | tca_api | `MaikSchneider\TcaApi\Testing\EventCollector` is registered as an event listener in production |
 | t3api | The same `TypeError` in `ResponseCacheService::clearCachePostProc()` (`array_keys($params['tags'])`) |
