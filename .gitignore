@@ -1,0 +1,5 @@
+/vendor/
+/public/
+/var/
+/config/system/settings.php
+/packages/camp_demo/Configuration/TcaApi/*.php

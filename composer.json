@@ -1,0 +1,37 @@
+{
+	"name": "maikschneider/t3cb26-demo",
+	"description": "Demo project for the tca_api talk at TYPO3 Camp Berlin 2026",
+	"license": "GPL-2.0-or-later",
+	"type": "project",
+	"require": {
+		"php": "^8.4",
+		"maikschneider/camp-demo": "@dev",
+		"maikschneider/tca-api": "^2.1",
+		"typo3/cms-backend": "^14.3",
+		"typo3/cms-core": "^14.3",
+		"typo3/cms-extbase": "^14.3",
+		"typo3/cms-fluid": "^14.3",
+		"typo3/cms-frontend": "^14.3",
+		"typo3/cms-install": "^14.3"
+	},
+	"repositories": [
+		{
+			"type": "path",
+			"url": "packages/*"
+		}
+	],
+	"minimum-stability": "stable",
+	"prefer-stable": true,
+	"config": {
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"sort-packages": true
+	},
+	"extra": {
+		"typo3/cms": {
+			"web-dir": "public"
+		}
+	}
+}

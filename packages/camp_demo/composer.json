@@ -1,0 +1,23 @@
+{
+	"name": "maikschneider/camp-demo",
+	"description": "Demo domain, seeder and comparison endpoints for the tca_api talk",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"version": "1.0.0",
+	"require": {
+		"php": "^8.4",
+		"maikschneider/tca-api": "^2.1",
+		"typo3/cms-core": "^14.3",
+		"typo3/cms-extbase": "^14.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"MaikSchneider\\CampDemo\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "camp_demo"
+		}
+	}
+}

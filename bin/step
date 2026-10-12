@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Put the project into the state of a demo step: baseline plus every step up to N.
+# Usage: bin/step <0-6>     bin/step list
+set -euo pipefail
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+steps="$root/demo-steps"
+target="${1:-}"
+
+if [[ "$target" == "list" || -z "$target" ]]; then
+    ls "$steps"
+    exit 0
+fi
+
+rm -f "$root"/packages/camp_demo/Configuration/TcaApi/*.php
+for dir in "$steps"/*/; do
+    number=$((10#$(basename "$dir" | cut -d- -f1)))
+    if (( number <= target )); then
+        cp -R "$dir". "$root/"
+        echo "applied $(basename "$dir")"
+    fi
+done
+
+(cd "$root" && ddev exec vendor/bin/typo3 cache:flush >/dev/null)
+echo "caches flushed"

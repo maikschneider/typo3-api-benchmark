@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  MaikSchneider\CampDemo\:
+    resource: '../Classes/*'
+    exclude:
+      - '../Classes/Database/*'
+      - '../Classes/Domain/Model/*'
+
+  MaikSchneider\CampDemo\Middleware\BenchmarkMiddleware:
+    public: true
