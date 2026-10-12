@@ -1514,16 +1514,16 @@
         },
         {
             "name": "maikschneider/tca-api",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maikschneider/tca-api.git",
-                "reference": "f9a968d4f1cb1da613d5434115d37079cb91b6df"
+                "reference": "042798c89bd2c08a58e9e0a05747d4ba55763928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maikschneider/tca-api/zipball/f9a968d4f1cb1da613d5434115d37079cb91b6df",
-                "reference": "f9a968d4f1cb1da613d5434115d37079cb91b6df",
+                "url": "https://api.github.com/repos/maikschneider/tca-api/zipball/042798c89bd2c08a58e9e0a05747d4ba55763928",
+                "reference": "042798c89bd2c08a58e9e0a05747d4ba55763928",
                 "shasum": ""
             },
             "require": {
@@ -1561,7 +1561,7 @@
                     "Package": {
                         "providesPackages": []
                     },
-                    "version": "2.1.0",
+                    "version": "2.2.0",
                     "web-dir": "public",
                     "extension-key": "tca_api",
                     "cms-package-dir": "{$vendor-dir}/typo3/cms"
@@ -1598,7 +1598,7 @@
                 "issues": "https://github.com/maikschneider/tca-api/issues",
                 "source": "https://github.com/maikschneider/tca-api"
             },
-            "time": "2026-09-10T14:54:25+00:00"
+            "time": "2026-10-12T12:59:13+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6622,10 +6622,10 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bench_tcaapi",
-                "reference": "c965de0fb672f26bb60c260bd9d64dc1bc15effc"
+                "reference": "35e30775691e1a1b86ec2d2691047959c122ae47"
             },
             "require": {
-                "maikschneider/tca-api": "^2.1",
+                "maikschneider/tca-api": "^2.2",
                 "php": "^8.4",
                 "typo3-api-benchmark/bench": "@dev"
             },
