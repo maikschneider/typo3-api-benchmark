@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-12T13:19:58.991Z",
-  "article": 13,
+  "date": "2026-10-12T20:33:24.297Z",
+  "article": 4,
   "lockHash": "1ce773ce4786013145b325797524730f",
   "results": {
     "tcaapi": {
@@ -14,7 +14,7 @@
       },
       "author": {
         "status": "yes",
-        "detail": "name \"Tim Berners-Lee\" embedded"
+        "detail": "name \"Jonas Torvalds\" embedded"
       },
       "tags": {
         "status": "yes",
@@ -56,7 +56,7 @@
       },
       "author": {
         "status": "yes",
-        "detail": "name \"Tim Berners-Lee\" embedded"
+        "detail": "name \"Jonas Torvalds\" embedded"
       },
       "tags": {
         "status": "yes",
@@ -68,11 +68,11 @@
       },
       "batched": {
         "status": "no",
-        "detail": "55 queries for 20 items, 216 for 100"
+        "detail": "66 queries for 20 items, 305 for 100"
       },
       "cache": {
         "status": "yes",
-        "detail": "55 → 4 queries on the second request"
+        "detail": "66 → 4 queries on the second request"
       },
       "freshRecord": {
         "status": "yes",
@@ -98,7 +98,7 @@
       },
       "author": {
         "status": "yes",
-        "detail": "name \"Tim Berners-Lee\" embedded"
+        "detail": "name \"Jonas Torvalds\" embedded"
       },
       "tags": {
         "status": "yes",
@@ -110,11 +110,11 @@
       },
       "batched": {
         "status": "no",
-        "detail": "47 queries for 20 items, 128 for 100"
+        "detail": "58 queries for 20 items, 217 for 100"
       },
       "cache": {
         "status": "yes",
-        "detail": "47 → 1 queries on the second request"
+        "detail": "58 → 1 queries on the second request"
       },
       "freshRecord": {
         "status": "no",
@@ -140,7 +140,7 @@
       },
       "author": {
         "status": "yes",
-        "detail": "name \"Tim Berners-Lee\" embedded"
+        "detail": "name \"Jonas Torvalds\" embedded"
       },
       "tags": {
         "status": "yes",
@@ -182,7 +182,7 @@
       },
       "author": {
         "status": "yes",
-        "detail": "name \"Tim Berners-Lee\" embedded"
+        "detail": "name \"Jonas Torvalds\" embedded"
       },
       "tags": {
         "status": "yes",
@@ -194,11 +194,11 @@
       },
       "batched": {
         "status": "no",
-        "detail": "56 queries for 20 items, 217 for 100"
+        "detail": "67 queries for 20 items, 307 for 100"
       },
       "cache": {
         "status": "yes",
-        "detail": "56 → 4 queries on the second request"
+        "detail": "67 → 4 queries on the second request"
       },
       "freshRecord": {
         "status": "yes",

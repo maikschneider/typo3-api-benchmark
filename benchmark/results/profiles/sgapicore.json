@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-152008-b0ab33",
+    "profile": "20261012-223400-2ef9b3",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,13 +12,13 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 146.32,
-        "queries": 33,
+        "wallMs": 91.08,
+        "queries": 38,
         "contentElements": 0,
         "attributedShare": 100,
         "sampled": true,
-        "peakMemory": 21598208,
-        "includedFiles": 729,
+        "peakMemory": 21606400,
+        "includedFiles": 730,
         "logLevels": [
             {
                 "level": "debug",
@@ -28,37 +28,43 @@
         "exception": null
     },
     "categories": {
-        "bootstrap": 115,
-        "middleware": 30
+        "bootstrap": 47.5,
+        "middleware": 42.5
     },
     "units": [
         {
             "unit": "bootstrap: Bootstrap::init",
-            "ms": 108.5,
+            "ms": 38.5,
             "queries": 0,
             "queryMs": 0
         },
         {
             "unit": "middleware: sgalinski/sg-apicore/api-request",
-            "ms": 18,
-            "queries": 32,
-            "queryMs": 7.76
+            "ms": 26.5,
+            "queries": 37,
+            "queryMs": 11.42
         },
         {
             "unit": "middleware: sgalinski/sg-apicore/api-typoscript",
-            "ms": 12,
+            "ms": 12.5,
             "queries": 1,
-            "queryMs": 0.88
+            "queryMs": 0.94
         },
         {
-            "unit": "bootstrap: autoload / entry script",
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 8.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: sgalinski/sg-apicore/api-cache",
             "ms": 3.5,
             "queries": 0,
             "queryMs": 0
         },
         {
-            "unit": "bootstrap: Application / middleware stack build",
-            "ms": 3,
+            "unit": "bootstrap: Bootstrap::populateLocalConfiguration",
+            "ms": 0.5,
             "queries": 0,
             "queryMs": 0
         }
@@ -67,23 +73,23 @@
         {
             "rule": "repeated-query",
             "severity": "notice",
-            "title": "page repeats 2 statements 23 times (5.1 ms)",
+            "title": "page repeats 3 statements 35 times (8.5 ms)",
             "scope": "page",
-            "detail": "13× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) · 10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ?",
+            "detail": "15× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) · 10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? · 10× SELECT * FROM `tx_bench_author` WHERE (`uid` = ?) AND (((`tx_bench_author`.`deleted` = ?) AND (`tx_bench_author`.`hidden` = ?)))",
             "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
             "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
             "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
-            "impactMs": 5.1,
+            "impactMs": 8.54,
             "evidence": [
                 {
-                    "summary": "13× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) (2.6 ms)",
-                    "count": 13,
+                    "summary": "15× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) (2.6 ms)",
+                    "count": 15,
                     "sql": "SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?)))",
-                    "ms": 2.59,
+                    "ms": 2.6,
                     "callSites": [
                         {
                             "site": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:419)",
-                            "count": 13,
+                            "count": 15,
                             "function": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue",
                             "file": "vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php",
                             "line": 419
@@ -91,10 +97,10 @@
                     ]
                 },
                 {
-                    "summary": "10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? (2.5 ms)",
+                    "summary": "10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? (3.1 ms)",
                     "count": 10,
                     "sql": "SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ?",
-                    "ms": 2.51,
+                    "ms": 3.08,
                     "callSites": [
                         {
                             "site": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:402)",
@@ -104,9 +110,24 @@
                             "line": 402
                         }
                     ]
+                },
+                {
+                    "summary": "10× SELECT * FROM `tx_bench_author` WHERE (`uid` = ?) AND (((`tx_bench_author`.`deleted` = ?) AND (`tx_bench_author`.`hidden` = ?))) (2.9 ms)",
+                    "count": 10,
+                    "sql": "SELECT * FROM `tx_bench_author` WHERE (`uid` = ?) AND (((`tx_bench_author`.`deleted` = ?) AND (`tx_bench_author`.`hidden` = ?)))",
+                    "ms": 2.86,
+                    "callSites": [
+                        {
+                            "site": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:486)",
+                            "count": 10,
+                            "function": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue",
+                            "file": "vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php",
+                            "line": 486
+                        }
+                    ]
                 }
             ],
-            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_sgapi/bench/v1/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 2 statements 23 times (5.1 ms)\n\nEvidence:\n- 13× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) (2.6 ms)\n  - called 13× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:419)\n- 10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? (2.5 ms)\n  - called 10× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:402)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_sgapi/bench/v1/articles` (or `ddev t3flare /_sgapi/bench/v1/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_sgapi/bench/v1/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 3 statements 35 times (8.5 ms)\n\nEvidence:\n- 15× SELECT * FROM `tx_bench_tag` WHERE (`uid` = ?) AND (((`tx_bench_tag`.`deleted` = ?) AND (`tx_bench_tag`.`hidden` = ?))) (2.6 ms)\n  - called 15× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:419)\n- 10× SELECT `uid_foreign` FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? (3.1 ms)\n  - called 10× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:402)\n- 10× SELECT * FROM `tx_bench_author` WHERE (`uid` = ?) AND (((`tx_bench_author`.`deleted` = ?) AND (`tx_bench_author`.`hidden` = ?))) (2.9 ms)\n  - called 10× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:486)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_sgapi/bench/v1/articles` (or `ddev t3flare /_sgapi/bench/v1/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
         }
     ]
 }

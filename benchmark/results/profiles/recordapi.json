@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-152011-69051f",
+    "profile": "20261012-223403-1b8cd0",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,13 +12,13 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 57.11,
+        "wallMs": 60.58,
         "queries": 65,
         "contentElements": 0,
         "attributedShare": 100,
         "sampled": true,
-        "peakMemory": 21598208,
-        "includedFiles": 771,
+        "peakMemory": 21606400,
+        "includedFiles": 772,
         "logLevels": [
             {
                 "level": "debug",
@@ -29,7 +29,7 @@
     },
     "categories": {
         "bootstrap": 31,
-        "middleware": 24.5
+        "middleware": 26.5
     },
     "units": [
         {
@@ -40,9 +40,9 @@
         },
         {
             "unit": "middleware: typo3-api-benchmark/recordapi/api",
-            "ms": 24.5,
+            "ms": 26.5,
             "queries": 65,
-            "queryMs": 6.45
+            "queryMs": 5.54
         },
         {
             "unit": "bootstrap: Application / middleware stack build",
@@ -51,7 +51,7 @@
             "queryMs": 0
         },
         {
-            "unit": "bootstrap: Bootstrap::initializeErrorHandling",
+            "unit": "bootstrap: Bootstrap::populateLocalConfiguration",
             "ms": 0.5,
             "queries": 0,
             "queryMs": 0
@@ -61,19 +61,19 @@
         {
             "rule": "repeated-query",
             "severity": "warning",
-            "title": "page repeats 3 statements 60 times (4.8 ms)",
+            "title": "page repeats 3 statements 60 times (3.0 ms)",
             "scope": "page",
             "detail": "20× SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER … · 20× SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign` · 20× SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC",
             "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
             "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
             "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
-            "impactMs": 4.81,
+            "impactMs": 3.05,
             "evidence": [
                 {
-                    "summary": "20× SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER BY `sorting_foreign`, `uid_local` (2.1 ms)",
+                    "summary": "20× SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER BY `sorting_foreign`, `uid_local` (1.2 ms)",
                     "count": 20,
                     "sql": "SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER BY `sorting_foreign`, `uid_local`",
-                    "ms": 2.06,
+                    "ms": 1.22,
                     "callSites": [
                         {
                             "site": "TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)",
@@ -85,10 +85,10 @@
                     ]
                 },
                 {
-                    "summary": "20× SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign` (1.4 ms)",
+                    "summary": "20× SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign` (1.0 ms)",
                     "count": 20,
                     "sql": "SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign`",
-                    "ms": 1.38,
+                    "ms": 1.01,
                     "callSites": [
                         {
                             "site": "TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)",
@@ -100,10 +100,10 @@
                     ]
                 },
                 {
-                    "summary": "20× SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC (1.4 ms)",
+                    "summary": "20× SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC (0.8 ms)",
                     "count": 20,
                     "sql": "SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC",
-                    "ms": 1.36,
+                    "ms": 0.82,
                     "callSites": [
                         {
                             "site": "TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)",
@@ -115,7 +115,7 @@
                     ]
                 }
             ],
-            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_recordapi/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (warning): page repeats 3 statements 60 times (4.8 ms)\n\nEvidence:\n- 20× SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER BY `sorting_foreign`, `uid_local` (2.1 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n- 20× SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign` (1.4 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n- 20× SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC (1.4 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_recordapi/articles` (or `ddev t3flare /_recordapi/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_recordapi/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (warning): page repeats 3 statements 60 times (3.0 ms)\n\nEvidence:\n- 20× SELECT * FROM `sys_category_record_mm` WHERE (`tablenames` = ?) AND (`tablenames` = ?) AND (`fieldname` = ?) AND (`uid_foreign` = ?) ORDER BY `sorting_foreign`, `uid_local` (1.2 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n- 20× SELECT * FROM `tx_bench_article_tag_mm` WHERE `uid_local` = ? ORDER BY `sorting`, `uid_foreign` (1.0 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n- 20× SELECT `uid`, `t3ver_oid`, `t3ver_state` FROM `sys_category` WHERE (`uid` IN (…)) AND (`t3ver_wsid` <> ?) ORDER BY `t3ver_state` DESC (0.8 ms)\n  - called 20× from TYPO3\\CMS\\Core\\DataHandling\\RelationResolver::getGroupedRelationIds (vendor/typo3/cms-core/Classes/DataHandling/RelationResolver.php:127)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_recordapi/articles` (or `ddev t3flare /_recordapi/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
         }
     ]
 }

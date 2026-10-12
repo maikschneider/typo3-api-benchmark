@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-152014-b5e0ae",
+    "profile": "20261012-223405-36c5ec",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,13 +12,13 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 76.36,
-        "queries": 56,
+        "wallMs": 52.9,
+        "queries": 67,
         "contentElements": 0,
         "attributedShare": 100,
         "sampled": true,
-        "peakMemory": 21598208,
-        "includedFiles": 1138,
+        "peakMemory": 21606400,
+        "includedFiles": 1145,
         "logLevels": [
             {
                 "level": "debug",
@@ -28,34 +28,34 @@
         "exception": null
     },
     "categories": {
-        "bootstrap": 35,
-        "typoscript": 27,
-        "middleware": 12
+        "bootstrap": 25,
+        "typoscript": 21,
+        "middleware": 6
     },
     "units": [
         {
             "unit": "bootstrap: Bootstrap::init",
-            "ms": 31.5,
+            "ms": 21.5,
             "queries": 0,
             "queryMs": 0
         },
         {
             "unit": "typoscript: Page generation / Page generation PAGE object / 10 [EXTBASEPLUGIN]",
-            "ms": 24,
-            "queries": 51,
-            "queryMs": 6.13
+            "ms": 18,
+            "queries": 62,
+            "queryMs": 4.49
         },
         {
             "unit": "middleware: typo3/cms-frontend/page-resolver",
-            "ms": 6.5,
+            "ms": 3,
             "queries": 2,
-            "queryMs": 0.79
+            "queryMs": 0.36
         },
         {
             "unit": "typoscript: Create PageInformation",
             "ms": 3,
             "queries": 2,
-            "queryMs": 0.66
+            "queryMs": 0.2
         },
         {
             "unit": "bootstrap: Application / middleware stack build",
@@ -64,14 +64,8 @@
             "queryMs": 0
         },
         {
-            "unit": "middleware: typo3/cms-core/response-propagation",
+            "unit": "middleware: typo3/cms-frontend/prepare-tsfe-rendering",
             "ms": 3,
-            "queries": 0,
-            "queryMs": 0
-        },
-        {
-            "unit": "middleware: typo3/cms-core/request-token-middleware",
-            "ms": 2.5,
             "queries": 0,
             "queryMs": 0
         },
@@ -85,53 +79,68 @@
             "unit": "typoscript: Page generation",
             "ms": 0,
             "queries": 1,
-            "queryMs": 0.06
+            "queryMs": 0.05
         }
     ],
     "findings": [
         {
             "rule": "repeated-query",
-            "severity": "notice",
-            "title": "page repeats 2 statements 40 times (3.6 ms)",
+            "severity": "warning",
+            "title": "page repeats 3 statements 60 times (3.2 ms)",
             "scope": "page",
-            "detail": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_… · 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_ar…",
+            "detail": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_… · 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_ar… · 20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench…",
             "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
             "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
             "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
-            "impactMs": 3.56,
+            "impactMs": 3.22,
             "evidence": [
                 {
-                    "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (2.3 ms)",
+                    "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (1.7 ms)",
                     "count": 20,
                     "sql": "SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC",
-                    "ms": 2.27,
+                    "ms": 1.66,
                     "callSites": [
                         {
-                            "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction (packages/bench_extbase/Classes/Controller/ArticleController.php:36)",
+                            "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:68)",
                             "count": 20,
-                            "function": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction",
+                            "function": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray",
                             "file": "packages/bench_extbase/Classes/Controller/ArticleController.php",
-                            "line": 36
+                            "line": 68
                         }
                     ]
                 },
                 {
-                    "summary": "20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (1.3 ms)",
+                    "summary": "20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (0.9 ms)",
                     "count": 20,
                     "sql": "SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC",
-                    "ms": 1.29,
+                    "ms": 0.93,
                     "callSites": [
                         {
-                            "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction (packages/bench_extbase/Classes/Controller/ArticleController.php:36)",
+                            "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:64)",
                             "count": 20,
-                            "function": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction",
+                            "function": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray",
                             "file": "packages/bench_extbase/Classes/Controller/ArticleController.php",
-                            "line": 36
+                            "line": 64
+                        }
+                    ]
+                },
+                {
+                    "summary": "20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench_author`.`hidden` = ?) LIMIT ? (0.6 ms)",
+                    "count": 20,
+                    "sql": "SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench_author`.`hidden` = ?) LIMIT ?",
+                    "ms": 0.64,
+                    "callSites": [
+                        {
+                            "site": "Typo3ApiBenchmark\\Extbase\\Domain\\Model\\Article::getAuthor (packages/bench_extbase/Classes/Domain/Model/Article.php:72)",
+                            "count": 20,
+                            "function": "Typo3ApiBenchmark\\Extbase\\Domain\\Model\\Article::getAuthor",
+                            "file": "packages/bench_extbase/Classes/Domain/Model/Article.php",
+                            "line": 72
                         }
                     ]
                 }
             ],
-            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_extbase/articles/7/20.json` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 2 statements 40 times (3.6 ms)\n\nEvidence:\n- 20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (2.3 ms)\n  - called 20× from Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction (packages/bench_extbase/Classes/Controller/ArticleController.php:36)\n- 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (1.3 ms)\n  - called 20× from Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::listAction (packages/bench_extbase/Classes/Controller/ArticleController.php:36)\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_extbase/articles/7/20.json` (or `ddev t3flare /_extbase/articles/7/20.json`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_extbase/articles/7/20.json` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (warning): page repeats 3 statements 60 times (3.2 ms)\n\nEvidence:\n- 20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (1.7 ms)\n  - called 20× from Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:68)\n- 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (0.9 ms)\n  - called 20× from Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:64)\n- 20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench_author`.`hidden` = ?) LIMIT ? (0.6 ms)\n  - called 20× from Typo3ApiBenchmark\\Extbase\\Domain\\Model\\Article::getAuthor (packages/bench_extbase/Classes/Domain/Model/Article.php:72)\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_extbase/articles/7/20.json` (or `ddev t3flare /_extbase/articles/7/20.json`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
         }
     ]
 }

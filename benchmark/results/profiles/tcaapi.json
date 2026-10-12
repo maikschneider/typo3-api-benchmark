@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-152001-c924a3",
+    "profile": "20261012-223355-8b0760",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,13 +12,13 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 45.36,
+        "wallMs": 34.07,
         "queries": 5,
         "contentElements": 0,
         "attributedShare": 100,
         "sampled": true,
-        "peakMemory": 21598208,
-        "includedFiles": 745,
+        "peakMemory": 21606400,
+        "includedFiles": 746,
         "logLevels": [
             {
                 "level": "debug",
@@ -28,42 +28,30 @@
         "exception": null
     },
     "categories": {
-        "bootstrap": 34.5,
-        "middleware": 9
+        "bootstrap": 25,
+        "middleware": 6
     },
     "units": [
         {
             "unit": "bootstrap: Bootstrap::init",
-            "ms": 27,
+            "ms": 21.5,
             "queries": 0,
             "queryMs": 0
         },
         {
             "unit": "middleware: maikschneider/tca-api/middleware",
-            "ms": 9,
+            "ms": 6,
             "queries": 5,
-            "queryMs": 2.22
+            "queryMs": 1.63
         },
         {
             "unit": "bootstrap: Application / middleware stack build",
-            "ms": 3.5,
-            "queries": 0,
-            "queryMs": 0
-        },
-        {
-            "unit": "bootstrap: autoload / entry script",
             "ms": 3,
             "queries": 0,
             "queryMs": 0
         },
         {
-            "unit": "bootstrap: Bootstrap::populateLocalConfiguration",
-            "ms": 0.5,
-            "queries": 0,
-            "queryMs": 0
-        },
-        {
-            "unit": "bootstrap: Bootstrap::createPackageManager",
+            "unit": "bootstrap: autoload / entry script",
             "ms": 0.5,
             "queries": 0,
             "queryMs": 0
