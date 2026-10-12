@@ -1,44 +1,20 @@
 #!/usr/bin/env bash
-# Query count and median response time for the same embedded article collection,
-# served by tca_api, the core Record API and Extbase.
-# Usage: bin/bench [runs] [sizes...]      e.g. bin/bench 15 20 50 100
+# Run the API benchmark. See benchmark/README.md.
+#   bin/bench load [--contenders a,b] [--scenarios list-20,list-100,item] [--vus 8]   k6 load test (use bin/env prod first)
+#   bin/bench invalidation                                                          cache correctness after backend edits
+#   bin/bench profile                                                               T3Flare profile per API (dev mode)
+#   bin/bench footprint                                                             configuration needed per API
 set -euo pipefail
-export LC_ALL=C
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
-base="${BENCH_BASE_URL:-https://t3cb26.ddev.site}"
-runs="${1:-10}"
+command="${1:-}"
 shift || true
-sizes=("${@:-20 50 100}")
-read -r -a sizes <<<"${sizes[*]}"
 
-endpoints=(
-    "tca_api|/_api/articles"
-    "Record API|/_bench/record-api/articles"
-    "Extbase|/_bench/extbase/articles"
-)
-
-"$root/bin/step" 4 >/dev/null
-echo "State: demo step 4 (embedded author, tags, categories; response cache off)"
-echo
-
-printf '| %-10s | %5s | %7s | %11s |\n' "Strategy" "Items" "Queries" "Median (ms)"
-printf '|%s|%s|%s|%s|\n' "------------" "-------" "---------" "-------------"
-
-for size in "${sizes[@]}"; do
-    for endpoint in "${endpoints[@]}"; do
-        label="${endpoint%%|*}"
-        url="$base${endpoint#*|}?itemsPerPage=$size"
-        curl -sk -o /dev/null "$url"
-        curl -sk -o /dev/null "$url"
-        queries=""
-        times=()
-        for ((i = 0; i < runs; i++)); do
-            headers="$(curl -sk -o /dev/null -D - "$url")"
-            queries="$(grep -i '^x-query-count:' <<<"$headers" | tr -dc '0-9')"
-            times+=("$(grep -i '^server-timing:' <<<"$headers" | sed -E 's/.*dur=([0-9.]+).*/\1/')")
-        done
-        median="$(printf '%s\n' "${times[@]}" | sort -n | awk '{a[NR]=$1} END {print (NR % 2) ? a[(NR+1)/2] : (a[NR/2] + a[NR/2+1]) / 2}')"
-        printf '| %-10s | %5s | %7s | %11.1f |\n' "$label" "$size" "$queries" "$median"
-    done
-done
+case "$command" in
+    load) exec bun "$root/benchmark/run.ts" "$@" ;;
+    invalidation | profile | footprint) exec bun "$root/benchmark/$command.ts" "$@" ;;
+    *)
+        sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'
+        exit 1
+        ;;
+esac

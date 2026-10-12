@@ -2,4 +2,6 @@
 /public/
 /var/
 /config/system/settings.php
-/packages/camp_demo/Configuration/TcaApi/*.php
+/.ddev/php/zz-bench-prod.ini
+/benchmark/results/*/*.urls.json
+/.ddev/.env

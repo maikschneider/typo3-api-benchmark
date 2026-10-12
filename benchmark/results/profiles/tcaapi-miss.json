@@ -1,0 +1,85 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-124151-c4a8c5",
+    "request": {
+        "method": "GET",
+        "host": "t3cb26.ddev.site",
+        "path": "/_api/articles"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 142.92,
+        "queries": 5,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21598208,
+        "includedFiles": 830,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "bootstrap": 95,
+        "middleware": 43
+    },
+    "units": [
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 79.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: maikschneider/tca-api/middleware",
+            "ms": 24.5,
+            "queries": 5,
+            "queryMs": 6.8
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/site",
+            "ms": 16.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 10,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::createPackageManager",
+            "ms": 4.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/authentication",
+            "ms": 2,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::initializeClassLoader",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::initializeErrorHandling",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        }
+    ],
+    "findings": []
+}

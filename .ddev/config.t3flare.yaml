@@ -1,0 +1,4 @@
+#ddev-generated
+# Excimer adds sampled stacks to T3Flare profiles: flame graphs and middleware, DataProcessor
+# and Fluid template attribution.
+webimage_extra_packages: ["php${DDEV_PHP_VERSION}-excimer"]

@@ -1,18 +1,33 @@
 #!/usr/bin/env bash
-# Put the project into the state of a demo step: baseline plus every step up to N.
-# Usage: bin/step <0-6>     bin/step list
+# Put the tca_api configuration into the state of a live demo step: baseline plus every step up to N.
+# Usage: bin/step <0-6>     bin/step list     bin/step bench (back to the committed benchmark state)
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
 steps="$root/demo-steps"
+config="packages/camp_tcaapi/Configuration/TcaApi"
 target="${1:-}"
 
-if [[ "$target" == "list" || -z "$target" ]]; then
-    ls "$steps"
-    exit 0
-fi
+flush() {
+    (cd "$root" && ddev exec vendor/bin/typo3 cache:flush >/dev/null)
+    echo "caches flushed"
+}
 
-rm -f "$root"/packages/camp_demo/Configuration/TcaApi/*.php
+case "$target" in
+    "" | list)
+        ls "$steps"
+        exit 0
+        ;;
+    bench)
+        git -C "$root" checkout -- "$config" config/sites/main/config.yaml
+        git -C "$root" clean -fq -- "$config"
+        echo "benchmark state restored"
+        flush
+        exit 0
+        ;;
+esac
+
+rm -f "$root/$config"/*.php
 for dir in "$steps"/*/; do
     number=$((10#$(basename "$dir" | cut -d- -f1)))
     if (( number <= target )); then
@@ -20,6 +35,4 @@ for dir in "$steps"/*/; do
         echo "applied $(basename "$dir")"
     fi
 done
-
-(cd "$root" && ddev exec vendor/bin/typo3 cache:flush >/dev/null)
-echo "caches flushed"
+flush

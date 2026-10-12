@@ -1,0 +1,23 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  MaikSchneider\CampRecordapi\:
+    resource: '../Classes/*'
+
+  cache.camp_recordapi:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments: ['camp_recordapi']
+
+  MaikSchneider\CampRecordapi\ApiMiddleware:
+    public: true
+    arguments:
+      $cache: '@cache.camp_recordapi'
+
+  MaikSchneider\CampRecordapi\CacheInvalidationHook:
+    public: true
+    arguments:
+      $cache: '@cache.camp_recordapi'

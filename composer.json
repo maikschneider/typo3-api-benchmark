@@ -6,7 +6,12 @@
 	"require": {
 		"php": "^8.4",
 		"maikschneider/camp-demo": "@dev",
-		"maikschneider/tca-api": "^2.1",
+		"maikschneider/camp-extbase": "@dev",
+		"maikschneider/camp-recordapi": "@dev",
+		"maikschneider/camp-sgapicore": "@dev",
+		"maikschneider/camp-t3api": "@dev",
+		"maikschneider/camp-tcaapi": "@dev",
+		"sourcebroker/t3api": "dev-release/5.0.0#4b96399f0cae3a3afed821e77b5e677781be3c6b",
 		"typo3/cms-backend": "^14.3",
 		"typo3/cms-core": "^14.3",
 		"typo3/cms-extbase": "^14.3",
@@ -15,6 +20,11 @@
 		"typo3/cms-install": "^14.3"
 	},
 	"repositories": [
+		{
+			"name": "t3flare",
+			"type": "vcs",
+			"url": "git@github.com:maikschneider/t3flare.git"
+		},
 		{
 			"type": "path",
 			"url": "packages/*"
@@ -33,5 +43,8 @@
 		"typo3/cms": {
 			"web-dir": "public"
 		}
+	},
+	"require-dev": {
+		"maikschneider/t3flare": "dev-main"
 	}
 }

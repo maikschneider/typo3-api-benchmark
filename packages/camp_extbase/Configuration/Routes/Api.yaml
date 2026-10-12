@@ -1,0 +1,33 @@
+routeEnhancers:
+  CampExtbaseApi:
+    type: Extbase
+    limitToPages: [1]
+    extension: CampExtbase
+    plugin: Api
+    routes:
+      - routePath: '/_extbase/articles/{page}/{size}'
+        _controller: 'Article::list'
+      - routePath: '/_extbase/articles/{article}'
+        _controller: 'Article::show'
+    defaultController: 'Article::list'
+    aspects:
+      page:
+        type: StaticRangeMapper
+        start: '1'
+        end: '1000'
+      size:
+        type: StaticValueMapper
+        map:
+          '20': '20'
+          '100': '100'
+      article:
+        type: PersistedPatternMapper
+        tableName: tx_campdemo_article
+        routeFieldPattern: '^(?P<uid>\d+)$'
+        routeFieldResult: '{uid}'
+  PageTypeSuffix:
+    type: PageType
+    default: '/'
+    map:
+      '/': 0
+      '.json': 1801

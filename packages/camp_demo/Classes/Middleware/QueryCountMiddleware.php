@@ -12,8 +12,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Core\Environment;
 
 /**
- * Counts every query from here on, so the API middleware and the comparison
- * endpoints are measured from the same point in the request. Send
+ * Runs first in the frontend stack, so every API is measured from the same point:
+ * executed queries, wall time and peak memory of the request. Send
  * "X-Debug-Queries: 1" to write the executed SQL to var/log/queries.log.
  */
 final class QueryCountMiddleware implements MiddlewareInterface
@@ -33,6 +33,7 @@ final class QueryCountMiddleware implements MiddlewareInterface
 
         return $response
             ->withHeader('X-Query-Count', (string)QueryCounter::get())
-            ->withHeader('Server-Timing', sprintf('app;dur=%.1f', $duration));
+            ->withHeader('Server-Timing', sprintf('app;dur=%.1f', $duration))
+            ->withHeader('X-Memory-Peak', (string)memory_get_peak_usage());
     }
 }

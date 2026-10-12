@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Switch between the demo setup and a production-like setup for load tests.
+#   bin/env prod    no dev packages (no T3Flare), authoritative classmap, OPcache without timestamp checks
+#   bin/env dev     back to the demo setup; needed for bin/step and T3Flare profiles
+#   bin/env         print the current mode
+set -euo pipefail
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+ini="$root/.ddev/php/zz-bench-prod.ini"
+
+case "${1:-}" in
+    prod)
+        (cd "$root" && ddev composer install --no-dev --classmap-authoritative --no-interaction)
+        cp "$root/benchmark/php/zz-bench-prod.ini" "$ini"
+        (cd "$root" && ddev restart && ddev exec vendor/bin/typo3 cache:flush)
+        ;;
+    dev)
+        rm -f "$ini"
+        (cd "$root" && ddev composer install --no-interaction && ddev restart && ddev exec vendor/bin/typo3 cache:flush)
+        ;;
+    "")
+        [[ -f "$ini" ]] && echo prod || echo dev
+        exit 0
+        ;;
+    *)
+        echo "Usage: bin/env [prod|dev]" >&2
+        exit 1
+        ;;
+esac
+echo "Mode: $1"

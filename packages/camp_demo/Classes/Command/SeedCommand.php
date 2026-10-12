@@ -45,7 +45,7 @@ final class SeedCommand extends Command
 
     protected function configure(): void
     {
-        $this->addOption('articles', 'a', InputOption::VALUE_REQUIRED, 'Number of articles', '500');
+        $this->addOption('articles', 'a', InputOption::VALUE_REQUIRED, 'Number of articles', '10000');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

@@ -1,0 +1,74 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-124204-92f97e",
+    "request": {
+        "method": "GET",
+        "host": "t3cb26.ddev.site",
+        "path": "/_extbase/articles/7/20.json"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 31.57,
+        "queries": 4,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21598208,
+        "includedFiles": 957,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "bootstrap": 24,
+        "middleware": 3,
+        "typoscript": 3
+    },
+    "units": [
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 20.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "typoscript: Create PageInformation",
+            "ms": 3,
+            "queries": 2,
+            "queryMs": 0.22
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: maikschneider/camp-recordapi/api",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::populateLocalConfiguration",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/page-resolver",
+            "ms": 0,
+            "queries": 2,
+            "queryMs": 0.33
+        }
+    ],
+    "findings": []
+}

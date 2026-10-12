@@ -1,0 +1,7 @@
+| API | Files | Lines | PHP classes | Outside the package | Package files |
+|---|---:|---:|---:|---|---|
+| tca_api | 2 | 30 | 0 | site set `maikschneider/tca-api` | `Configuration/TcaApi/Articles.php`<br>`Configuration/TcaApi/Categories.php` |
+| t3api | 6 | 180 | 4 | site config `imports` of the route enhancer | `Classes/Domain/Model/Article.php`<br>`Classes/Domain/Model/Author.php`<br>`Classes/Domain/Model/Category.php`<br>`Classes/Domain/Model/Tag.php`<br>`Configuration/Extbase/Persistence/Classes.php`<br>`Configuration/Routes/Api.yaml` |
+| sg_apicore | 1 | 26 | 0 | `apiPathPrefix` and `activateDemoApis` in `config/system/additional.php` | `ext_localconf.php` |
+| Record API (hand-written) | 6 | 192 | 3 | – | `Classes/ApiMiddleware.php`<br>`Classes/ArticleSerializer.php`<br>`Classes/CacheInvalidationHook.php`<br>`Configuration/RequestMiddlewares.php`<br>`Configuration/Services.yaml`<br>`ext_localconf.php` |
+| Extbase (hand-written) | 12 | 248 | 6 | site set `maikschneider/camp-extbase`<br>site config `imports` of the route enhancer | `Classes/Controller/ArticleController.php`<br>`Classes/Domain/Model/Article.php`<br>`Classes/Domain/Model/Author.php`<br>`Classes/Domain/Model/Category.php`<br>`Classes/Domain/Model/Tag.php`<br>`Classes/Domain/Repository/ArticleRepository.php`<br>`Configuration/Extbase/Persistence/Classes.php`<br>`Configuration/Routes/Api.yaml`<br>`Configuration/Services.yaml`<br>`Configuration/Sets/CampExtbase/config.yaml`<br>`Configuration/Sets/CampExtbase/setup.typoscript`<br>`ext_localconf.php` |

@@ -1,0 +1,155 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-124203-a77c99",
+    "request": {
+        "method": "GET",
+        "host": "t3cb26.ddev.site",
+        "path": "/_extbase/articles/7/20.json"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 102.08,
+        "queries": 66,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21598208,
+        "includedFiles": 1344,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "typoscript": 44.5,
+        "bootstrap": 33.5,
+        "middleware": 23
+    },
+    "units": [
+        {
+            "unit": "typoscript: Page generation / Page generation PAGE object / 10 [EXTBASEPLUGIN]",
+            "ms": 36,
+            "queries": 51,
+            "queryMs": 7.48
+        },
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 26.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/page-resolver",
+            "ms": 10,
+            "queries": 12,
+            "queryMs": 3.5
+        },
+        {
+            "unit": "typoscript: Page generation",
+            "ms": 4.5,
+            "queries": 1,
+            "queryMs": 0.15
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/prepare-tsfe-rendering",
+            "ms": 4.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "typoscript: Create PageInformation",
+            "ms": 4,
+            "queries": 2,
+            "queryMs": 0.53
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 3.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/site",
+            "ms": 3.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: autoload / entry script",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/authentication",
+            "ms": 2.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/csp-report",
+            "ms": 2.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::initializeErrorHandling",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        }
+    ],
+    "findings": [
+        {
+            "rule": "repeated-query",
+            "severity": "notice",
+            "title": "page repeats 2 statements 40 times (5.3 ms)",
+            "scope": "page",
+            "detail": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_… · 20× SELECT `tx_campdemo_article_tag_mm`.*, `tx_campdemo_tag`.* FROM `tx_campdemo_article_tag_mm` LEFT JOIN `tx_campdemo_tag` `tx_campdemo_tag` …",
+            "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
+            "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
+            "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
+            "impactMs": 5.27,
+            "evidence": [
+                {
+                    "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (2.9 ms)",
+                    "count": 20,
+                    "sql": "SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC",
+                    "ms": 2.95,
+                    "callSites": [
+                        {
+                            "site": "MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction (packages/camp_extbase/Classes/Controller/ArticleController.php:36)",
+                            "count": 20,
+                            "function": "MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction",
+                            "file": "packages/camp_extbase/Classes/Controller/ArticleController.php",
+                            "line": 36
+                        }
+                    ]
+                },
+                {
+                    "summary": "20× SELECT `tx_campdemo_article_tag_mm`.*, `tx_campdemo_tag`.* FROM `tx_campdemo_article_tag_mm` LEFT JOIN `tx_campdemo_tag` `tx_campdemo_tag` ON `tx_campdemo_article_tag_mm`.`uid_foreign` = `tx_campdemo_tag`.`uid` WHERE (`tx_campdemo_article_tag_mm`.`uid_local` = ?) AND (`tx_campdemo_tag`.`deleted` = ? AND `tx_campdemo_tag`.`hidden` = ?) ORDER BY `tx_campdemo_article_tag_mm`.`sorting` ASC (2.3 ms)",
+                    "count": 20,
+                    "sql": "SELECT `tx_campdemo_article_tag_mm`.*, `tx_campdemo_tag`.* FROM `tx_campdemo_article_tag_mm` LEFT JOIN `tx_campdemo_tag` `tx_campdemo_tag` ON `tx_campdemo_article_tag_mm`.`uid_foreign` = `tx_campdemo_tag`.`uid` WHERE (`tx_campdemo_article_tag_mm`.`uid_local` = ?) AND (`tx_campdemo_tag`.`deleted` = ? AND `tx_campdemo_tag`.`hidden` = ?) ORDER BY `tx_campdemo_article_tag_mm`.`sorting` ASC",
+                    "ms": 2.33,
+                    "callSites": [
+                        {
+                            "site": "MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction (packages/camp_extbase/Classes/Controller/ArticleController.php:36)",
+                            "count": 20,
+                            "function": "MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction",
+                            "file": "packages/camp_extbase/Classes/Controller/ArticleController.php",
+                            "line": 36
+                        }
+                    ]
+                }
+            ],
+            "agentPrompt": "T3Flare found a performance issue in the page `GET t3cb26.ddev.site/_extbase/articles/7/20.json` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 2 statements 40 times (5.3 ms)\n\nEvidence:\n- 20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (2.9 ms)\n  - called 20× from MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction (packages/camp_extbase/Classes/Controller/ArticleController.php:36)\n- 20× SELECT `tx_campdemo_article_tag_mm`.*, `tx_campdemo_tag`.* FROM `tx_campdemo_article_tag_mm` LEFT JOIN `tx_campdemo_tag` `tx_campdemo_tag` ON `tx_campdemo_article_tag_mm`.`uid_foreign` = `tx_campdemo_tag`.`uid` WHERE (`tx_campdemo_article_tag_mm`.`uid_local` = ?) AND (`tx_campdemo_tag`.`deleted` = ? AND `tx_campdemo_tag`.`hidden` = ?) ORDER BY `tx_campdemo_article_tag_mm`.`sorting` ASC (2.3 ms)\n  - called 20× from MaikSchneider\\CampExtbase\\Controller\\ArticleController::listAction (packages/camp_extbase/Classes/Controller/ArticleController.php:36)\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://t3cb26.ddev.site/_extbase/articles/7/20.json` (or `ddev t3flare /_extbase/articles/7/20.json`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+        }
+    ]
+}

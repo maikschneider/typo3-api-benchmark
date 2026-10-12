@@ -1,0 +1,124 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-124157-5e3138",
+    "request": {
+        "method": "GET",
+        "host": "t3cb26.ddev.site",
+        "path": "/_sgapi/camp/v1/articles"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 48.6,
+        "queries": 41,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21598208,
+        "includedFiles": 832,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "bootstrap": 26,
+        "middleware": 20
+    },
+    "units": [
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 21.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: sgalinski/sg-apicore/api-typoscript",
+            "ms": 12,
+            "queries": 9,
+            "queryMs": 7.86
+        },
+        {
+            "unit": "middleware: sgalinski/sg-apicore/api-request",
+            "ms": 5.5,
+            "queries": 32,
+            "queryMs": 1.84
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 3.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/site",
+            "ms": 2.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: autoload / entry script",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::createPackageManager",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        }
+    ],
+    "findings": [
+        {
+            "rule": "repeated-query",
+            "severity": "notice",
+            "title": "page repeats 2 statements 23 times (0.6 ms)",
+            "scope": "page",
+            "detail": "13× SELECT * FROM `tx_campdemo_tag` WHERE (`uid` = ?) AND (((`tx_campdemo_tag`.`deleted` = ?) AND (`tx_campdemo_tag`.`hidden` = ?))) · 10× SELECT `uid_foreign` FROM `tx_campdemo_article_tag_mm` WHERE `uid_local` = ?",
+            "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
+            "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
+            "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
+            "impactMs": 0.58,
+            "evidence": [
+                {
+                    "summary": "13× SELECT * FROM `tx_campdemo_tag` WHERE (`uid` = ?) AND (((`tx_campdemo_tag`.`deleted` = ?) AND (`tx_campdemo_tag`.`hidden` = ?))) (0.3 ms)",
+                    "count": 13,
+                    "sql": "SELECT * FROM `tx_campdemo_tag` WHERE (`uid` = ?) AND (((`tx_campdemo_tag`.`deleted` = ?) AND (`tx_campdemo_tag`.`hidden` = ?)))",
+                    "ms": 0.3,
+                    "callSites": [
+                        {
+                            "site": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:419)",
+                            "count": 13,
+                            "function": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue",
+                            "file": "vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php",
+                            "line": 419
+                        }
+                    ]
+                },
+                {
+                    "summary": "10× SELECT `uid_foreign` FROM `tx_campdemo_article_tag_mm` WHERE `uid_local` = ? (0.3 ms)",
+                    "count": 10,
+                    "sql": "SELECT `uid_foreign` FROM `tx_campdemo_article_tag_mm` WHERE `uid_local` = ?",
+                    "ms": 0.28,
+                    "callSites": [
+                        {
+                            "site": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:402)",
+                            "count": 10,
+                            "function": "SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue",
+                            "file": "vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php",
+                            "line": 402
+                        }
+                    ]
+                }
+            ],
+            "agentPrompt": "T3Flare found a performance issue in the page `GET t3cb26.ddev.site/_sgapi/camp/v1/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 2 statements 23 times (0.6 ms)\n\nEvidence:\n- 13× SELECT * FROM `tx_campdemo_tag` WHERE (`uid` = ?) AND (((`tx_campdemo_tag`.`deleted` = ?) AND (`tx_campdemo_tag`.`hidden` = ?))) (0.3 ms)\n  - called 13× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:419)\n- 10× SELECT `uid_foreign` FROM `tx_campdemo_article_tag_mm` WHERE `uid_local` = ? (0.3 ms)\n  - called 10× from SGalinski\\SgApiCore\\Mapper\\TcaMapper::transformValue (vendor/sgalinski/sg-apicore/Classes/Mapper/TcaMapper.php:402)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://t3cb26.ddev.site/_sgapi/camp/v1/articles` (or `ddev t3flare /_sgapi/camp/v1/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+        }
+    ]
+}

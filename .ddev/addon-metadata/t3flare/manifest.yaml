@@ -1,0 +1,14 @@
+name: t3flare
+repository: vendor/maikschneider/t3flare/Resources/Private/Ddev
+version: ""
+install_date: "2026-10-12T12:24:22+02:00"
+project_files:
+    - config.t3flare.yaml
+    - commands/web/t3flare
+global_files: []
+removal_actions:
+    - |
+      #ddev-description: Remove the generated T3FLARE_SECRET
+      if [ -f .env ]; then
+        sed -i.bak '/^T3FLARE_SECRET=/d' .env && rm -f .env.bak
+      fi

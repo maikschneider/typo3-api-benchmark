@@ -1,0 +1,4 @@
+routeEnhancers:
+  T3api:
+    type: T3apiResourceEnhancer
+    basePath: '_t3api'

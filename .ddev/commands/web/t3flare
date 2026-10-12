@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#ddev-generated
+
+## Description: Profile a page or a TYPO3 console command with T3Flare
+## Usage: t3flare [path|url] [t3flare:profile options] | t3flare -- <typo3 command> [arguments]
+## Example: "ddev t3flare /news/" "ddev t3flare https://example.ddev.site/ --top=10" "ddev t3flare -- cache:warmup"
+
+set -eu
+
+typo3="${DDEV_COMPOSER_ROOT:-/var/www/html}/vendor/bin/typo3"
+
+if [ "${1:-}" = "--" ]; then
+    shift
+    T3FLARE_PROFILE=1 "$typo3" "$@"
+    exec "$typo3" t3flare:report latest
+fi
+
+target="${1:-/}"
+[ $# -gt 0 ] && shift
+case "$target" in
+    http://*|https://*) url="$target" ;;
+    *) url="${DDEV_PRIMARY_URL%/}/${target#/}" ;;
+esac
+
+exec "$typo3" t3flare:profile "$url" "$@"

@@ -1,0 +1,1064 @@
+{
+  "mode": "prod",
+  "vus": 8,
+  "repetitions": 5,
+  "versions": {
+    "maikschneider/tca-api": "2.1.0",
+    "sgalinski/sg-apicore": "3.1.7",
+    "sourcebroker/t3api": "dev-release/5.0.0",
+    "typo3/cms-core": "v14.3.8"
+  },
+  "date": "2026-10-12T10:40:12.312Z",
+  "runs": [
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-miss-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-hit-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-miss-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-hit-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-miss-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-hit-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-miss-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-hit-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-miss-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-hit-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-miss-1.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-hit-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-miss-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-hit-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-miss-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-hit-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-miss-1.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-hit-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-miss-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-hit-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-miss-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-hit-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-miss-1.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-hit-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-miss-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-hit-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-miss-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-hit-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-miss-1.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 1,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-hit-1.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-miss-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-hit-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-miss-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-hit-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-miss-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-hit-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-miss-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-hit-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-miss-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-hit-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-miss-2.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-hit-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-miss-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-hit-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-miss-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-hit-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-miss-2.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-hit-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-miss-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-hit-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-miss-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-hit-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-miss-2.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-hit-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-miss-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-hit-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-miss-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-hit-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-miss-2.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 2,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-hit-2.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-miss-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-hit-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-miss-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-hit-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-miss-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-hit-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-miss-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-hit-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-miss-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-hit-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-miss-3.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-hit-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-miss-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-hit-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-miss-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-hit-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-miss-3.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-hit-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-miss-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-hit-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-miss-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-hit-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-miss-3.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-hit-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-miss-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-hit-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-miss-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-hit-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-miss-3.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 3,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-hit-3.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-miss-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-hit-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-miss-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-hit-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-miss-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-hit-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-miss-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-hit-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-miss-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-hit-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-miss-4.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-hit-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-miss-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-hit-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-miss-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-hit-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-miss-4.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-hit-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-miss-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-hit-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-miss-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-hit-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-miss-4.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-hit-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-miss-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-hit-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-miss-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-hit-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-miss-4.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 4,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-hit-4.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-miss-5.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-20-hit-5.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-miss-5.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-list-100-hit-5.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-miss-5.json"
+    },
+    {
+      "contender": "tcaapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/tcaapi-item-hit-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-miss-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-20-hit-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-miss-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-list-100-hit-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-miss-5.json"
+    },
+    {
+      "contender": "t3api",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/t3api-item-hit-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-miss-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-20-hit-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-miss-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-list-100-hit-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-miss-5.json"
+    },
+    {
+      "contender": "sgapicore",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/sgapicore-item-hit-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-miss-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-20-hit-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-miss-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-list-100-hit-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-miss-5.json"
+    },
+    {
+      "contender": "recordapi",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/recordapi-item-hit-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-miss-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-20",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-20-hit-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-miss-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "list-100",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-list-100-hit-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "miss",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-miss-5.json"
+    },
+    {
+      "contender": "extbase",
+      "scenario": "item",
+      "pass": "hit",
+      "repetition": 5,
+      "file": "/Users/mas/Sites/t3cb26/demo/benchmark/results/2026-10-12T10-33-32-prod/extbase-item-hit-5.json"
+    }
+  ]
+}
