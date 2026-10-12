@@ -1,0 +1,151 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-230546-f3913e",
+    "request": {
+        "method": "GET",
+        "host": "typo3-api-benchmark.ddev.site",
+        "path": "/api/articles"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 71.82,
+        "queries": 69,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21659648,
+        "includedFiles": 1098,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "middleware": 36.5,
+        "bootstrap": 33.5
+    },
+    "units": [
+        {
+            "unit": "middleware: nnrestapi/resolver",
+            "ms": 27.5,
+            "queries": 64,
+            "queryMs": 4.81
+        },
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 27,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/page-resolver",
+            "ms": 3,
+            "queries": 2,
+            "queryMs": 0.51
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/authentication",
+            "ms": 3,
+            "queries": 1,
+            "queryMs": 0.11
+        },
+        {
+            "unit": "bootstrap: autoload / entry script",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/prepare-tsfe-rendering",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::initializeErrorHandling",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "typoscript: Create PageInformation",
+            "ms": 0,
+            "queries": 2,
+            "queryMs": 0.41
+        }
+    ],
+    "findings": [
+        {
+            "rule": "repeated-query",
+            "severity": "warning",
+            "title": "page repeats 3 statements 60 times (3.3 ms)",
+            "scope": "page",
+            "detail": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_… · 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_ar… · 20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`hidden` = ? AND tx_bench_a…",
+            "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
+            "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
+            "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
+            "impactMs": 3.28,
+            "evidence": [
+                {
+                    "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (((`sys_category`.`hidden` = ?) AND (`sys_category`.`starttime` <= ?) AND (((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) AND sys_category.deleted=?)) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (1.6 ms)",
+                    "count": 20,
+                    "sql": "SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (((`sys_category`.`hidden` = ?) AND (`sys_category`.`starttime` <= ?) AND (((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) AND sys_category.deleted=?)) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC",
+                    "ms": 1.57,
+                    "callSites": [
+                        {
+                            "site": "Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)",
+                            "count": 20,
+                            "function": "Nng\\Nnhelpers\\Utilities\\Obj::toArray",
+                            "file": "vendor/nng/nnhelpers/Classes/Utilities/Obj.php",
+                            "line": 625
+                        }
+                    ]
+                },
+                {
+                    "summary": "20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`hidden` = ? AND tx_bench_tag.deleted=?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (1.0 ms)",
+                    "count": 20,
+                    "sql": "SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`hidden` = ? AND tx_bench_tag.deleted=?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC",
+                    "ms": 0.97,
+                    "callSites": [
+                        {
+                            "site": "Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)",
+                            "count": 20,
+                            "function": "Nng\\Nnhelpers\\Utilities\\Obj::toArray",
+                            "file": "vendor/nng/nnhelpers/Classes/Utilities/Obj.php",
+                            "line": 625
+                        }
+                    ]
+                },
+                {
+                    "summary": "20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`hidden` = ? AND tx_bench_author.deleted=?) LIMIT ? (0.7 ms)",
+                    "count": 20,
+                    "sql": "SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`hidden` = ? AND tx_bench_author.deleted=?) LIMIT ?",
+                    "ms": 0.74,
+                    "callSites": [
+                        {
+                            "site": "Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)",
+                            "count": 20,
+                            "function": "Nng\\Nnhelpers\\Utilities\\Obj::toArray",
+                            "file": "vendor/nng/nnhelpers/Classes/Utilities/Obj.php",
+                            "line": 625
+                        }
+                    ]
+                }
+            ],
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/api/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (warning): page repeats 3 statements 60 times (3.3 ms)\n\nEvidence:\n- 20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (((`sys_category`.`hidden` = ?) AND (`sys_category`.`starttime` <= ?) AND (((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) AND sys_category.deleted=?)) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (1.6 ms)\n  - called 20× from Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)\n- 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`hidden` = ? AND tx_bench_tag.deleted=?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (1.0 ms)\n  - called 20× from Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)\n- 20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`hidden` = ? AND tx_bench_author.deleted=?) LIMIT ? (0.7 ms)\n  - called 20× from Nng\\Nnhelpers\\Utilities\\Obj::toArray (vendor/nng/nnhelpers/Classes/Utilities/Obj.php:625)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/api/articles` (or `ddev t3flare /api/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+        }
+    ]
+}

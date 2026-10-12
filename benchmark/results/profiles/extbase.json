@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-223405-36c5ec",
+    "profile": "20261012-230556-03988e",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,7 +12,7 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 52.9,
+        "wallMs": 50.61,
         "queries": 67,
         "contentElements": 0,
         "attributedShare": 100,
@@ -28,9 +28,9 @@
         "exception": null
     },
     "categories": {
-        "bootstrap": 25,
-        "typoscript": 21,
-        "middleware": 6
+        "bootstrap": 24.5,
+        "typoscript": 19.5,
+        "middleware": 3
     },
     "units": [
         {
@@ -41,31 +41,25 @@
         },
         {
             "unit": "typoscript: Page generation / Page generation PAGE object / 10 [EXTBASEPLUGIN]",
-            "ms": 18,
+            "ms": 16.5,
             "queries": 62,
-            "queryMs": 4.49
+            "queryMs": 4.58
         },
         {
             "unit": "middleware: typo3/cms-frontend/page-resolver",
             "ms": 3,
             "queries": 2,
-            "queryMs": 0.36
+            "queryMs": 0.5
         },
         {
             "unit": "typoscript: Create PageInformation",
             "ms": 3,
             "queries": 2,
-            "queryMs": 0.2
+            "queryMs": 0.23
         },
         {
             "unit": "bootstrap: Application / middleware stack build",
-            "ms": 3,
-            "queries": 0,
-            "queryMs": 0
-        },
-        {
-            "unit": "middleware: typo3/cms-frontend/prepare-tsfe-rendering",
-            "ms": 3,
+            "ms": 2.5,
             "queries": 0,
             "queryMs": 0
         },
@@ -79,7 +73,7 @@
             "unit": "typoscript: Page generation",
             "ms": 0,
             "queries": 1,
-            "queryMs": 0.05
+            "queryMs": 0.07
         }
     ],
     "findings": [
@@ -98,7 +92,7 @@
                     "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (1.7 ms)",
                     "count": 20,
                     "sql": "SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC",
-                    "ms": 1.66,
+                    "ms": 1.67,
                     "callSites": [
                         {
                             "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:68)",
@@ -113,7 +107,7 @@
                     "summary": "20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (0.9 ms)",
                     "count": 20,
                     "sql": "SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC",
-                    "ms": 0.93,
+                    "ms": 0.94,
                     "callSites": [
                         {
                             "site": "Typo3ApiBenchmark\\Extbase\\Controller\\ArticleController::toArray (packages/bench_extbase/Classes/Controller/ArticleController.php:64)",
@@ -128,7 +122,7 @@
                     "summary": "20× SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench_author`.`hidden` = ?) LIMIT ? (0.6 ms)",
                     "count": 20,
                     "sql": "SELECT `tx_bench_author`.* FROM `tx_bench_author` WHERE (`tx_bench_author`.`uid` IN (…)) AND (`tx_bench_author`.`deleted` = ? AND `tx_bench_author`.`hidden` = ?) LIMIT ?",
-                    "ms": 0.64,
+                    "ms": 0.61,
                     "callSites": [
                         {
                             "site": "Typo3ApiBenchmark\\Extbase\\Domain\\Model\\Article::getAuthor (packages/bench_extbase/Classes/Domain/Model/Article.php:72)",

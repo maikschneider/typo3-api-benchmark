@@ -1,6 +1,6 @@
 {
     "schema": "t3flare/report/1",
-    "profile": "20261012-223355-8b0760",
+    "profile": "20261012-230528-7a7a86",
     "request": {
         "method": "GET",
         "host": "typo3-api-benchmark.ddev.site",
@@ -12,7 +12,7 @@
         "context": "Production"
     },
     "summary": {
-        "wallMs": 34.07,
+        "wallMs": 38.11,
         "queries": 5,
         "contentElements": 0,
         "attributedShare": 100,
@@ -28,13 +28,13 @@
         "exception": null
     },
     "categories": {
-        "bootstrap": 25,
+        "bootstrap": 31,
         "middleware": 6
     },
     "units": [
         {
             "unit": "bootstrap: Bootstrap::init",
-            "ms": 21.5,
+            "ms": 28,
             "queries": 0,
             "queryMs": 0
         },
@@ -42,17 +42,11 @@
             "unit": "middleware: maikschneider/tca-api/middleware",
             "ms": 6,
             "queries": 5,
-            "queryMs": 1.63
+            "queryMs": 1.87
         },
         {
             "unit": "bootstrap: Application / middleware stack build",
             "ms": 3,
-            "queries": 0,
-            "queryMs": 0
-        },
-        {
-            "unit": "bootstrap: autoload / entry script",
-            "ms": 0.5,
             "queries": 0,
             "queryMs": 0
         }
