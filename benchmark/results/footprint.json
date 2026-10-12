@@ -113,6 +113,93 @@
       "lines": 28
     }
   },
+  "nnrestapi": {
+    "files": [
+      {
+        "path": "Classes/Api/AbstractCachedApi.php",
+        "lines": 26
+      },
+      {
+        "path": "Classes/Api/Articles.php",
+        "lines": 43
+      },
+      {
+        "path": "Classes/Domain/Model/Article.php",
+        "lines": 63
+      },
+      {
+        "path": "Classes/Domain/Model/Author.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Model/Category.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Model/Tag.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Repository/ArticleRepository.php",
+        "lines": 13
+      },
+      {
+        "path": "Configuration/Extbase/Persistence/Classes.php",
+        "lines": 18
+      },
+      {
+        "path": "Configuration/Services.yaml",
+        "lines": 9
+      },
+      {
+        "path": "Configuration/Sets/BenchNnrestapi/config.yaml",
+        "lines": 2
+      },
+      {
+        "path": "Configuration/Sets/BenchNnrestapi/setup.typoscript",
+        "lines": 6
+      },
+      {
+        "path": "ext_localconf.php",
+        "lines": 5
+      }
+    ],
+    "lines": 221,
+    "classes": 7,
+    "outside": [
+      "site set `typo3-api-benchmark/nnrestapi`",
+      "site config `imports` of `EXT:nnrestapi/Configuration/Yaml/default.yaml`"
+    ],
+    "depth": {
+      "files": [
+        {
+          "path": "Classes/Api/ArticlesDepth.php",
+          "lines": 38
+        },
+        {
+          "path": "Classes/Domain/Model/ArticleDepth.php",
+          "lines": 37
+        },
+        {
+          "path": "Classes/Domain/Model/AuthorDepth.php",
+          "lines": 23
+        },
+        {
+          "path": "Classes/Domain/Model/CountryDepth.php",
+          "lines": 12
+        },
+        {
+          "path": "Classes/Domain/Model/OrganizationDepth.php",
+          "lines": 23
+        },
+        {
+          "path": "Classes/Domain/Repository/ArticleDepthRepository.php",
+          "lines": 13
+        }
+      ],
+      "lines": 146
+    }
+  },
   "recordapi": {
     "files": [
       {

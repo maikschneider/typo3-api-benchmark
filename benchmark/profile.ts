@@ -2,6 +2,7 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { contenders } from './contenders';
 import { get } from './http';
+import { activate, deactivate } from './isolation';
 
 // One T3Flare profile per API for the same cold collection request: where the time goes in
 // TYPO3 terms, which queries repeat, how much code loads. Cached requests are not profiled,
@@ -31,11 +32,16 @@ const rows: string[] = [];
 const findings: string[] = [];
 
 for (const contender of contenders) {
-  ddev('exec', 'vendor/bin/typo3', 'cache:flush');
-  await get(contender.list(400, 20));
-  ddev('t3flare', contender.list(7, 20));
-
-  const json = ddev('exec', 'vendor/bin/typo3', 't3flare:report', 'latest', '--format=json');
+  activate(contender);
+  let json: string;
+  try {
+    ddev('exec', 'vendor/bin/typo3', 'cache:flush');
+    await get(contender.list(400, 20));
+    ddev('t3flare', contender.list(7, 20));
+    json = ddev('exec', 'vendor/bin/typo3', 't3flare:report', 'latest', '--format=json');
+  } finally {
+    deactivate(contender);
+  }
   writeFileSync(join(outDir, `${contender.key}.json`), json);
   const report: Report = JSON.parse(json);
   const largest = report.units.filter((unit) => !unit.unit.startsWith('bootstrap:')).sort((a, b) => b.ms - a.ms)[0];

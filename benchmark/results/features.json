@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-12T20:33:24.297Z",
+  "date": "2026-10-12T21:05:13.210Z",
   "article": 4,
   "lockHash": "1ce773ce4786013145b325797524730f",
   "results": {
@@ -127,6 +127,48 @@
       "openApi": {
         "status": "yes",
         "detail": "/_sgapi/bench/v1/docs.json"
+      }
+    },
+    "nnrestapi": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Jonas Torvalds\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "yes",
+        "detail": "3 of 3 titles embedded"
+      },
+      "batched": {
+        "status": "no",
+        "detail": "69 queries for 20 items, 308 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "69 → 7 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "freshRelated": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "openApi": {
+        "status": "partial",
+        "detail": "backend module only"
       }
     },
     "recordapi": {

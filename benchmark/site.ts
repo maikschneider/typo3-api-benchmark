@@ -43,7 +43,7 @@ const data = {
     php: ddevValue(/php_version:\s*"?([\d.]+)/),
     database: `${ddevValue(/database:\s*\n\s+type:\s*(\w+)/)} ${ddevValue(/database:\s*\n\s+type:\s*\w+\s*\n\s+version:\s*"?([\d.]+)/)}`,
   },
-  contenders: contenders.map(({ key, label, package: pkg }) => ({ key, label, package: pkg })),
+  contenders: contenders.map(({ key, label, package: pkg, isolated }) => ({ key, label, package: pkg, isolated: isolated?.reason ?? null })),
   suites: suites.map(({ key, label, axis, question, points }) => ({ key, label, axis, question, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase })) })),
   load: results,
   features: features && { date: features.date, list: FEATURES, results: features.results },

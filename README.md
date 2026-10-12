@@ -1,6 +1,6 @@
 # TYPO3 API Benchmark
 
-Five ways to serve the same TYPO3 records as JSON, side by side: three API extensions and two hand-written endpoints on TYPO3 core, each in its own package, load-tested cold and cached, probed for correct and fresh data, and counted in lines of configuration.
+Six ways to serve the same TYPO3 records as JSON, side by side: four API extensions and two hand-written endpoints on TYPO3 core, each in its own package, load-tested cold and cached, probed for correct and fresh data, and counted in lines of configuration.
 
 **Results: [`docs/index.html`](docs/index.html)**, a self-contained page with charts, the feature matrix and every number in table form.
 
@@ -9,6 +9,7 @@ Five ways to serve the same TYPO3 records as JSON, side by side: three API exten
 | [tca_api](https://github.com/maikschneider/tca-api) | [`packages/bench_tcaapi`](packages/bench_tcaapi) | see `composer.lock` |
 | [t3api](https://github.com/sourcebroker/t3api) | [`packages/bench_t3api`](packages/bench_t3api) | `release/5.0.0` branch (TYPO3 v14 support is not released yet) |
 | [sg_apicore](https://extensions.typo3.org/extension/sg_apicore) | [`packages/bench_sgapicore`](packages/bench_sgapicore) | see `composer.lock` |
+| [nnrestapi](https://extensions.typo3.org/extension/nnrestapi) | [`packages/bench_nnrestapi`](packages/bench_nnrestapi) | `14.x-dev` branch with `nng/nnhelpers` `14.x-dev` (TYPO3 v14 support is not released yet) |
 | Record API, hand-written | [`packages/bench_recordapi`](packages/bench_recordapi) | TYPO3 core |
 | Extbase, hand-written | [`packages/bench_extbase`](packages/bench_extbase) | TYPO3 core |
 
@@ -62,6 +63,7 @@ The endpoints, for trying them by hand:
 | tca_api | `/_api/articles?page=1&itemsPerPage=20` | `/_api/articles/1` |
 | t3api | `/_t3api/articles?order[uid]=asc&page=1&itemsPerPage=20` | `/_t3api/articles/1` |
 | sg_apicore | `/_sgapi/bench/v1/articles?sort=uid&page=1&perPage=20` | `/_sgapi/bench/v1/articles/1` |
+| nnrestapi | `/api/articles?page=1&itemsPerPage=20` | `/api/articles/1` |
 | Record API | `/_recordapi/articles?page=1&itemsPerPage=20` | `/_recordapi/articles/1` |
 | Extbase | `/_extbase/articles/1/20.json` | `/_extbase/articles/1.json` |
 

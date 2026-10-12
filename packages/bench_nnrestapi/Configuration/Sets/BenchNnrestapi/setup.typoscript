@@ -1,0 +1,7 @@
+@import 'EXT:nnrestapi/Configuration/TypoScript/setup.typoscript'
+
+plugin.tx_nnrestapi.settings.globalDistillers {
+  TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+    exclude = pid
+  }
+}

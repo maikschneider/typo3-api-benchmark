@@ -31,7 +31,7 @@ For every step and API:
 
 The matrix runs `--repeat` times; within each step the APIs run one after another, so noise from the host spreads evenly. Reports show the median over the repetitions, and for the response time also the range across them.
 
-Queries, server time and memory come from [`QueryCountMiddleware`](../packages/bench/Classes/Middleware/QueryCountMiddleware.php), the first middleware of the frontend stack, and a DBAL driver middleware that counts every executed statement. All five APIs are measured from the same point, including whatever their own middlewares, routing and bootstrap cost.
+Queries, server time and memory come from [`QueryCountMiddleware`](../packages/bench/Classes/Middleware/QueryCountMiddleware.php), the first middleware of the frontend stack, and a DBAL driver middleware that counts every executed statement. All six APIs are measured from the same point, including whatever their own middlewares, routing and bootstrap cost.
 
 ## Feature probes
 
@@ -46,12 +46,12 @@ Queries, server time and memory come from [`QueryCountMiddleware`](../packages/b
 
 ## Production setup
 
-`bin/env prod` installs without dev dependencies, with an authoritative classmap, and turns off OPcache timestamp validation ([`php/zz-bench-prod.ini`](php/zz-bench-prod.ini)). TYPO3 runs in `Production` context in both modes. Every API response cache and the page cache, which the Extbase variant relies on, use the same `FileBackend` ([`config/system/additional.php`](../config/system/additional.php)), so a cached request compares the APIs, not the cache storage.
+`bin/env prod` installs without dev dependencies, with an authoritative classmap, and turns off OPcache timestamp validation ([`php/zz-bench-prod.ini`](php/zz-bench-prod.ini)). TYPO3 runs in `Production` context in both modes. Every API response cache and the page cache, which the Extbase variant relies on, use the same `FileBackend` ([`config/system/additional.php`](../config/system/additional.php)), so a cached request compares the APIs, not the cache storage. The exception is the nnhelpers cache that holds the nnrestapi responses: nnhelpers defines it in its own `ext_localconf.php`, which runs after `additional.php`, so [`bench_nnrestapi`](../packages/bench_nnrestapi/ext_localconf.php) switches it to `FileBackend`.
 
 ## Limits
 
 - PHP, the database and k6 share one machine, the database has no network latency, PHP-FPM has 8 workers. Absolute numbers will differ on a server; compare the APIs, not the values. On a remote database every additional query costs a round trip, so per-row loading falls further behind.
-- Payloads differ: tca_api and t3api return Hydra JSON-LD with `@id`, `@type` and pagination links; sg_apicore cannot embed categories.
+- Payloads differ: tca_api and t3api return Hydra JSON-LD with `@id`, `@type` and pagination links; sg_apicore cannot embed categories; nnrestapi returns `published` as a Unix timestamp.
 - One dataset: 10,000 articles by 2,000 authors in 300 organizations in 25 countries, 15 tags and 8 categories; 2–4 tags and 1–3 categories per article. Related records rarely repeat within a page, so identity maps cannot hide per-row loading.
-- The depth variants are extra configuration in every package; the footprint counts them separately. Two API-specific effects show up in the depth sweep: the core Record API loads a whole table of to-one relations at once (`GreedyDatabaseBackend`), and an Extbase lazy proxy loads the next level eagerly (`LazyLoadingProxy::_loadRealInstance()`).
+- The depth variants are extra configuration in every package; the footprint counts them separately. Three API-specific effects show up in the depth sweep: the core Record API loads a whole table of to-one relations at once (`GreedyDatabaseBackend`), an Extbase lazy proxy loads the next level eagerly (`LazyLoadingProxy::_loadRealInstance()`), and the nnhelpers converter behind nnrestapi calls every getter before it applies the depth limit, so it loads one level more than it returns.
 - Profiles include the profiler's sampling overhead; compare them between APIs, not with the load test. Cached requests are not profiled, because the profiler's request does not share the cache key of a normal request.

@@ -14,6 +14,19 @@ export interface Contender {
   projectConfig: string[];
   /** Public URL of a generated OpenAPI document, or a note where the API documents itself otherwise. */
   openApi: { url: string } | { note: string } | null;
+  /**
+   * Installed only while this API is measured, because it changes every request of the install.
+   * The runner adds it, measures it in a phase of its own and restores the install from git.
+   */
+  isolated?: {
+    reason: string;
+    /** Arguments for composer require. */
+    packages: string[];
+    siteImports: string[];
+    siteDependencies: string[];
+    /** Caches outside the caching framework that cache:flush does not clear. */
+    cacheDirs: string[];
+  };
 }
 
 export const contenders: Contender[] = [
@@ -49,6 +62,28 @@ export const contenders: Contender[] = [
     depthFiles: ['Configuration/DepthResources.php'],
     projectConfig: ['`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`'],
     openApi: { url: '/_sgapi/bench/v1/docs.json' },
+  },
+  {
+    key: 'nnrestapi',
+    label: 'nnrestapi',
+    package: 'packages/bench_nnrestapi',
+    list: (page, size) => `/api/articles?page=${page}&itemsPerPage=${size}`,
+    item: (uid) => `/api/articles/${uid}`,
+    depth: (depth, page, size) => `/api/articles-depth/${depth}?page=${page}&itemsPerPage=${size}`,
+    depthFiles: ['Classes/Api/ArticlesDepth.php', 'Classes/Domain/Model/*Depth.php', 'Classes/Domain/Repository/ArticleDepthRepository.php'],
+    projectConfig: ['site set `typo3-api-benchmark/nnrestapi`', 'site config `imports` of `EXT:nnrestapi/Configuration/Yaml/default.yaml`'],
+    openApi: { note: 'backend module only' },
+    isolated: {
+      reason: 'adds a DELETE query on nnrestapi_sessions to every frontend request and XCLASSes the Extbase QueryFactory and HiddenRestriction',
+      packages: [
+        'nng/nnhelpers:14.x-dev#225b8ea2d4d6ce04397c12555c57f3d561613b98',
+        'nng/nnrestapi:14.x-dev#1f11507baac8a9d6a8f5801dad6b746b1c70195a',
+        'typo3-api-benchmark/nnrestapi:@dev',
+      ],
+      siteImports: ["{ resource: 'EXT:nnrestapi/Configuration/Yaml/default.yaml' }"],
+      siteDependencies: ['typo3-api-benchmark/nnrestapi'],
+      cacheDirs: ['var/cache/code/nnhelpers'],
+    },
   },
   {
     key: 'recordapi',

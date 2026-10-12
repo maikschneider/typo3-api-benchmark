@@ -22,6 +22,7 @@
   --series-3: #1baf7a;
   --series-4: #eda100;
   --series-5: #e87ba4;
+  --series-6: #008300;
   --good: #0ca30c;
   --good-ink: #006300;
   --warning: #fab219;
@@ -45,6 +46,7 @@
     --series-3: #199e70;
     --series-4: #c98500;
     --series-5: #d55181;
+    --series-6: #008300;
     --good-ink: #0ca30c;
     --critical-ink: #e66767;
   }
@@ -65,6 +67,7 @@
   --series-3: #199e70;
   --series-4: #c98500;
   --series-5: #d55181;
+  --series-6: #008300;
   --good-ink: #0ca30c;
   --critical-ink: #e66767;
 }
@@ -373,7 +376,7 @@ bin/bench site</pre>
       date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
     ].map((text) => el('span', { class: 'chip' }, text)),
   );
-  const versionOf = { tcaapi: 'maikschneider/tca-api', t3api: 'sourcebroker/t3api', sgapicore: 'sgalinski/sg-apicore' };
+  const versionOf = { tcaapi: 'maikschneider/tca-api', t3api: 'sourcebroker/t3api', sgapicore: 'sgalinski/sg-apicore', nnrestapi: 'nng/nnrestapi' };
   document.getElementById('legend').append(
     ...contenders.map((c) => el('li', {}, el('span', { class: 'key', style: { color: color(c.key) } }), c.label, el('span', { class: 'muted small' }, versionOf[c.key] ? (versions[versionOf[c.key]] || '') : 'hand-written'))),
   );
@@ -650,6 +653,7 @@ bin/bench site</pre>
     `The whole matrix runs ${env.repetitions} times, rotating over the APIs, so noise from the host spreads evenly.`,
     'Queries, server time and memory come from a middleware that runs first in the TYPO3 frontend stack, identical for every API.',
     'Production setup: no dev dependencies, authoritative classmap, OPcache without timestamp checks, every API response cache and the page cache on the same file backend.',
+    ...contenders.filter((c) => c.isolated).map((c) => `${c.label} is installed only for a measurement phase of its own, after the shared one, because it ${c.isolated}. The other APIs are measured without it.`),
   ].map((text) => el('li', {}, text)));
 
   document.getElementById('footer').append(`Generated ${new Date(data.generated).toLocaleString('en-GB')} from benchmark/results. Features checked ${data.features ? new Date(data.features.date).toLocaleDateString('en-GB') : 'never'}.`);

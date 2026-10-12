@@ -3,6 +3,7 @@ import { basename, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { BASE_URL, contenders, suites } from './contenders';
 import { get, k6HostArgs } from './http';
+import { activate, deactivate } from './isolation';
 import { renderReport } from './report';
 
 // Load test: per suite point and API, flush all caches, warm up outside the measured range,
@@ -36,7 +37,7 @@ const mode = existsSync(join(root, '.ddev/php/zz-bench-prod.ini')) ? 'prod' : 'd
 const lock = JSON.parse(readFileSync(join(root, 'composer.lock'), 'utf8'));
 const versions = Object.fromEntries(
   lock.packages
-    .filter((p: { name: string }) => /^(typo3\/cms-core|maikschneider\/tca-api|sourcebroker\/t3api|sgalinski\/sg-apicore)$/.test(p.name))
+    .filter((p: { name: string }) => /^(typo3\/cms-core|maikschneider\/tca-api|sourcebroker\/t3api|sgalinski\/sg-apicore|nng\/nnrestapi)$/.test(p.name))
     .map((p: { name: string; version: string }) => [p.name, p.version]),
 );
 
@@ -55,27 +56,40 @@ if (mode !== 'prod') {
 
 const runs: Array<{ suite: string; point: string; contender: string; pass: string; repetition: number; vus: number; file: string }> = [];
 
+// APIs that change every request of the install run in a phase of their own, after the shared one.
+const phases = [
+  selectedContenders.filter((c) => !c.isolated),
+  ...selectedContenders.filter((c) => c.isolated).map((c) => [c]),
+].filter((phase) => phase.length > 0);
+
 for (let repetition = 1; repetition <= repetitions; repetition++) {
-  for (const suite of selectedSuites) {
-    for (const point of suite.points) {
-      for (const contender of selectedContenders) {
-        const vus = point.vus ?? Number(args.vus);
-        run(['ddev', 'exec', 'vendor/bin/typo3', 'cache:flush']);
-        for (const path of point.warmup(contender)) {
-          await get(path);
-        }
+  for (const phase of phases) {
+    phase.forEach(activate);
+    try {
+      for (const suite of selectedSuites) {
+        for (const point of suite.points) {
+          for (const contender of phase) {
+            const vus = point.vus ?? Number(args.vus);
+            run(['ddev', 'exec', 'vendor/bin/typo3', 'cache:flush']);
+            for (const path of point.warmup(contender)) {
+              await get(path);
+            }
 
-        const urlsFile = join(outDir, `${suite.key}-${point.key}-${contender.key}.urls.json`);
-        writeFileSync(urlsFile, JSON.stringify(point.urls(contender).map((path) => BASE_URL + path)));
+            const urlsFile = join(outDir, `${suite.key}-${point.key}-${contender.key}.urls.json`);
+            writeFileSync(urlsFile, JSON.stringify(point.urls(contender).map((path) => BASE_URL + path)));
 
-        for (const pass of ['miss', 'hit']) {
-          const file = join(outDir, `${suite.key}-${point.key}-${contender.key}-${pass}-${repetition}.json`);
-          process.stdout.write(`[${repetition}/${repetitions}] ${suite.label} / ${point.label} / ${contender.label} / ${pass} … `);
-          run(['k6', 'run', '--quiet', '--no-color', '-e', `URLS_FILE=${urlsFile}`, '-e', `SUMMARY_FILE=${file}`, '-e', `VUS=${vus}`, ...k6HostArgs(), 'benchmark/k6/pass.ts']);
-          runs.push({ suite: suite.key, point: point.key, contender: contender.key, pass, repetition, vus, file: basename(file) });
-          console.log('done');
+            for (const pass of ['miss', 'hit']) {
+              const file = join(outDir, `${suite.key}-${point.key}-${contender.key}-${pass}-${repetition}.json`);
+              process.stdout.write(`[${repetition}/${repetitions}] ${suite.label} / ${point.label} / ${contender.label} / ${pass} … `);
+              run(['k6', 'run', '--quiet', '--no-color', '-e', `URLS_FILE=${urlsFile}`, '-e', `SUMMARY_FILE=${file}`, '-e', `VUS=${vus}`, ...k6HostArgs(), 'benchmark/k6/pass.ts']);
+              runs.push({ suite: suite.key, point: point.key, contender: contender.key, pass, repetition, vus, file: basename(file) });
+              console.log('done');
+            }
+          }
         }
       }
+    } finally {
+      phase.forEach(deactivate);
     }
   }
 }

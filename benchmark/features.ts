@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { contenders } from './contenders';
 import { get } from './http';
+import { activate, deactivate } from './isolation';
 
 // Feature checks: every claim in the report is probed against the running API and the database
 // instead of being taken from documentation.
@@ -119,7 +120,12 @@ if (import.meta.main) {
   const article = Number(sql('SELECT uid FROM tx_bench_article WHERE tags = 4 AND categories = 3 ORDER BY uid LIMIT 1')[0]);
   const results: Record<string, Record<FeatureKey, Check>> = {};
   for (const contender of contenders) {
-    results[contender.key] = await probe(contender, article);
+    activate(contender);
+    try {
+      results[contender.key] = await probe(contender, article);
+    } finally {
+      deactivate(contender);
+    }
     console.error(`${contender.label} probed`);
   }
   flush();
