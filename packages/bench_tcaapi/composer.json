@@ -1,0 +1,17 @@
+{
+	"name": "typo3-api-benchmark/tcaapi",
+	"description": "Benchmark contender: tca_api configuration for the shared article domain",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"version": "1.0.0",
+	"require": {
+		"php": "^8.4",
+		"typo3-api-benchmark/bench": "@dev",
+		"maikschneider/tca-api": "^2.1"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "bench_tcaapi"
+		}
+	}
+}

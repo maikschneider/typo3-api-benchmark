@@ -1,0 +1,15 @@
+plugin.tx_benchextbase.persistence.storagePid = 2
+
+benchExtbaseApi = PAGE
+benchExtbaseApi {
+  typeNum = 1801
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders.10.header = Content-Type: application/json
+  }
+  10 = EXTBASEPLUGIN
+  10 {
+    extensionName = BenchExtbase
+    pluginName = Api
+  }
+}

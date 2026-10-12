@@ -4,12 +4,12 @@ TYPO3 14.3 project for the live demo of [`maikschneider/tca-api`](https://github
 
 ```
 packages/
-  camp_demo/        shared: TCA, seeder, DataHandler edit command, request metrics middleware
-  camp_tcaapi/      tca_api        /_api/articles
-  camp_t3api/       t3api          /_t3api/articles
-  camp_sgapicore/   sg_apicore     /_sgapi/camp/v1/articles
-  camp_recordapi/   Record API     /_recordapi/articles
-  camp_extbase/     Extbase        /_extbase/articles/{page}/{size}.json
+  bench/        shared: TCA, seeder, DataHandler edit command, request metrics middleware
+  bench_tcaapi/      tca_api        /_api/articles
+  bench_t3api/       t3api          /_t3api/articles
+  bench_sgapicore/   sg_apicore     /_sgapi/bench/v1/articles
+  bench_recordapi/   Record API     /_recordapi/articles
+  bench_extbase/     Extbase        /_extbase/articles/{page}/{size}.json
 benchmark/          k6 load test, cache correctness, T3Flare profiles, footprint — see benchmark/README.md
 demo-steps/         the tca_api configuration for each step of the live demo
 ```
@@ -22,19 +22,19 @@ ddev composer install          # T3Flare comes from a private repository, see be
 ddev exec vendor/bin/typo3 setup -n --force --driver=mysqli --host=db --port=3306 \
     --dbname=db --username=db --password=db \
     --admin-username=admin --admin-user-password='Camp.Berlin.26' --admin-email=admin@example.com \
-    --project-name='T3CB26 tca_api demo' --create-site='https://t3cb26.ddev.site/' --server-type=apache
+    --project-name='T3CB26 tca_api demo' --create-site='https://typo3-api-benchmark.ddev.site/' --server-type=apache
 git checkout -- config/sites/main/config.yaml    # setup overwrites the site config
 ddev exec vendor/bin/typo3 extension:setup
-ddev exec vendor/bin/typo3 camp:seed             # 10,000 articles; --articles=N for another size
+ddev exec vendor/bin/typo3 bench:seed             # 10,000 articles; --articles=N for another size
 ```
 
-Backend: <https://t3cb26.ddev.site/typo3/> — `admin` / `Camp.Berlin.26`
+Backend: <https://typo3-api-benchmark.ddev.site/typo3/> — `admin` / `Camp.Berlin.26`
 
 T3Flare (`maikschneider/t3flare`, dev dependency) is installed from a private GitHub repository over SSH. Without access, remove it from `require-dev` and the `repositories` entry; only `bin/bench profile` needs it.
 
 ## Live demo
 
-`bin/step N` puts `packages/camp_tcaapi/Configuration/TcaApi/` and the site config into the state of step `N` (cumulative) and flushes the caches. `bin/step bench` goes back to the committed benchmark configuration. Needs `bin/env dev`.
+`bin/step N` puts `packages/bench_tcaapi/Configuration/TcaApi/` and the site config into the state of step `N` (cumulative) and flushes the caches. `bin/step bench` goes back to the committed benchmark configuration. Needs `bin/env dev`.
 
 | Step | What changes | Try |
 |---|---|---|
@@ -52,5 +52,5 @@ Every frontend response carries `X-Query-Count`, `Server-Timing: app;dur=…` (v
 
 ## Known issues found while building this
 
-- tca_api [#204](https://github.com/maikschneider/tca-api/issues/204): `sys_category.items` is resolved per row. `camp_tcaapi` therefore exposes only `title` for categories.
-- tca_api [#206](https://github.com/maikschneider/tca-api/issues/206) and t3api: their `clearCachePostProc` hooks pass integer tags to `flushByTags()` when DataHandler clears caches through `TCEMAIN.clearCacheCmd`, which turns every save into a TypeError. `camp_extbase` uses cache tags instead of `clearCacheCmd` for that reason.
+- tca_api [#204](https://github.com/maikschneider/tca-api/issues/204): `sys_category.items` is resolved per row. `bench_tcaapi` therefore exposes only `title` for categories.
+- tca_api [#206](https://github.com/maikschneider/tca-api/issues/206) and t3api: their `clearCachePostProc` hooks pass integer tags to `flushByTags()` when DataHandler clears caches through `TCEMAIN.clearCacheCmd`, which turns every save into a TypeError. `bench_extbase` uses cache tags instead of `clearCacheCmd` for that reason.

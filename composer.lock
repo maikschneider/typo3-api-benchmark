@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32e7a0102d1a03e9b71e57b26dd4d947",
+    "content-hash": "1ce773ce4786013145b325797524730f",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1511,196 +1511,6 @@
                 "source": "https://github.com/lolli42/FineDiff/tree/1.1.2"
             },
             "time": "2025-10-31T12:28:27+00:00"
-        },
-        {
-            "name": "maikschneider/camp-demo",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_demo",
-                "reference": "bc3fb2ffc1ec0ba2caa4f79a98d2c0729b40f43d"
-            },
-            "require": {
-                "php": "^8.4",
-                "typo3/cms-core": "^14.3"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_demo"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MaikSchneider\\CampDemo\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Shared domain, seeder and request metrics for the API benchmark",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "maikschneider/camp-extbase",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_extbase",
-                "reference": "ed099693f7db70cdecb8be13c2ea008cf868b02e"
-            },
-            "require": {
-                "maikschneider/camp-demo": "@dev",
-                "php": "^8.4",
-                "typo3/cms-core": "^14.3",
-                "typo3/cms-extbase": "^14.3",
-                "typo3/cms-frontend": "^14.3"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_extbase"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MaikSchneider\\CampExtbase\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Benchmark contender: Extbase plugin rendered as a JSON page type, cached by the TYPO3 page cache",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "maikschneider/camp-recordapi",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_recordapi",
-                "reference": "1e6349096d2f511e90f9c60b4ab78c476d73810f"
-            },
-            "require": {
-                "maikschneider/camp-demo": "@dev",
-                "php": "^8.4",
-                "typo3/cms-core": "^14.3"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_recordapi"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MaikSchneider\\CampRecordapi\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Benchmark contender: hand-written endpoint on the core Record API with tag-based response caching",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "maikschneider/camp-sgapicore",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_sgapicore",
-                "reference": "f630d56bf206e31b282202461f8fd5397f1b4cf2"
-            },
-            "require": {
-                "maikschneider/camp-demo": "@dev",
-                "php": "^8.4",
-                "sgalinski/sg-apicore": "^3.1"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_sgapicore"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MaikSchneider\\CampSgapicore\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Benchmark contender: sg_apicore configuration for the shared article domain",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "maikschneider/camp-t3api",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_t3api",
-                "reference": "ca4a53648ee4f1dba39ce80638dc6e33237ad6f6"
-            },
-            "require": {
-                "maikschneider/camp-demo": "@dev",
-                "php": "^8.4",
-                "sourcebroker/t3api": "dev-release/5.0.0 || ^5.0",
-                "typo3/cms-core": "^14.3",
-                "typo3/cms-extbase": "^14.3"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_t3api"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MaikSchneider\\CampT3api\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "sourcebroker/t3api contender for the camp_demo REST API benchmark",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "maikschneider/camp-tcaapi",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/camp_tcaapi",
-                "reference": "645a405abaf70879dd6f4ae14f276c06278e92a0"
-            },
-            "require": {
-                "maikschneider/camp-demo": "@dev",
-                "maikschneider/tca-api": "^2.1",
-                "php": "^8.4"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "camp_tcaapi"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Benchmark contender: tca_api configuration for the shared article domain",
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "maikschneider/tca-api",
@@ -6644,6 +6454,196 @@
             "time": "2026-09-26T06:31:10+00:00"
         },
         {
+            "name": "typo3-api-benchmark/bench",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench",
+                "reference": "b18d67353ed0ab2f6e17918967ac5814b51c5c28"
+            },
+            "require": {
+                "php": "^8.4",
+                "typo3/cms-core": "^14.3"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Typo3ApiBenchmark\\Bench\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Shared domain, seeder and request metrics for the API benchmark",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "typo3-api-benchmark/extbase",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench_extbase",
+                "reference": "0f4ce202f1a092ee68cee4251d17fb41dfcec8d4"
+            },
+            "require": {
+                "php": "^8.4",
+                "typo3-api-benchmark/bench": "@dev",
+                "typo3/cms-core": "^14.3",
+                "typo3/cms-extbase": "^14.3",
+                "typo3/cms-frontend": "^14.3"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench_extbase"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Typo3ApiBenchmark\\Extbase\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Benchmark contender: Extbase plugin rendered as a JSON page type, cached by the TYPO3 page cache",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "typo3-api-benchmark/recordapi",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench_recordapi",
+                "reference": "f1cb7d3828a01c868bf184b3f7d5967eb6c8406b"
+            },
+            "require": {
+                "php": "^8.4",
+                "typo3-api-benchmark/bench": "@dev",
+                "typo3/cms-core": "^14.3"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench_recordapi"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Typo3ApiBenchmark\\Recordapi\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Benchmark contender: hand-written endpoint on the core Record API with tag-based response caching",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "typo3-api-benchmark/sgapicore",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench_sgapicore",
+                "reference": "ac8a29e0ab37945f6452761458a2a7ff7b430bf3"
+            },
+            "require": {
+                "php": "^8.4",
+                "sgalinski/sg-apicore": "^3.1",
+                "typo3-api-benchmark/bench": "@dev"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench_sgapicore"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Typo3ApiBenchmark\\Sgapicore\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Benchmark contender: sg_apicore configuration for the shared article domain",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "typo3-api-benchmark/t3api",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench_t3api",
+                "reference": "e89ae9525d2e32619863b432b867feb70783c911"
+            },
+            "require": {
+                "php": "^8.4",
+                "sourcebroker/t3api": "dev-release/5.0.0 || ^5.0",
+                "typo3-api-benchmark/bench": "@dev",
+                "typo3/cms-core": "^14.3",
+                "typo3/cms-extbase": "^14.3"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench_t3api"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Typo3ApiBenchmark\\T3api\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "sourcebroker/t3api contender for the bench REST API benchmark",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "typo3-api-benchmark/tcaapi",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/bench_tcaapi",
+                "reference": "c965de0fb672f26bb60c260bd9d64dc1bc15effc"
+            },
+            "require": {
+                "maikschneider/tca-api": "^2.1",
+                "php": "^8.4",
+                "typo3-api-benchmark/bench": "@dev"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bench_tcaapi"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Benchmark contender: tca_api configuration for the shared article domain",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "typo3/class-alias-loader",
             "version": "v2.0.1",
             "source": {
@@ -7822,14 +7822,14 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "maikschneider/camp-demo": 20,
-        "maikschneider/camp-extbase": 20,
-        "maikschneider/camp-recordapi": 20,
-        "maikschneider/camp-sgapicore": 20,
-        "maikschneider/camp-t3api": 20,
-        "maikschneider/camp-tcaapi": 20,
         "maikschneider/t3flare": 20,
-        "sourcebroker/t3api": 20
+        "sourcebroker/t3api": 20,
+        "typo3-api-benchmark/bench": 20,
+        "typo3-api-benchmark/extbase": 20,
+        "typo3-api-benchmark/recordapi": 20,
+        "typo3-api-benchmark/sgapicore": 20,
+        "typo3-api-benchmark/t3api": 20,
+        "typo3-api-benchmark/tcaapi": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

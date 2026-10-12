@@ -1,4 +1,4 @@
-name: t3cb26
+name: typo3-api-benchmark
 type: typo3
 docroot: public
 php_version: "8.4"

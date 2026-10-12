@@ -1,0 +1,23 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Typo3ApiBenchmark\Recordapi\:
+    resource: '../Classes/*'
+
+  cache.bench_recordapi:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments: ['bench_recordapi']
+
+  Typo3ApiBenchmark\Recordapi\ApiMiddleware:
+    public: true
+    arguments:
+      $cache: '@cache.bench_recordapi'
+
+  Typo3ApiBenchmark\Recordapi\CacheInvalidationHook:
+    public: true
+    arguments:
+      $cache: '@cache.bench_recordapi'

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['driverMiddlewares']['camp-demo/query-counter'] = [
-    'target' => \MaikSchneider\CampDemo\Database\QueryCountingDriverMiddleware::class,
+$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['driverMiddlewares']['bench/query-counter'] = [
+    'target' => \Typo3ApiBenchmark\Bench\Database\QueryCountingDriverMiddleware::class,
 ];
 
 if (getenv('IS_DDEV_PROJECT') === 'true') {

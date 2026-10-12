@@ -4,13 +4,13 @@ Five ways to serve the same TYPO3 data as JSON, each in its own package, measure
 
 | API | Package | Version |
 |---|---|---|
-| [tca_api](https://github.com/maikschneider/tca-api) | [`camp_tcaapi`](../packages/camp_tcaapi) | 2.1.0 |
-| [t3api](https://github.com/sourcebroker/t3api) | [`camp_t3api`](../packages/camp_t3api) | `release/5.0.0` @ `4b96399` (v14 support is unreleased) |
-| [sg_apicore](https://extensions.typo3.org/extension/sg_apicore) | [`camp_sgapicore`](../packages/camp_sgapicore) | 3.1.7 |
-| Core Record API, hand-written | [`camp_recordapi`](../packages/camp_recordapi) | TYPO3 14.3.8 |
-| Extbase plugin, hand-written | [`camp_extbase`](../packages/camp_extbase) | TYPO3 14.3.8 |
+| [tca_api](https://github.com/maikschneider/tca-api) | [`bench_tcaapi`](../packages/bench_tcaapi) | 2.1.0 |
+| [t3api](https://github.com/sourcebroker/t3api) | [`bench_t3api`](../packages/bench_t3api) | `release/5.0.0` @ `4b96399` (v14 support is unreleased) |
+| [sg_apicore](https://extensions.typo3.org/extension/sg_apicore) | [`bench_sgapicore`](../packages/bench_sgapicore) | 3.1.7 |
+| Core Record API, hand-written | [`bench_recordapi`](../packages/bench_recordapi) | TYPO3 14.3.8 |
+| Extbase plugin, hand-written | [`bench_extbase`](../packages/bench_extbase) | TYPO3 14.3.8 |
 
-[`camp_demo`](../packages/camp_demo) holds what they share: the TCA of the article domain, the seeder (`camp:seed`, 10,000 articles), `camp:edit` for DataHandler edits, and the request metrics middleware.
+[`bench`](../packages/bench) holds what they share: the TCA of the article domain, the seeder (`bench:seed`, 10,000 articles), `bench:edit` for DataHandler edits, and the request metrics middleware.
 
 ## The task
 
@@ -104,7 +104,7 @@ What the numbers say:
 |---|---|
 | tca_api | [#204](https://github.com/maikschneider/tca-api/issues/204): reverse MM columns like `sys_category.items` are resolved per row |
 | tca_api | [#206](https://github.com/maikschneider/tca-api/issues/206): `CacheInvalidationHook::clearCachePostProc()` passes integer tags to `flushByTags()` when DataHandler clears caches via `TCEMAIN.clearCacheCmd` (`tags` is then a list, not a map): every such save throws a `TypeError` |
-| tca_api | [#207](https://github.com/maikschneider/tca-api/issues/207): Embedded records of tables without their own resource get an `@id` like `/_api/tx_campdemo_author/4` that no endpoint serves |
+| tca_api | [#207](https://github.com/maikschneider/tca-api/issues/207): Embedded records of tables without their own resource get an `@id` like `/_api/tx_bench_author/4` that no endpoint serves |
 | tca_api | [#208](https://github.com/maikschneider/tca-api/issues/208): `MaikSchneider\TcaApi\Testing\EventCollector` is registered as an event listener in production |
 | t3api | The same `TypeError` in `ResponseCacheService::clearCachePostProc()` (`array_keys($params['tags'])`) |
 | t3api | 12 deprecations per request on TYPO3 v14; v14 support is unreleased |

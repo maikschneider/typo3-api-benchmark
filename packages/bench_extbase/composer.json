@@ -1,0 +1,24 @@
+{
+	"name": "typo3-api-benchmark/extbase",
+	"description": "Benchmark contender: Extbase plugin rendered as a JSON page type, cached by the TYPO3 page cache",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"version": "1.0.0",
+	"require": {
+		"php": "^8.4",
+		"typo3-api-benchmark/bench": "@dev",
+		"typo3/cms-core": "^14.3",
+		"typo3/cms-extbase": "^14.3",
+		"typo3/cms-frontend": "^14.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"Typo3ApiBenchmark\\Extbase\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "bench_extbase"
+		}
+	}
+}

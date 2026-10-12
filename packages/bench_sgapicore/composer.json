@@ -1,0 +1,22 @@
+{
+	"name": "typo3-api-benchmark/sgapicore",
+	"description": "Benchmark contender: sg_apicore configuration for the shared article domain",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"version": "1.0.0",
+	"require": {
+		"php": "^8.4",
+		"typo3-api-benchmark/bench": "@dev",
+		"sgalinski/sg-apicore": "^3.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Typo3ApiBenchmark\\Sgapicore\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "bench_sgapicore"
+		}
+	}
+}

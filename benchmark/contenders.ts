@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.BENCH_BASE_URL ?? 'https://t3cb26.ddev.site';
+export const BASE_URL = process.env.BENCH_BASE_URL ?? 'https://typo3-api-benchmark.ddev.site';
 
 export interface Contender {
   key: string;
@@ -14,7 +14,7 @@ export const contenders: Contender[] = [
   {
     key: 'tcaapi',
     label: 'tca_api',
-    package: 'packages/camp_tcaapi',
+    package: 'packages/bench_tcaapi',
     list: (page, size) => `/_api/articles?page=${page}&itemsPerPage=${size}`,
     item: (uid) => `/_api/articles/${uid}`,
     projectConfig: ['site set `maikschneider/tca-api`'],
@@ -22,7 +22,7 @@ export const contenders: Contender[] = [
   {
     key: 't3api',
     label: 't3api',
-    package: 'packages/camp_t3api',
+    package: 'packages/bench_t3api',
     list: (page, size) => `/_t3api/articles?order%5Buid%5D=asc&page=${page}&itemsPerPage=${size}`,
     item: (uid) => `/_t3api/articles/${uid}`,
     projectConfig: ['site config `imports` of the route enhancer'],
@@ -30,15 +30,15 @@ export const contenders: Contender[] = [
   {
     key: 'sgapicore',
     label: 'sg_apicore',
-    package: 'packages/camp_sgapicore',
-    list: (page, size) => `/_sgapi/camp/v1/articles?sort=uid&page=${page}&perPage=${size}`,
-    item: (uid) => `/_sgapi/camp/v1/articles/${uid}`,
+    package: 'packages/bench_sgapicore',
+    list: (page, size) => `/_sgapi/bench/v1/articles?sort=uid&page=${page}&perPage=${size}`,
+    item: (uid) => `/_sgapi/bench/v1/articles/${uid}`,
     projectConfig: ['`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`'],
   },
   {
     key: 'recordapi',
     label: 'Record API (hand-written)',
-    package: 'packages/camp_recordapi',
+    package: 'packages/bench_recordapi',
     list: (page, size) => `/_recordapi/articles?page=${page}&itemsPerPage=${size}`,
     item: (uid) => `/_recordapi/articles/${uid}`,
     projectConfig: [],
@@ -46,10 +46,10 @@ export const contenders: Contender[] = [
   {
     key: 'extbase',
     label: 'Extbase (hand-written)',
-    package: 'packages/camp_extbase',
+    package: 'packages/bench_extbase',
     list: (page, size) => `/_extbase/articles/${page}/${size}.json`,
     item: (uid) => `/_extbase/articles/${uid}.json`,
-    projectConfig: ['site set `maikschneider/camp-extbase`', 'site config `imports` of the route enhancer'],
+    projectConfig: ['site set `typo3-api-benchmark/extbase`', 'site config `imports` of the route enhancer'],
   },
 ];
 
