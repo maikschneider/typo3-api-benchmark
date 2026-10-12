@@ -45,7 +45,7 @@ ddev exec vendor/bin/typo3 extension:setup
 ddev exec vendor/bin/typo3 bench:seed            # 10,000 articles
 
 bin/env prod                                     # production-like setup for the load test
-bin/bench load --repeat 5                        # ~20 minutes
+bin/bench load                                   # all suites, 3 repetitions, ~1 hour
 bin/bench features
 bin/bench footprint
 bin/env dev
