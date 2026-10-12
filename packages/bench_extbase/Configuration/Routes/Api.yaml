@@ -9,17 +9,26 @@ routeEnhancers:
         _controller: 'Article::list'
       - routePath: '/_extbase/articles/{article}'
         _controller: 'Article::show'
+      - routePath: '/_extbase/articles-depth/{depth}/{page}/{size}'
+        _controller: 'Depth::list'
     defaultController: 'Article::list'
     aspects:
       page:
         type: StaticRangeMapper
         start: '1'
-        end: '1000'
+        end: '500'
       size:
         type: StaticValueMapper
         map:
+          '1': '1'
+          '5': '5'
           '20': '20'
+          '50': '50'
           '100': '100'
+      depth:
+        type: StaticRangeMapper
+        start: '0'
+        end: '3'
       article:
         type: PersistedPatternMapper
         tableName: tx_bench_article

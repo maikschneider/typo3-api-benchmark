@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { BASE_URL, contenders } from './contenders';
+import { contenders } from './contenders';
+import { get } from './http';
 
 // Feature checks: every claim in the report is probed against the running API and the database
 // instead of being taken from documentation.
@@ -40,7 +41,7 @@ const edit = (table: string, uid: string | number, field: string, value: string)
   ddev('exec', 'vendor/bin/typo3', 'bench:edit', table, String(uid), field, value);
 
 const request = async (path: string): Promise<{ status: number; body: string; queries: number }> => {
-  const response = await fetch(BASE_URL + path, { tls: { rejectUnauthorized: false } });
+  const response = await get(path);
   return { status: response.status, body: await response.text(), queries: Number(response.headers.get('x-query-count')) };
 };
 

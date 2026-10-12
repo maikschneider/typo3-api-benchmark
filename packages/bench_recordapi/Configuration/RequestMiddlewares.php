@@ -9,5 +9,10 @@ return [
             'after' => ['typo3/cms-frontend/site'],
             'before' => ['typo3/cms-frontend/page-resolver'],
         ],
+        'typo3-api-benchmark/recordapi/depth' => [
+            'target' => \Typo3ApiBenchmark\Recordapi\DepthApiMiddleware::class,
+            'after' => ['typo3/cms-frontend/site'],
+            'before' => ['typo3/cms-frontend/page-resolver'],
+        ],
     ],
 ];

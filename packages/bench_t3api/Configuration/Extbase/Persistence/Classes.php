@@ -7,4 +7,8 @@ return [
     \Typo3ApiBenchmark\T3api\Domain\Model\Author::class => ['tableName' => 'tx_bench_author'],
     \Typo3ApiBenchmark\T3api\Domain\Model\Tag::class => ['tableName' => 'tx_bench_tag'],
     \Typo3ApiBenchmark\T3api\Domain\Model\Category::class => ['tableName' => 'sys_category'],
+    \Typo3ApiBenchmark\T3api\Domain\Model\ArticleDepth::class => ['tableName' => 'tx_bench_article'],
+    \Typo3ApiBenchmark\T3api\Domain\Model\AuthorDepth::class => ['tableName' => 'tx_bench_author'],
+    \Typo3ApiBenchmark\T3api\Domain\Model\OrganizationDepth::class => ['tableName' => 'tx_bench_organization'],
+    \Typo3ApiBenchmark\T3api\Domain\Model\CountryDepth::class => ['tableName' => 'tx_bench_country'],
 ];

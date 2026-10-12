@@ -14,7 +14,28 @@
     "classes": 0,
     "outside": [
       "site set `maikschneider/tca-api`"
-    ]
+    ],
+    "depth": {
+      "files": [
+        {
+          "path": "Configuration/TcaApi/ArticlesDepth0.php",
+          "lines": 20
+        },
+        {
+          "path": "Configuration/TcaApi/ArticlesDepth1.php",
+          "lines": 21
+        },
+        {
+          "path": "Configuration/TcaApi/ArticlesDepth2.php",
+          "lines": 21
+        },
+        {
+          "path": "Configuration/TcaApi/ArticlesDepth3.php",
+          "lines": 21
+        }
+      ],
+      "lines": 83
+    }
   },
   "t3api": {
     "files": [
@@ -36,31 +57,61 @@
       },
       {
         "path": "Configuration/Extbase/Persistence/Classes.php",
-        "lines": 8
+        "lines": 12
       },
       {
         "path": "Configuration/Routes/Api.yaml",
         "lines": 4
       }
     ],
-    "lines": 180,
+    "lines": 184,
     "classes": 4,
     "outside": [
       "site config `imports` of the route enhancer"
-    ]
+    ],
+    "depth": {
+      "files": [
+        {
+          "path": "Classes/Domain/Model/ArticleDepth.php",
+          "lines": 80
+        },
+        {
+          "path": "Classes/Domain/Model/AuthorDepth.php",
+          "lines": 30
+        },
+        {
+          "path": "Classes/Domain/Model/CountryDepth.php",
+          "lines": 16
+        },
+        {
+          "path": "Classes/Domain/Model/OrganizationDepth.php",
+          "lines": 30
+        }
+      ],
+      "lines": 156
+    }
   },
   "sgapicore": {
     "files": [
       {
         "path": "ext_localconf.php",
-        "lines": 26
+        "lines": 27
       }
     ],
-    "lines": 26,
+    "lines": 27,
     "classes": 0,
     "outside": [
       "`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`"
-    ]
+    ],
+    "depth": {
+      "files": [
+        {
+          "path": "Configuration/DepthResources.php",
+          "lines": 28
+        }
+      ],
+      "lines": 28
+    }
   },
   "recordapi": {
     "files": [
@@ -78,20 +129,33 @@
       },
       {
         "path": "Configuration/RequestMiddlewares.php",
-        "lines": 11
+        "lines": 16
       },
       {
         "path": "Configuration/Services.yaml",
-        "lines": 19
+        "lines": 23
       },
       {
         "path": "ext_localconf.php",
         "lines": 9
       }
     ],
-    "lines": 192,
+    "lines": 201,
     "classes": 3,
-    "outside": []
+    "outside": [],
+    "depth": {
+      "files": [
+        {
+          "path": "Classes/DepthApiMiddleware.php",
+          "lines": 36
+        },
+        {
+          "path": "Classes/DepthSerializer.php",
+          "lines": 71
+        }
+      ],
+      "lines": 107
+    }
   },
   "extbase": {
     "files": [
@@ -101,11 +165,11 @@
       },
       {
         "path": "Classes/Domain/Model/Article.php",
-        "lines": 65
+        "lines": 73
       },
       {
         "path": "Classes/Domain/Model/Author.php",
-        "lines": 12
+        "lines": 23
       },
       {
         "path": "Classes/Domain/Model/Category.php",
@@ -121,11 +185,11 @@
       },
       {
         "path": "Configuration/Extbase/Persistence/Classes.php",
-        "lines": 8
+        "lines": 10
       },
       {
         "path": "Configuration/Routes/Api.yaml",
-        "lines": 33
+        "lines": 42
       },
       {
         "path": "Configuration/Services.yaml",
@@ -141,14 +205,31 @@
       },
       {
         "path": "ext_localconf.php",
-        "lines": 8
+        "lines": 11
       }
     ],
-    "lines": 248,
+    "lines": 281,
     "classes": 6,
     "outside": [
       "site set `typo3-api-benchmark/extbase`",
       "site config `imports` of the route enhancer"
-    ]
+    ],
+    "depth": {
+      "files": [
+        {
+          "path": "Classes/Controller/DepthController.php",
+          "lines": 53
+        },
+        {
+          "path": "Classes/Domain/Model/Country.php",
+          "lines": 12
+        },
+        {
+          "path": "Classes/Domain/Model/Organization.php",
+          "lines": 23
+        }
+      ],
+      "lines": 88
+    }
   }
 }

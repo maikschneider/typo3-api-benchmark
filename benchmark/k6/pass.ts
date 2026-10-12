@@ -14,6 +14,7 @@ const payload = new Trend('api_payload_kb');
 
 export const options = {
   insecureSkipTLSVerify: true,
+  hosts: __ENV.PIN_HOST ? { [__ENV.PIN_HOST]: __ENV.PIN_ADDRESS } : {},
   discardResponseBodies: false,
   scenarios: {
     pass: {

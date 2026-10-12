@@ -21,3 +21,8 @@ services:
     public: true
     arguments:
       $cache: '@cache.bench_recordapi'
+
+  Typo3ApiBenchmark\Recordapi\DepthApiMiddleware:
+    public: true
+    arguments:
+      $cache: '@cache.bench_recordapi'

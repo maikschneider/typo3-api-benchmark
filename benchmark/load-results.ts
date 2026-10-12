@@ -7,7 +7,7 @@ export interface LoadMeta {
   repetitions: number;
   versions: Record<string, string>;
   date: string;
-  runs: Array<{ contender: string; scenario: string; pass: string; repetition: number; file: string }>;
+  runs: Array<{ suite?: string; point?: string; scenario?: string; contender: string; pass: string; repetition: number; vus?: number; file: string }>;
 }
 
 export interface LoadMetrics {
@@ -24,8 +24,8 @@ export interface LoadMetrics {
   errorRate: number;
 }
 
-/** scenario → contender → pass (miss/hit) → metrics, each the median over the repetitions */
-export type LoadResults = Record<string, Record<string, Record<string, LoadMetrics>>>;
+/** suite → point → contender → pass (miss/hit) → metrics, each the median over the repetitions */
+export type LoadResults = Record<string, Record<string, Record<string, Record<string, LoadMetrics>>>>;
 
 type K6Metrics = Record<string, { values: Record<string, number> }>;
 
@@ -49,19 +49,20 @@ export function readLoadRun(dir: string): { meta: LoadMeta; results: LoadResults
   const meta: LoadMeta = JSON.parse(readFileSync(join(dir, 'meta.json'), 'utf8'));
   const grouped = new Map<string, K6Metrics[]>();
   for (const run of meta.runs) {
-    const key = `${run.scenario}|${run.contender}|${run.pass}`;
+    const key = `${run.suite ?? 'base'}|${run.point ?? run.scenario}|${run.contender}|${run.pass}`;
     const metrics: K6Metrics = JSON.parse(readFileSync(join(dir, run.file.split('/').pop() as string), 'utf8')).metrics;
     grouped.set(key, [...(grouped.get(key) ?? []), metrics]);
   }
 
   const results: LoadResults = {};
   for (const [key, list] of grouped) {
-    const [scenario, contender, pass] = key.split('|');
+    const [suite, point, contender, pass] = key.split('|');
     const metric = (name: string, stat: string): number => median(list.map((m) => m[name]?.values[stat] ?? Number.NaN));
     const p50s = list.map((m) => m.http_req_duration.values.med);
-    results[scenario] ??= {};
-    results[scenario][contender] ??= {};
-    results[scenario][contender][pass] = {
+    results[suite] ??= {};
+    results[suite][point] ??= {};
+    results[suite][point][contender] ??= {};
+    results[suite][point][contender][pass] = {
       rps: metric('http_reqs', 'rate'),
       p50: median(p50s),
       p50Min: Math.min(...p50s),

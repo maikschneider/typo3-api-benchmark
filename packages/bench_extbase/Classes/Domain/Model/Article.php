@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Typo3ApiBenchmark\Extbase\Domain\Model;
 
+use TYPO3\CMS\Extbase\Attribute\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Article extends AbstractEntity
@@ -17,16 +19,19 @@ class Article extends AbstractEntity
 
     protected int $readingTime = 0;
 
-    protected ?Author $author = null;
+    #[Lazy]
+    protected Author|LazyLoadingProxy|null $author = null;
 
     /**
      * @var ObjectStorage<Tag>
      */
+    #[Lazy]
     protected ObjectStorage $tags;
 
     /**
      * @var ObjectStorage<Category>
      */
+    #[Lazy]
     protected ObjectStorage $categories;
 
     public function __construct()
@@ -63,6 +68,9 @@ class Article extends AbstractEntity
 
     public function getAuthor(): ?Author
     {
+        if ($this->author instanceof LazyLoadingProxy) {
+            $this->author = $this->author->_loadRealInstance();
+        }
         return $this->author;
     }
 

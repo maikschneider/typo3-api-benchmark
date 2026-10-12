@@ -21,8 +21,18 @@ return [
             'label' => 'Bio',
             'config' => ['type' => 'text', 'rows' => 4],
         ],
+        'organization' => [
+            'label' => 'Organization',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_bench_organization',
+                'items' => [['label' => '', 'value' => 0]],
+                'default' => 0,
+            ],
+        ],
     ],
     'types' => [
-        '0' => ['showitem' => 'name, bio, --div--;core.form.tabs:access, hidden'],
+        '0' => ['showitem' => 'name, bio, organization, --div--;core.form.tabs:access, hidden'],
     ],
 ];

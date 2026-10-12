@@ -1,6 +1,7 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { BASE_URL, contenders } from './contenders';
+import { contenders } from './contenders';
+import { get } from './http';
 
 // One T3Flare profile per API for the same cold collection request: where the time goes in
 // TYPO3 terms, which queries repeat, how much code loads. Cached requests are not profiled,
@@ -31,7 +32,7 @@ const findings: string[] = [];
 
 for (const contender of contenders) {
   ddev('exec', 'vendor/bin/typo3', 'cache:flush');
-  await fetch(BASE_URL + contender.list(400, 20), { tls: { rejectUnauthorized: false } });
+  await get(contender.list(400, 20));
   ddev('t3flare', contender.list(7, 20));
 
   const json = ddev('exec', 'vendor/bin/typo3', 't3flare:report', 'latest', '--format=json');

@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { contenders, scenarios } from './contenders';
+import { contenders, suites } from './contenders';
 import { FEATURES } from './features';
 import { measureFootprints } from './footprint';
 import { latestRunDir, readLoadRun } from './load-results';
@@ -44,7 +44,7 @@ const data = {
     database: `${ddevValue(/database:\s*\n\s+type:\s*(\w+)/)} ${ddevValue(/database:\s*\n\s+type:\s*\w+\s*\n\s+version:\s*"?([\d.]+)/)}`,
   },
   contenders: contenders.map(({ key, label, package: pkg }) => ({ key, label, package: pkg })),
-  scenarios: scenarios.map(({ key, label }) => ({ key, label })),
+  suites: suites.map(({ key, label, axis, question, points }) => ({ key, label, axis, question, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase })) })),
   load: results,
   features: features && { date: features.date, list: FEATURES, results: features.results },
   footprint: measureFootprints(),

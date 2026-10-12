@@ -29,3 +29,5 @@ GeneralUtility::makeInstance(ResourceRegistry::class)->registerResource(
         ],
     ],
 );
+
+require \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('bench_sgapicore') . 'Configuration/DepthResources.php';

@@ -15,9 +15,30 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 #[AsCommand(name: 'bench:seed', description: 'Replace all demo records with a deterministic data set')]
 final class SeedCommand extends Command
 {
-    private const AUTHORS = [
-        'Ada Lovelace', 'Grace Hopper', 'Linus Torvalds', 'Margaret Hamilton', 'Rasmus Lerdorf',
-        'Kasper Skårhøj', 'Barbara Liskov', 'Ken Thompson', 'Radia Perlman', 'Tim Berners-Lee',
+    private const AUTHOR_COUNT = 2000;
+
+    private const ORGANIZATION_COUNT = 300;
+
+    private const FIRST_NAMES = [
+        'Ada', 'Grace', 'Linus', 'Margaret', 'Rasmus', 'Kasper', 'Barbara', 'Ken', 'Radia', 'Tim',
+        'Anna', 'Jonas', 'Mia', 'Felix', 'Lea', 'Paul', 'Emma', 'Noah', 'Sofia', 'Elias',
+    ];
+
+    private const LAST_NAMES = [
+        'Lovelace', 'Hopper', 'Torvalds', 'Hamilton', 'Lerdorf', 'Liskov', 'Thompson', 'Perlman', 'Lee', 'Schmidt',
+        'Müller', 'Weber', 'Wagner', 'Becker', 'Hoffmann', 'Koch', 'Richter', 'Klein', 'Wolf', 'Neumann',
+    ];
+
+    private const ORGANIZATION_WORDS = ['Digital', 'Open', 'Web', 'Data', 'Cloud', 'Media', 'Code', 'Pixel', 'Content', 'Studio'];
+
+    private const ORGANIZATION_TYPES = ['Agency', 'Labs', 'Collective', 'Works', 'Group', 'Partners'];
+
+    private const COUNTRIES = [
+        'DE' => 'Germany', 'AT' => 'Austria', 'CH' => 'Switzerland', 'NL' => 'Netherlands', 'BE' => 'Belgium',
+        'FR' => 'France', 'IT' => 'Italy', 'ES' => 'Spain', 'PT' => 'Portugal', 'PL' => 'Poland',
+        'CZ' => 'Czechia', 'DK' => 'Denmark', 'SE' => 'Sweden', 'NO' => 'Norway', 'FI' => 'Finland',
+        'GB' => 'United Kingdom', 'IE' => 'Ireland', 'US' => 'United States', 'CA' => 'Canada', 'BR' => 'Brazil',
+        'JP' => 'Japan', 'IN' => 'India', 'AU' => 'Australia', 'NZ' => 'New Zealand', 'ZA' => 'South Africa',
     ];
 
     private const TAGS = [
@@ -36,6 +57,7 @@ final class SeedCommand extends Command
 
     private const TABLES = [
         'tx_bench_article', 'tx_bench_author', 'tx_bench_tag', 'tx_bench_article_tag_mm',
+        'tx_bench_organization', 'tx_bench_country',
     ];
 
     public function __construct(private readonly ConnectionPool $connectionPool)
@@ -58,9 +80,19 @@ final class SeedCommand extends Command
         $now = time();
         $base = ['pid' => $storagePid, 'tstamp' => $now, 'crdate' => $now];
 
+        $countryUids = [];
+        foreach (self::COUNTRIES as $code => $title) {
+            $countryUids[] = $this->insert('tx_bench_country', $base + ['title' => $title, 'code' => $code]);
+        }
+        $organizationUids = [];
+        for ($i = 1; $i <= self::ORGANIZATION_COUNT; $i++) {
+            $name = sprintf('%s %s %d', $this->pickOne(self::ORGANIZATION_WORDS), $this->pickOne(self::ORGANIZATION_TYPES), $i);
+            $organizationUids[] = $this->insert('tx_bench_organization', $base + ['name' => $name, 'country' => $this->pickOne($countryUids)]);
+        }
         $authorUids = [];
-        foreach (self::AUTHORS as $name) {
-            $authorUids[] = $this->insert('tx_bench_author', $base + ['name' => $name, 'bio' => $name . ' writes about TYPO3.']);
+        for ($i = 1; $i <= self::AUTHOR_COUNT; $i++) {
+            $name = $this->pickOne(self::FIRST_NAMES) . ' ' . $this->pickOne(self::LAST_NAMES);
+            $authorUids[] = $this->insert('tx_bench_author', $base + ['name' => $name, 'bio' => $name . ' writes about TYPO3.', 'organization' => $this->pickOne($organizationUids)]);
         }
         $tagUids = [];
         foreach (self::TAGS as $title) {
@@ -100,9 +132,11 @@ final class SeedCommand extends Command
             ->bulkInsert('sys_category_record_mm', $categoryMm, ['uid_local', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign']);
 
         $output->writeln(sprintf(
-            'Seeded %d articles, %d authors, %d tags, %d categories on page %d.',
+            'Seeded %d articles, %d authors in %d organizations in %d countries, %d tags, %d categories on page %d.',
             $articleCount,
             count($authorUids),
+            count($organizationUids),
+            count($countryUids),
             count($tagUids),
             count($categoryUids),
             $storagePid,
@@ -143,6 +177,16 @@ final class SeedCommand extends Command
         $connection = $this->connectionPool->getConnectionForTable($table);
         $connection->insert($table, $row);
         return (int)$connection->lastInsertId();
+    }
+
+    /**
+     * @template T
+     * @param list<T> $values
+     * @return T
+     */
+    private function pickOne(array $values): mixed
+    {
+        return $values[mt_rand(0, count($values) - 1)];
     }
 
     /**
