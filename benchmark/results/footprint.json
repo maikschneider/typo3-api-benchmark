@@ -1,0 +1,154 @@
+{
+  "tcaapi": {
+    "files": [
+      {
+        "path": "Configuration/TcaApi/Articles.php",
+        "lines": 19
+      },
+      {
+        "path": "Configuration/TcaApi/Categories.php",
+        "lines": 11
+      }
+    ],
+    "lines": 30,
+    "classes": 0,
+    "outside": [
+      "site set `maikschneider/tca-api`"
+    ]
+  },
+  "t3api": {
+    "files": [
+      {
+        "path": "Classes/Domain/Model/Article.php",
+        "lines": 120
+      },
+      {
+        "path": "Classes/Domain/Model/Author.php",
+        "lines": 16
+      },
+      {
+        "path": "Classes/Domain/Model/Category.php",
+        "lines": 16
+      },
+      {
+        "path": "Classes/Domain/Model/Tag.php",
+        "lines": 16
+      },
+      {
+        "path": "Configuration/Extbase/Persistence/Classes.php",
+        "lines": 8
+      },
+      {
+        "path": "Configuration/Routes/Api.yaml",
+        "lines": 4
+      }
+    ],
+    "lines": 180,
+    "classes": 4,
+    "outside": [
+      "site config `imports` of the route enhancer"
+    ]
+  },
+  "sgapicore": {
+    "files": [
+      {
+        "path": "ext_localconf.php",
+        "lines": 26
+      }
+    ],
+    "lines": 26,
+    "classes": 0,
+    "outside": [
+      "`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`"
+    ]
+  },
+  "recordapi": {
+    "files": [
+      {
+        "path": "Classes/ApiMiddleware.php",
+        "lines": 44
+      },
+      {
+        "path": "Classes/ArticleSerializer.php",
+        "lines": 90
+      },
+      {
+        "path": "Classes/CacheInvalidationHook.php",
+        "lines": 19
+      },
+      {
+        "path": "Configuration/RequestMiddlewares.php",
+        "lines": 11
+      },
+      {
+        "path": "Configuration/Services.yaml",
+        "lines": 19
+      },
+      {
+        "path": "ext_localconf.php",
+        "lines": 9
+      }
+    ],
+    "lines": 192,
+    "classes": 3,
+    "outside": []
+  },
+  "extbase": {
+    "files": [
+      {
+        "path": "Classes/Controller/ArticleController.php",
+        "lines": 60
+      },
+      {
+        "path": "Classes/Domain/Model/Article.php",
+        "lines": 65
+      },
+      {
+        "path": "Classes/Domain/Model/Author.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Model/Category.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Model/Tag.php",
+        "lines": 12
+      },
+      {
+        "path": "Classes/Domain/Repository/ArticleRepository.php",
+        "lines": 13
+      },
+      {
+        "path": "Configuration/Extbase/Persistence/Classes.php",
+        "lines": 8
+      },
+      {
+        "path": "Configuration/Routes/Api.yaml",
+        "lines": 33
+      },
+      {
+        "path": "Configuration/Services.yaml",
+        "lines": 9
+      },
+      {
+        "path": "Configuration/Sets/BenchExtbase/config.yaml",
+        "lines": 2
+      },
+      {
+        "path": "Configuration/Sets/BenchExtbase/setup.typoscript",
+        "lines": 14
+      },
+      {
+        "path": "ext_localconf.php",
+        "lines": 8
+      }
+    ],
+    "lines": 248,
+    "classes": 6,
+    "outside": [
+      "site set `typo3-api-benchmark/extbase`",
+      "site config `imports` of the route enhancer"
+    ]
+  }
+}

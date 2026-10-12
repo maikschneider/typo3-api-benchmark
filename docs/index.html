@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TYPO3 API Benchmark</title>
+<meta name="description" content="tca_api, t3api, sg_apicore, the core Record API and Extbase serving the same TYPO3 records as JSON: load test, feature checks and configuration footprint.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6e69;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.10);
+  --wash: rgba(11, 11, 11, 0.04);
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --good: #0ca30c;
+  --good-ink: #006300;
+  --warning: #fab219;
+  --critical: #d03b3b;
+  --critical-ink: #b02a2a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --muted: #9a9993;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --wash: rgba(255, 255, 255, 0.05);
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --good-ink: #0ca30c;
+    --critical-ink: #e66767;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --ink: #f0efec;
+  --ink-2: #c3c2b7;
+  --muted: #9a9993;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.10);
+  --wash: rgba(255, 255, 255, 0.05);
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --good-ink: #0ca30c;
+  --critical-ink: #e66767;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+a { color: inherit; text-underline-offset: 2px; }
+code { font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--wash); padding: 1px 5px; border-radius: 4px; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; margin: 0 0 4px; }
+h3 { font-size: 0.95rem; margin: 0 0 2px; }
+p { margin: 0 0 12px; }
+.lead { font-size: 1.08rem; color: var(--ink-2); max-width: 46rem; }
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+
+header.page { padding: 40px 0 24px; display: grid; gap: 4px; }
+.topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { font-size: 0.82rem; color: var(--ink-2); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; }
+.theme-toggle { font: inherit; font-size: 0.82rem; color: var(--ink-2); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 0.88rem; color: var(--ink-2); }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.key { width: 14px; height: 3px; border-radius: 2px; background: currentColor; flex: none; }
+
+section { margin-top: 40px; }
+.section-head { display: grid; gap: 2px; margin-bottom: 16px; max-width: 48rem; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-bottom: 16px; }
+.segmented { display: inline-flex; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
+.segmented button { font: inherit; font-size: 0.88rem; color: var(--ink-2); background: none; border: 0; border-radius: 7px; padding: 5px 12px; cursor: pointer; }
+.segmented button[aria-pressed="true"] { background: var(--page); color: var(--ink); font-weight: 600; box-shadow: 0 0 0 1px var(--border); }
+.control-label { font-size: 0.82rem; color: var(--muted); margin-right: 8px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 14px; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 14px; }
+.card-head .hint { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+
+.bars { display: grid; grid-template-columns: minmax(6.5rem, 9rem) 1fr; row-gap: 6px; }
+.bar-row { display: contents; }
+.bar-label { font-size: 0.85rem; color: var(--ink-2); align-self: center; padding-right: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track {
+  position: relative; height: 30px; border-radius: 6px; cursor: default; outline: none;
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px);
+  background-size: 25% 100%;
+  box-shadow: inset -1px 0 0 var(--grid);
+}
+.bar-track::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--axis); }
+.bar-track:hover, .bar-track:focus-visible { background-color: var(--wash); }
+.bar-track:focus-visible { box-shadow: 0 0 0 2px var(--series-1); }
+.bar { position: absolute; left: 0; top: 50%; height: 18px; transform: translateY(-50%); border-radius: 0 4px 4px 0; min-width: 2px; }
+.whisker { position: absolute; top: 50%; height: 2px; transform: translateY(-50%); background: var(--ink); opacity: 0.55; }
+.whisker::before, .whisker::after { content: ""; position: absolute; top: -4px; width: 2px; height: 10px; background: inherit; }
+.whisker::before { left: 0; }
+.whisker::after { right: 0; }
+.bar-value { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.82rem; font-weight: 600; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; padding-left: 6px; }
+.ticks { grid-column: 2; position: relative; height: 18px; margin-top: 2px; }
+.ticks span { position: absolute; transform: translateX(-50%); font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+
+.dumbbell .dot { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--surface); }
+.dumbbell .dot.hollow { background: var(--surface) !important; border: 2px solid currentColor; }
+.dumbbell .link { position: absolute; top: 50%; height: 2px; transform: translateY(-50%); }
+.marker-legend { display: flex; gap: 18px; font-size: 0.82rem; color: var(--ink-2); margin-top: 10px; }
+.marker-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.marker-legend i { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-2); display: inline-block; }
+.marker-legend i.filled { background: var(--ink-2); }
+
+details.table-view { margin-top: 12px; }
+details.table-view summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-2); }
+.table-wrap { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.matrix th.api { text-align: left; min-width: 8.5rem; }
+.matrix .api-key { display: block; width: 18px; height: 3px; border-radius: 2px; margin-bottom: 6px; }
+.matrix tr.group th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-top: 16px; border-bottom: 0; }
+.status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+.status svg { flex: none; }
+.status.yes { color: var(--good-ink); }
+.status.no { color: var(--critical-ink); }
+.status.partial { color: var(--ink-2); }
+.status-detail { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+.files { columns: 2 16rem; column-gap: 24px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 0.82rem; }
+.files li { break-inside: avoid; display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; border-bottom: 1px dotted var(--grid); }
+.files li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.findings { margin: 6px 0 0; padding-left: 18px; font-size: 0.85rem; color: var(--ink-2); }
+
+.notes { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.notes ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 0.9rem; }
+.notes li { margin-bottom: 6px; }
+pre { background: var(--wash); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: 0.82rem; margin: 8px 0 0; }
+
+.tooltip {
+  position: fixed; z-index: 10; pointer-events: none; max-width: 280px;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14); padding: 8px 10px; font-size: 0.82rem; line-height: 1.4;
+  opacity: 0; transition: opacity 80ms;
+}
+.tooltip.visible { opacity: 1; }
+.tooltip strong { font-size: 0.95rem; display: block; }
+.tooltip .tip-row { display: flex; align-items: center; gap: 8px; color: var(--ink-2); }
+.empty { color: var(--muted); font-style: italic; }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.82rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .bars { grid-template-columns: 6.2rem 1fr; }
+  .card { padding: 14px 12px 12px; }
+}
+@media (forced-colors: active) {
+  .bar, .dumbbell .dot, .dumbbell .link, .key, .api-key { forced-color-adjust: none; border: 1px solid CanvasText; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="page">
+    <div class="topline">
+      <span class="eyebrow">TYPO3 API Benchmark</span>
+      <button class="theme-toggle" type="button" id="theme-toggle">Dark mode</button>
+    </div>
+    <h1>Five ways to serve the same TYPO3 records as JSON</h1>
+    <p class="lead">tca_api, t3api and sg_apicore against hand-written endpoints on the core Record API and Extbase. Every API runs from its own package with its own cache switched on, is load-tested cold and warm, probed for correct and fresh data, and counted in lines of configuration.</p>
+    <div class="chips" id="environment"></div>
+    <ul class="legend" id="legend"></ul>
+  </header>
+
+  <section id="load">
+    <div class="section-head">
+      <h2>Performance under load</h2>
+      <p class="muted">Every request of a pass hits a different URL. <em>Cold</em> is the first pass after flushing all caches, so every response is built from the database. <em>Cached</em> requests the same URLs again. Values are medians over all repetitions.</p>
+    </div>
+    <div class="controls">
+      <div><span class="control-label">Request</span><span class="segmented" id="scenario-control" role="group" aria-label="Request"></span></div>
+      <div><span class="control-label">Cache</span><span class="segmented" id="pass-control" role="group" aria-label="Cache"></span></div>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="card-head"><h3>Throughput</h3><span class="hint">requests per second · higher is better</span></div><div id="chart-rps"></div></div>
+      <div class="card"><div class="card-head"><h3>Response time</h3><span class="hint">median ms at the client · lower is better</span></div><div id="chart-p50"></div><p class="small muted" style="margin:8px 0 0">The line on each bar spans the lowest and highest median across the repetitions.</p></div>
+      <div class="card"><div class="card-head"><h3>Database queries</h3><span class="hint">per request · lower is better</span></div><div id="chart-queries"></div></div>
+      <div class="card"><div class="card-head"><h3>Server time</h3><span class="hint">ms inside TYPO3 · lower is better</span></div><div id="chart-app"></div></div>
+    </div>
+    <details class="table-view"><summary>All load test values for this selection</summary><div class="table-wrap" id="load-table"></div></details>
+  </section>
+
+  <section id="scaling">
+    <div class="section-head">
+      <h2>Queries as the page grows</h2>
+      <p class="muted">Cold requests for a page of 20 and a page of 100 articles, each with author, tags and categories. An API that loads relations per article needs more queries for every additional article; one that batches them stays flat.</p>
+    </div>
+    <div class="card"><div id="chart-scaling"></div>
+      <div class="marker-legend"><span><i></i>20 articles</span><span><i class="filled"></i>100 articles</span></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="section-head">
+      <h2>Features, checked</h2>
+      <p class="muted">Each cell is the result of a request against the running API, compared with the database. "Fresh" means item and list showed the new value right after a backend edit through the DataHandler, while the cache was warm.</p>
+    </div>
+    <div class="card"><div class="table-wrap" id="feature-matrix"></div></div>
+  </section>
+
+  <section id="footprint">
+    <div class="section-head">
+      <h2>Configuration needed</h2>
+      <p class="muted">Everything in each API's package except <code>composer.json</code>, in non-empty lines, plus configuration the project has to add outside the package.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="card-head"><h3>Lines of code and configuration</h3><span class="hint">lower is less to maintain</span></div><div id="chart-footprint"></div></div>
+      <div class="card" id="footprint-files"></div>
+    </div>
+  </section>
+
+  <section id="profiles" hidden>
+    <div class="section-head">
+      <h2>Code loaded per request</h2>
+      <p class="muted">PHP files included by one cold collection request (20 articles), from a <a href="https://github.com/maikschneider/t3flare">T3Flare</a> profile. More files means more framework between the request and the data.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="card-head"><h3>Included PHP files</h3><span class="hint">cold request · lower is better</span></div><div id="chart-files"></div></div>
+      <div class="card"><h3>Profiler findings</h3><div id="profile-findings"></div></div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="section-head"><h2>Method and limits</h2></div>
+    <div class="notes">
+      <div class="card"><h3>How it is measured</h3><ul id="method-list"></ul></div>
+      <div class="card"><h3>What to keep in mind</h3><ul>
+        <li>One machine runs PHP, the database and the load generator, with no network latency to the database. Absolute numbers will differ on a server; compare the APIs, not the values. On a remote database every additional query costs a round trip, so per-row loading falls further behind.</li>
+        <li>Payloads differ: tca_api and t3api return Hydra JSON-LD with <code>@id</code>, <code>@type</code> and pagination links; sg_apicore leaves out categories.</li>
+        <li>One dataset: 10,000 articles with 10 authors, 15 tags and 8 categories, 2–4 tags and 1–3 categories per article.</li>
+        <li>Each package is written the way its API documents it. Where an API cannot do part of the task, the gap is shown above instead of worked around.</li>
+      </ul></div>
+      <div class="card"><h3>Reproduce</h3>
+<pre>ddev start &amp;&amp; ddev composer install
+bin/env prod
+bin/bench load --repeat 5
+bin/bench features
+bin/bench footprint
+bin/bench site</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer"></footer>
+</main>
+<div class="tooltip" id="tooltip" role="tooltip"></div>
+
+<script id="benchmark-data" type="application/json">{"generated":"2026-10-12T12:56:34.381Z","environment":{"date":"2026-10-12T12:51:42.448Z","mode":"dev","vus":8,"repetitions":1,"versions":{"maikschneider/tca-api":"2.1.0","sgalinski/sg-apicore":"3.1.7","sourcebroker/t3api":"dev-release/5.0.0","typo3/cms-core":"v14.3.8"},"php":"8.4","database":"mariadb 10.11"},"contenders":[{"key":"tcaapi","label":"tca_api","package":"packages/bench_tcaapi"},{"key":"t3api","label":"t3api","package":"packages/bench_t3api"},{"key":"sgapicore","label":"sg_apicore","package":"packages/bench_sgapicore"},{"key":"recordapi","label":"Record API","package":"packages/bench_recordapi"},{"key":"extbase","label":"Extbase","package":"packages/bench_extbase"}],"scenarios":[{"key":"list-20","label":"Collection, 20 items"},{"key":"list-100","label":"Collection, 100 items"},{"key":"item","label":"Single item"}],"load":{"list-20":{"tcaapi":{"miss":{"rps":127.2044531734967,"p50":41.262,"p50Min":41.262,"p50Max":41.262,"p95":164.81765,"p99":228.0753,"queries":5,"appMs":12,"memoryMb":3.1921730041503906,"payloadKb":16.12890625,"errorRate":0},"hit":{"rps":420.360585310079,"p50":14.017,"p50Min":14.017,"p50Max":14.017,"p95":48.913849999999975,"p99":78.01929000000001,"queries":0,"appMs":1.4,"memoryMb":3.0513687133789062,"payloadKb":16.12890625,"errorRate":0}},"t3api":{"miss":{"rps":50.71231789523596,"p50":146.43849999999998,"p50Min":146.43849999999998,"p50Max":146.43849999999998,"p95":257.66819999999984,"p99":335.67247000000003,"queries":55,"appMs":91.65,"memoryMb":8.91408920288086,"payloadKb":40.38623046875,"errorRate":0},"hit":{"rps":144.2402003207902,"p50":38.6425,"p50Min":38.6425,"p50Max":38.6425,"p95":127.96669999999997,"p99":170.32393000000002,"queries":4,"appMs":17.4,"memoryMb":3.80224609375,"payloadKb":40.38623046875,"errorRate":0}},"sgapicore":{"miss":{"rps":45.895201977899625,"p50":140.731,"p50Min":140.731,"p50Max":140.731,"p95":399.10714999999993,"p99":592.57065,"queries":47,"appMs":67.15,"memoryMb":3.2613525390625,"payloadKb":5.87548828125,"errorRate":0},"hit":{"rps":75.8170806784719,"p50":77.324,"p50Min":77.324,"p50Max":77.324,"p95":260.4054999999999,"p99":383.33324999999996,"queries":1,"appMs":22.35,"memoryMb":3.1424102783203125,"payloadKb":5.87548828125,"errorRate":0}},"recordapi":{"miss":{"rps":94.42759174230711,"p50":76.11600000000001,"p50Min":76.11600000000001,"p50Max":76.11600000000001,"p95":153.47324999999992,"p99":185.02867,"queries":65,"appMs":33.7,"memoryMb":3.475311279296875,"payloadKb":7.5517578125,"errorRate":0},"hit":{"rps":554.3821134154928,"p50":12.2205,"p50Min":12.2205,"p50Max":12.2205,"p95":23.096449999999997,"p99":27.36959,"queries":0,"appMs":1.25,"memoryMb":3.1351547241210938,"payloadKb":7.5517578125,"errorRate":0}},"extbase":{"miss":{"rps":49.28923688185444,"p50":140.4485,"p50Min":140.4485,"p50Max":140.4485,"p95":312.5308499999999,"p99":367.32172999999995,"queries":56,"appMs":86,"memoryMb":4.4230499267578125,"payloadKb":7.5517578125,"errorRate":0},"hit":{"rps":169.5728629156019,"p50":37.563,"p50Min":37.563,"p50Max":37.563,"p95":94.176,"p99":105.79399,"queries":4,"appMs":14.7,"memoryMb":3.47467041015625,"payloadKb":7.5517578125,"errorRate":0}}},"list-100":{"tcaapi":{"miss":{"rps":56.152921250441324,"p50":122.90449999999998,"p50Min":122.90449999999998,"p50Max":122.90449999999998,"p95":241.666,"p99":290.62543,"queries":5,"appMs":24.5,"memoryMb":18.903549194335938,"payloadKb":78.98046875,"errorRate":0},"hit":{"rps":323.7346023729746,"p50":14.659500000000001,"p50Min":14.659500000000001,"p50Max":14.659500000000001,"p95":76.76869999999997,"p99":104.08000999999999,"queries":0,"appMs":1.7,"memoryMb":3.2271804809570312,"payloadKb":78.98046875,"errorRate":0}},"t3api":{"miss":{"rps":15.441368352297905,"p50":459.5555,"p50Min":459.5555,"p50Max":459.5555,"p95":1107.7524999999998,"p99":1216.0912099999998,"queries":216,"appMs":355.1,"memoryMb":16.585269927978516,"payloadKb":48.091796875,"errorRate":0},"hit":{"rps":263.7800338297893,"p50":26.366999999999997,"p50Min":26.366999999999997,"p50Max":26.366999999999997,"p95":41.143550000000005,"p99":48.87498,"queries":4,"appMs":11.2,"memoryMb":3.82568359375,"payloadKb":48.091796875,"errorRate":0}},"sgapicore":{"miss":{"rps":23.453883362079,"p50":251.2325,"p50Min":251.2325,"p50Max":251.2325,"p95":842.0669999999999,"p99":921.77788,"queries":128,"appMs":123.75,"memoryMb":3.534564971923828,"payloadKb":29.02783203125,"errorRate":0},"hit":{"rps":120.66892820349608,"p50":46.3705,"p50Min":46.3705,"p50Max":46.3705,"p95":126.45814999999999,"p99":154.26160000000002,"queries":1,"appMs":11.350000000000001,"memoryMb":3.1941299438476562,"payloadKb":29.02783203125,"errorRate":0}},"recordapi":{"miss":{"rps":25.571229298491684,"p50":278.77750000000003,"p50Min":278.77750000000003,"p50Max":278.77750000000003,"p95":485.41665,"p99":653.1955999999999,"queries":305,"appMs":165.8,"memoryMb":18.903656005859375,"payloadKb":37.66552734375,"errorRate":0},"hit":{"rps":192.06806892362656,"p50":28.4185,"p50Min":28.4185,"p50Max":28.4185,"p95":100.54529999999988,"p99":165.87966999999998,"queries":0,"appMs":3.3,"memoryMb":3.5417633056640625,"payloadKb":37.66552734375,"errorRate":0}},"extbase":{"miss":{"rps":17.392918864425024,"p50":366.84400000000005,"p50Min":366.84400000000005,"p50Max":366.84400000000005,"p95":773.0730499999997,"p99":1244.86748,"queries":217,"appMs":332.3,"memoryMb":5.634674072265625,"payloadKb":37.66552734375,"errorRate":0},"hit":{"rps":175.34823062676034,"p50":37.452,"p50Min":37.452,"p50Max":37.452,"p95":72.61014999999998,"p99":112.84158,"queries":4,"appMs":14.5,"memoryMb":3.5471878051757812,"payloadKb":37.66552734375,"errorRate":0}}},"item":{"tcaapi":{"miss":{"rps":151.94261674359015,"p50":37.528999999999996,"p50Min":37.528999999999996,"p50Max":37.528999999999996,"p95":153.14114999999995,"p99":190.25826999999998,"queries":4,"appMs":8.4,"memoryMb":3.095306396484375,"payloadKb":0.783203125,"errorRate":0},"hit":{"rps":356.63872283393687,"p50":16.189,"p50Min":16.189,"p50Max":16.189,"p95":55.69499999999995,"p99":101.08763,"queries":0,"appMs":1.8,"memoryMb":3.0019073486328125,"payloadKb":0.783203125,"errorRate":0}},"t3api":{"miss":{"rps":109.04889948941126,"p50":60.6705,"p50Min":60.6705,"p50Max":60.6705,"p95":145.80534999999992,"p99":230.82927999999998,"queries":8,"appMs":25.700000000000003,"memoryMb":4.340400695800781,"payloadKb":0.4111328125,"errorRate":0},"hit":{"rps":115.77300710661027,"p50":44.361,"p50Min":44.361,"p50Max":44.361,"p95":174.07684999999998,"p99":284.5813099999998,"queries":4,"appMs":19.05,"memoryMb":3.6948165893554688,"payloadKb":0.4111328125,"errorRate":0}},"sgapicore":{"miss":{"rps":152.8598082954572,"p50":40.6625,"p50Min":40.6625,"p50Max":40.6625,"p95":114.59934999999986,"p99":176.67519999999996,"queries":7,"appMs":11.05,"memoryMb":3.1688919067382812,"payloadKb":0.2900390625,"errorRate":0},"hit":{"rps":231.36868924547431,"p50":26.177500000000002,"p50Min":26.177500000000002,"p50Max":26.177500000000002,"p95":80.36849999999998,"p99":115.46242,"queries":1,"appMs":8.1,"memoryMb":3.1406173706054688,"payloadKb":0.2900390625,"errorRate":0}},"recordapi":{"miss":{"rps":74.08352383911487,"p50":69.342,"p50Min":69.342,"p50Max":69.342,"p95":331.9248499999999,"p99":442.86348,"queries":7,"appMs":18.75,"memoryMb":3.1906585693359375,"payloadKb":0.375,"errorRate":0},"hit":{"rps":268.94213225928604,"p50":19.8375,"p50Min":19.8375,"p50Max":19.8375,"p95":77.44115000000001,"p99":136.78649999999996,"queries":0,"appMs":2.2,"memoryMb":3.0415191650390625,"payloadKb":0.375,"errorRate":0}},"extbase":{"miss":{"rps":114.35176386452243,"p50":53.646,"p50Min":53.646,"p50Max":53.646,"p95":161.76305,"p99":298.44525,"queries":10,"appMs":25.6,"memoryMb":4.157829284667969,"payloadKb":0.375,"errorRate":0},"hit":{"rps":107.7770403433173,"p50":50.2705,"p50Min":50.2705,"p50Max":50.2705,"p95":189.97119999999995,"p99":375.16701,"queries":5,"appMs":23.15,"memoryMb":3.4971847534179688,"payloadKb":0.375,"errorRate":0}}}},"features":{"date":"2026-10-12T12:45:42.511Z","list":[{"key":"pagination","label":"Paginated collection with total count","group":"Read"},{"key":"item","label":"Single item endpoint","group":"Read"},{"key":"author","label":"Embedded author (select)","group":"Relations"},{"key":"tags","label":"Embedded tags (MM)","group":"Relations"},{"key":"categories","label":"Embedded categories (type=category)","group":"Relations"},{"key":"batched","label":"Query count independent of page size","group":"Performance"},{"key":"cache","label":"Response cache","group":"Performance"},{"key":"freshRecord","label":"Fresh after editing the record","group":"Cache correctness"},{"key":"freshRelated","label":"Fresh after editing a related record","group":"Cache correctness"},{"key":"openApi","label":"OpenAPI document","group":"Developer experience"}],"results":{"tcaapi":{"pagination":{"status":"yes","detail":"total of 10,000 reported"},"item":{"status":"yes","detail":"HTTP 200"},"author":{"status":"yes","detail":"name \"Tim Berners-Lee\" embedded"},"tags":{"status":"yes","detail":"4 of 4 titles embedded"},"categories":{"status":"yes","detail":"3 of 3 titles embedded"},"batched":{"status":"yes","detail":"5 queries for 20 items, 5 for 100"},"cache":{"status":"yes","detail":"5 → 0 queries on the second request"},"freshRecord":{"status":"yes","detail":"item and list updated"},"freshRelated":{"status":"yes","detail":"item and list updated"},"openApi":{"status":"yes","detail":"/_api/openapi.json"}},"t3api":{"pagination":{"status":"yes","detail":"total of 10,000 reported"},"item":{"status":"yes","detail":"HTTP 200"},"author":{"status":"yes","detail":"name \"Tim Berners-Lee\" embedded"},"tags":{"status":"yes","detail":"4 of 4 titles embedded"},"categories":{"status":"yes","detail":"3 of 3 titles embedded"},"batched":{"status":"no","detail":"55 queries for 20 items, 216 for 100"},"cache":{"status":"yes","detail":"55 → 4 queries on the second request"},"freshRecord":{"status":"yes","detail":"item and list updated"},"freshRelated":{"status":"yes","detail":"item and list updated"},"openApi":{"status":"partial","detail":"backend module only"}},"sgapicore":{"pagination":{"status":"yes","detail":"total of 10,000 reported"},"item":{"status":"yes","detail":"HTTP 200"},"author":{"status":"yes","detail":"name \"Tim Berners-Lee\" embedded"},"tags":{"status":"yes","detail":"4 of 4 titles embedded"},"categories":{"status":"no","detail":"category titles missing"},"batched":{"status":"no","detail":"47 queries for 20 items, 128 for 100"},"cache":{"status":"yes","detail":"47 → 1 queries on the second request"},"freshRecord":{"status":"no","detail":"stale: item and list"},"freshRelated":{"status":"no","detail":"stale: item and list"},"openApi":{"status":"yes","detail":"/_sgapi/bench/v1/docs.json"}},"recordapi":{"pagination":{"status":"yes","detail":"total of 10,000 reported"},"item":{"status":"yes","detail":"HTTP 200"},"author":{"status":"yes","detail":"name \"Tim Berners-Lee\" embedded"},"tags":{"status":"yes","detail":"4 of 4 titles embedded"},"categories":{"status":"yes","detail":"3 of 3 titles embedded"},"batched":{"status":"no","detail":"65 queries for 20 items, 305 for 100"},"cache":{"status":"yes","detail":"65 → 0 queries on the second request"},"freshRecord":{"status":"yes","detail":"item and list updated"},"freshRelated":{"status":"yes","detail":"item and list updated"},"openApi":{"status":"no","detail":"not provided"}},"extbase":{"pagination":{"status":"yes","detail":"total of 10,000 reported"},"item":{"status":"yes","detail":"HTTP 200"},"author":{"status":"yes","detail":"name \"Tim Berners-Lee\" embedded"},"tags":{"status":"yes","detail":"4 of 4 titles embedded"},"categories":{"status":"yes","detail":"3 of 3 titles embedded"},"batched":{"status":"no","detail":"56 queries for 20 items, 217 for 100"},"cache":{"status":"yes","detail":"56 → 4 queries on the second request"},"freshRecord":{"status":"yes","detail":"item and list updated"},"freshRelated":{"status":"yes","detail":"item and list updated"},"openApi":{"status":"no","detail":"not provided"}}}},"footprint":{"tcaapi":{"files":[{"path":"Configuration/TcaApi/Articles.php","lines":19},{"path":"Configuration/TcaApi/Categories.php","lines":11}],"lines":30,"classes":0,"outside":["site set `maikschneider/tca-api`"]},"t3api":{"files":[{"path":"Classes/Domain/Model/Article.php","lines":120},{"path":"Classes/Domain/Model/Author.php","lines":16},{"path":"Classes/Domain/Model/Category.php","lines":16},{"path":"Classes/Domain/Model/Tag.php","lines":16},{"path":"Configuration/Extbase/Persistence/Classes.php","lines":8},{"path":"Configuration/Routes/Api.yaml","lines":4}],"lines":180,"classes":4,"outside":["site config `imports` of the route enhancer"]},"sgapicore":{"files":[{"path":"ext_localconf.php","lines":26}],"lines":26,"classes":0,"outside":["`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`"]},"recordapi":{"files":[{"path":"Classes/ApiMiddleware.php","lines":44},{"path":"Classes/ArticleSerializer.php","lines":90},{"path":"Classes/CacheInvalidationHook.php","lines":19},{"path":"Configuration/RequestMiddlewares.php","lines":11},{"path":"Configuration/Services.yaml","lines":19},{"path":"ext_localconf.php","lines":9}],"lines":192,"classes":3,"outside":[]},"extbase":{"files":[{"path":"Classes/Controller/ArticleController.php","lines":60},{"path":"Classes/Domain/Model/Article.php","lines":65},{"path":"Classes/Domain/Model/Author.php","lines":12},{"path":"Classes/Domain/Model/Category.php","lines":12},{"path":"Classes/Domain/Model/Tag.php","lines":12},{"path":"Classes/Domain/Repository/ArticleRepository.php","lines":13},{"path":"Configuration/Extbase/Persistence/Classes.php","lines":8},{"path":"Configuration/Routes/Api.yaml","lines":33},{"path":"Configuration/Services.yaml","lines":9},{"path":"Configuration/Sets/BenchExtbase/config.yaml","lines":2},{"path":"Configuration/Sets/BenchExtbase/setup.typoscript","lines":14},{"path":"ext_localconf.php","lines":8}],"lines":248,"classes":6,"outside":["site set `typo3-api-benchmark/extbase`","site config `imports` of the route enhancer"]}},"profiles":{"tcaapi":{"includedFiles":746,"queries":5,"findings":[]},"t3api":{"includedFiles":1243,"queries":55,"findings":["page repeats 2 statements 40 times (14.9 ms)","12 deprecation(s) triggered, 1 distinct"]},"sgapicore":{"includedFiles":729,"queries":33,"findings":["page repeats 2 statements 23 times (1.7 ms)"]},"recordapi":{"includedFiles":771,"queries":65,"findings":["page repeats 3 statements 60 times (4.9 ms)"]},"extbase":{"includedFiles":1138,"queries":56,"findings":["page repeats 2 statements 40 times (4.1 ms)"]}}}</script>
+<script>
+(() => {
+  const data = JSON.parse(document.getElementById('benchmark-data').textContent);
+  if (typeof data !== 'object') {
+    document.querySelector('main').insertAdjacentHTML('afterbegin', '<p class="empty">No results embedded. Build this page with <code>bin/bench site</code>.</p>');
+    return;
+  }
+
+  const el = (tag, attrs = {}, ...children) => {
+    const node = document.createElement(tag);
+    for (const [name, value] of Object.entries(attrs)) {
+      if (value === undefined || value === null || value === false) continue;
+      if (name === 'class') node.className = value;
+      else if (name === 'style') Object.assign(node.style, value);
+      else if (name.startsWith('data-') || name.startsWith('aria-') || name === 'role' || name === 'tabindex' || name === 'type' || name === 'hidden') node.setAttribute(name, value);
+      else node[name] = value;
+    }
+    for (const child of children.flat()) {
+      if (child === null || child === undefined || child === false) continue;
+      node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+    }
+    return node;
+  };
+
+  const contenders = data.contenders;
+  const color = (key) => `var(--series-${contenders.findIndex((c) => c.key === key) + 1})`;
+  const fmt = (value, digits = 0) => (value === null || value === undefined || Number.isNaN(value)) ? '–' : value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+
+  // Theme
+  const toggle = document.getElementById('theme-toggle');
+  const stored = (() => { try { return localStorage.getItem('theme'); } catch { return null; } })();
+  if (stored) document.documentElement.dataset.theme = stored;
+  const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const syncToggle = () => { toggle.textContent = isDark() ? 'Light mode' : 'Dark mode'; };
+  toggle.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch {}
+    syncToggle();
+  });
+  syncToggle();
+
+  // Tooltip
+  const tooltip = document.getElementById('tooltip');
+  const showTip = (target, build, event) => {
+    tooltip.replaceChildren(...build());
+    tooltip.classList.add('visible');
+    const rect = target.getBoundingClientRect();
+    const x = event && event.clientX ? event.clientX : rect.left + rect.width / 2;
+    const y = event && event.clientY ? event.clientY : rect.top;
+    const width = tooltip.offsetWidth;
+    tooltip.style.left = `${Math.min(Math.max(8, x - width / 2), window.innerWidth - width - 8)}px`;
+    tooltip.style.top = `${Math.max(8, y - tooltip.offsetHeight - 12)}px`;
+  };
+  const hideTip = () => tooltip.classList.remove('visible');
+  const attachTip = (target, build) => {
+    target.addEventListener('pointermove', (event) => showTip(target, build, event));
+    target.addEventListener('pointerleave', hideTip);
+    target.addEventListener('focus', () => showTip(target, build));
+    target.addEventListener('blur', hideTip);
+  };
+  const tipRow = (key, text) => el('div', { class: 'tip-row' }, el('span', { class: 'key', style: { color: color(key) } }), text);
+
+  // Header
+  const env = data.environment;
+  const versions = env.versions;
+  const date = new Date(env.date);
+  document.getElementById('environment').append(
+    ...[
+      `TYPO3 ${(versions['typo3/cms-core'] || '').replace(/^v/, '')}`,
+      `PHP ${env.php}`,
+      env.database.replace(/^mariadb/i, 'MariaDB').replace(/^mysql/i, 'MySQL'),
+      `${env.mode === 'prod' ? 'Production' : 'Development'} setup`,
+      `${env.vus} concurrent users`,
+      `${env.repetitions} ${env.repetitions === 1 ? 'repetition' : 'repetitions'}`,
+      date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
+    ].map((text) => el('span', { class: 'chip' }, text)),
+  );
+  const versionOf = { tcaapi: 'maikschneider/tca-api', t3api: 'sourcebroker/t3api', sgapicore: 'sgalinski/sg-apicore' };
+  document.getElementById('legend').append(
+    ...contenders.map((c) => el('li', {}, el('span', { class: 'key', style: { color: color(c.key) } }), c.label, el('span', { class: 'muted small' }, versionOf[c.key] ? (versions[versionOf[c.key]] || '') : 'hand-written'))),
+  );
+
+  // Bar chart
+  const niceMax = (value) => {
+    if (!(value > 0)) return 1;
+    const magnitude = 10 ** Math.floor(Math.log10(value));
+    for (const step of [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) {
+      if (step * magnitude >= value) return step * magnitude;
+    }
+    return 10 * magnitude;
+  };
+  const ticks = (max, format) => el('div', { class: 'ticks', 'aria-hidden': 'true' },
+    ...[0, 0.25, 0.5, 0.75, 1].map((f) => el('span', { style: { left: `${f * 100}%` } }, format(max * f))));
+
+  function barChart(container, rows, { digits = 0, unit = '', range = false } = {}) {
+    const peak = Math.max(...rows.map((r) => (range ? Math.max(r.value, r.max ?? 0) : r.value)).filter((v) => !Number.isNaN(v)));
+    const max = niceMax(peak * 1.22);
+    const chart = el('div', { class: 'bars', role: 'list' });
+    for (const row of rows) {
+      const missing = row.value === null || Number.isNaN(row.value);
+      const width = missing ? 0 : (row.value / max) * 100;
+      const track = el('div', { class: 'bar-track', tabindex: '0', role: 'listitem', 'aria-label': `${row.label}: ${missing ? 'no value' : fmt(row.value, digits) + unit}` },
+        missing ? el('span', { class: 'bar-value', style: { left: '0' } }, 'n/a') : el('span', { class: 'bar', style: { width: `${width}%`, background: color(row.key) } }),
+        range && !missing ? el('span', { class: 'whisker', style: { left: `${(row.min / max) * 100}%`, width: `${((row.max - row.min) / max) * 100}%` } }) : null,
+        missing ? null : el('span', { class: 'bar-value', style: { left: `${Math.max(width, range ? (row.max / max) * 100 : 0)}%` } }, fmt(row.value, digits) + unit),
+      );
+      if (row.tip) attachTip(track, row.tip);
+      chart.append(el('div', { class: 'bar-row' }, el('span', { class: 'bar-label', title: row.label }, row.label), track));
+    }
+    chart.append(ticks(max, (v) => fmt(v, max < 10 ? 1 : 0)));
+    container.replaceChildren(chart);
+  }
+
+  function table(headers, rows) {
+    return el('table', {},
+      el('thead', {}, el('tr', {}, ...headers.map((h) => el('th', { class: h.num ? 'num' : '' }, h.label)))),
+      el('tbody', {}, ...rows.map((cells) => el('tr', {}, ...cells.map((cell, i) => el('td', { class: headers[i].num ? 'num' : '' }, cell))))));
+  }
+
+  // Load section
+  const passes = [{ key: 'miss', label: 'Cold' }, { key: 'hit', label: 'Cached' }];
+  const state = { scenario: data.scenarios[0].key, pass: 'miss' };
+  const segmented = (container, options, key) => {
+    container.replaceChildren(...options.map((option) => {
+      const button = el('button', { type: 'button', 'aria-pressed': String(state[key] === option.key) }, option.label);
+      button.addEventListener('click', () => { state[key] = option.key; renderLoad(); });
+      return button;
+    }));
+  };
+
+  function renderLoad() {
+    segmented(document.getElementById('scenario-control'), data.scenarios, 'scenario');
+    segmented(document.getElementById('pass-control'), passes, 'pass');
+    const scenario = data.load[state.scenario] || {};
+    const metric = (c) => (scenario[c.key] || {})[state.pass];
+    const passLabel = passes.find((p) => p.key === state.pass).label.toLowerCase();
+    const tip = (c, m) => () => m ? [
+      el('strong', {}, c.label),
+      tipRow(c.key, `${fmt(m.rps)} req/s`),
+      tipRow(c.key, `${fmt(m.p50, 1)} ms median, ${fmt(m.p95, 1)} ms p95, ${fmt(m.p99, 1)} ms p99`),
+      tipRow(c.key, `${fmt(m.queries)} queries, ${fmt(m.appMs, 1)} ms in TYPO3`),
+      tipRow(c.key, `${fmt(m.memoryMb, 1)} MB memory, ${fmt(m.payloadKb, 1)} KB response`),
+    ] : [el('strong', {}, c.label), 'no data'];
+    const rows = (pick) => contenders.map((c) => { const m = metric(c); return { key: c.key, label: c.label, value: m ? pick(m) : NaN, min: m?.p50Min, max: m?.p50Max, tip: tip(c, m) }; });
+
+    barChart(document.getElementById('chart-rps'), rows((m) => m.rps));
+    barChart(document.getElementById('chart-p50'), rows((m) => m.p50), { digits: 1, range: true });
+    barChart(document.getElementById('chart-queries'), rows((m) => m.queries));
+    barChart(document.getElementById('chart-app'), rows((m) => m.appMs), { digits: 1 });
+
+    document.getElementById('load-table').replaceChildren(table(
+      [{ label: `API (${passLabel})` }, { label: 'req/s', num: 1 }, { label: 'p50 ms', num: 1 }, { label: 'p50 range', num: 1 }, { label: 'p95 ms', num: 1 }, { label: 'p99 ms', num: 1 }, { label: 'Queries', num: 1 }, { label: 'Server ms', num: 1 }, { label: 'Memory MB', num: 1 }, { label: 'Response KB', num: 1 }, { label: 'Errors', num: 1 }],
+      contenders.map((c) => { const m = metric(c) || {}; return [c.label, fmt(m.rps), fmt(m.p50, 1), `${fmt(m.p50Min, 0)}–${fmt(m.p50Max, 0)}`, fmt(m.p95, 1), fmt(m.p99, 1), fmt(m.queries), fmt(m.appMs, 1), fmt(m.memoryMb, 1), fmt(m.payloadKb, 1), `${fmt((m.errorRate || 0) * 100)}%`]; }),
+    ));
+  }
+  renderLoad();
+
+  // Scaling dumbbell
+  (() => {
+    const small = data.load['list-20'] || {};
+    const large = data.load['list-100'] || {};
+    const rows = contenders.map((c) => ({ c, a: small[c.key]?.miss?.queries, b: large[c.key]?.miss?.queries }));
+    const max = niceMax(Math.max(...rows.map((r) => Math.max(r.a ?? 0, r.b ?? 0))) * 1.22);
+    const chart = el('div', { class: 'bars dumbbell', role: 'list' });
+    for (const { c, a, b } of rows) {
+      const pa = (a / max) * 100;
+      const pb = (b / max) * 100;
+      const track = el('div', { class: 'bar-track', tabindex: '0', role: 'listitem', 'aria-label': `${c.label}: ${fmt(a)} queries for 20 articles, ${fmt(b)} for 100` },
+        el('span', { class: 'link', style: { left: `${Math.min(pa, pb)}%`, width: `${Math.abs(pb - pa)}%`, background: color(c.key) } }),
+        el('span', { class: 'dot hollow', style: { left: `${pa}%`, color: color(c.key) } }),
+        el('span', { class: 'dot', style: { left: `${pb}%`, background: color(c.key) } }),
+        el('span', { class: 'bar-value', style: { left: `calc(${Math.max(pa, pb)}% + 6px)` } }, a === b ? `${fmt(a)} → ${fmt(b)}, flat` : `${fmt(a)} → ${fmt(b)}`),
+      );
+      attachTip(track, () => [el('strong', {}, c.label), tipRow(c.key, `${fmt(a)} queries for 20 articles`), tipRow(c.key, `${fmt(b)} queries for 100 articles`), tipRow(c.key, a ? `${fmt((b - a) / 80, 1)} extra queries per additional article` : '')]);
+      chart.append(el('div', { class: 'bar-row' }, el('span', { class: 'bar-label' }, c.label), track));
+    }
+    chart.append(ticks(max, (v) => fmt(v)));
+    document.getElementById('chart-scaling').replaceChildren(chart);
+  })();
+
+  // Feature matrix
+  (() => {
+    const container = document.getElementById('feature-matrix');
+    if (!data.features) { container.replaceChildren(el('p', { class: 'empty' }, 'No feature results. Run bin/bench features.')); return; }
+    const svg = (status) => {
+      const ns = 'http://www.w3.org/2000/svg';
+      const icon = document.createElementNS(ns, 'svg');
+      icon.setAttribute('width', '14'); icon.setAttribute('height', '14'); icon.setAttribute('viewBox', '0 0 14 14'); icon.setAttribute('aria-hidden', 'true');
+      const shape = document.createElementNS(ns, 'path');
+      shape.setAttribute('fill', 'none'); shape.setAttribute('stroke', 'currentColor'); shape.setAttribute('stroke-width', '2'); shape.setAttribute('stroke-linecap', 'round'); shape.setAttribute('stroke-linejoin', 'round');
+      shape.setAttribute('d', status === 'yes' ? 'M2.5 7.5l3 3 6-7' : status === 'no' ? 'M3 3l8 8M11 3l-8 8' : 'M3 7h8');
+      icon.append(shape);
+      return icon;
+    };
+    const statusLabel = { yes: 'Yes', partial: 'Partly', no: 'No' };
+    const head = el('tr', {}, el('th', {}, 'Feature'), ...contenders.map((c) => el('th', { class: 'api' }, el('span', { class: 'api-key', style: { background: color(c.key) } }), c.label)));
+    const body = [];
+    let group = null;
+    for (const feature of data.features.list) {
+      if (feature.group !== group) {
+        group = feature.group;
+        body.push(el('tr', { class: 'group' }, el('th', { colSpan: contenders.length + 1 }, group)));
+      }
+      body.push(el('tr', {}, el('td', {}, feature.label), ...contenders.map((c) => {
+        const check = data.features.results[c.key]?.[feature.key] || { status: 'no', detail: 'not checked' };
+        return el('td', {}, el('span', { class: `status ${check.status}` }, svg(check.status), statusLabel[check.status]), el('span', { class: 'status-detail' }, check.detail));
+      })));
+    }
+    container.replaceChildren(el('table', { class: 'matrix' }, el('thead', {}, head), el('tbody', {}, ...body)));
+  })();
+
+  // Footprint
+  (() => {
+    const footprint = data.footprint;
+    barChart(document.getElementById('chart-footprint'), contenders.map((c) => ({
+      key: c.key, label: c.label, value: footprint[c.key].lines,
+      tip: () => [el('strong', {}, c.label), tipRow(c.key, `${footprint[c.key].lines} lines in ${footprint[c.key].files.length} files`), tipRow(c.key, `${footprint[c.key].classes} PHP classes`), ...footprint[c.key].outside.map((o) => tipRow(c.key, `+ ${o.replace(/`/g, '')}`))],
+    })), { unit: ' lines' });
+    const files = document.getElementById('footprint-files');
+    files.replaceChildren(el('h3', {}, 'Files per package'), ...contenders.map((c) => el('details', {},
+      el('summary', { class: 'small' }, `${c.label}: ${footprint[c.key].files.length} files, ${footprint[c.key].classes} PHP classes`),
+      el('ul', { class: 'files' }, ...footprint[c.key].files.map((f) => el('li', {}, el('span', {}, f.path), el('span', {}, `${f.lines}`)))),
+      footprint[c.key].outside.length ? el('p', { class: 'small muted', style: { margin: '6px 0 0' } }, `Outside the package: ${footprint[c.key].outside.join(', ').replace(/`/g, '')}`) : null,
+    )));
+  })();
+
+  // Profiles
+  (() => {
+    const profiles = data.profiles;
+    if (!contenders.some((c) => profiles[c.key])) return;
+    document.getElementById('profiles').hidden = false;
+    barChart(document.getElementById('chart-files'), contenders.map((c) => ({
+      key: c.key, label: c.label, value: profiles[c.key]?.includedFiles ?? NaN,
+      tip: () => [el('strong', {}, c.label), tipRow(c.key, `${fmt(profiles[c.key]?.includedFiles)} PHP files`), tipRow(c.key, `${fmt(profiles[c.key]?.queries)} queries`)],
+    })));
+    document.getElementById('profile-findings').replaceChildren(...contenders.map((c) => {
+      const findings = profiles[c.key]?.findings || [];
+      return el('div', { style: { marginTop: '10px' } }, el('div', { class: 'small', style: { fontWeight: 600 } }, c.label),
+        findings.length ? el('ul', { class: 'findings' }, ...findings.map((f) => el('li', {}, f))) : el('p', { class: 'small muted', style: { margin: '2px 0 0' } }, 'No findings'));
+    }));
+  })();
+
+  // Method
+  document.getElementById('method-list').append(...[
+    `Each scenario: flush all caches, warm up PHP and TYPO3 on URLs outside the measured range, then one cold and one cached pass with k6 and ${env.vus} concurrent virtual users.`,
+    'Passes request 200 pages of 20 articles, 80 pages of 100, or 500 single articles; every URL once per pass.',
+    `The whole matrix runs ${env.repetitions} times, rotating over the APIs, so noise from the host spreads evenly.`,
+    'Queries, server time and memory come from a middleware that runs first in the TYPO3 frontend stack, identical for every API.',
+    'Production setup: no dev dependencies, authoritative classmap, OPcache without timestamp checks, every API response cache and the page cache on the same file backend.',
+  ].map((text) => el('li', {}, text)));
+
+  document.getElementById('footer').append(`Generated ${new Date(data.generated).toLocaleString('en-GB')} from benchmark/results. Features checked ${data.features ? new Date(data.features.date).toLocaleDateString('en-GB') : 'never'}.`);
+})();
+</script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Run the API benchmark. See benchmark/README.md.
 #   bin/bench load [--contenders a,b] [--scenarios list-20,list-100,item] [--vus 8]   k6 load test (use bin/env prod first)
-#   bin/bench invalidation                                                          cache correctness after backend edits
+#   bin/bench features                                                              feature checks against the running APIs and the database
 #   bin/bench profile                                                               T3Flare profile per API (dev mode)
 #   bin/bench footprint                                                             configuration needed per API
+#   bin/bench site                                                                  build docs/index.html from the results
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -12,9 +13,9 @@ shift || true
 
 case "$command" in
     load) exec bun "$root/benchmark/run.ts" "$@" ;;
-    invalidation | profile | footprint) exec bun "$root/benchmark/$command.ts" "$@" ;;
+    features | profile | footprint | site) exec bun "$root/benchmark/$command.ts" "$@" ;;
     *)
-        sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'
+        sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'
         exit 1
         ;;
 esac

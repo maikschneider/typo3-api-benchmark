@@ -1,5 +1,5 @@
 import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { BASE_URL, contenders, scenarios } from './contenders';
 import { renderReport } from './report';
@@ -66,7 +66,7 @@ for (let repetition = 1; repetition <= repetitions; repetition++) {
         const file = join(outDir, `${contender.key}-${scenario.key}-${pass}-${repetition}.json`);
         process.stdout.write(`[${repetition}/${repetitions}] ${contender.label} / ${scenario.label} / ${pass} … `);
         run(['k6', 'run', '--quiet', '--no-color', '-e', `URLS_FILE=${urlsFile}`, '-e', `SUMMARY_FILE=${file}`, '-e', `VUS=${args.vus}`, 'benchmark/k6/pass.ts']);
-        runs.push({ contender: contender.key, scenario: scenario.key, pass, repetition, file });
+        runs.push({ contender: contender.key, scenario: scenario.key, pass, repetition, file: basename(file) });
         console.log('done');
       }
     }

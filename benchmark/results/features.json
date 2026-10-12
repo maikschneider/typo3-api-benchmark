@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-12T12:45:42.511Z",
+  "article": 13,
+  "lockHash": "1ce773ce4786013145b325797524730f",
+  "results": {
+    "tcaapi": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Tim Berners-Lee\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "yes",
+        "detail": "3 of 3 titles embedded"
+      },
+      "batched": {
+        "status": "yes",
+        "detail": "5 queries for 20 items, 5 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "5 → 0 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "freshRelated": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "openApi": {
+        "status": "yes",
+        "detail": "/_api/openapi.json"
+      }
+    },
+    "t3api": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Tim Berners-Lee\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "yes",
+        "detail": "3 of 3 titles embedded"
+      },
+      "batched": {
+        "status": "no",
+        "detail": "55 queries for 20 items, 216 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "55 → 4 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "freshRelated": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "openApi": {
+        "status": "partial",
+        "detail": "backend module only"
+      }
+    },
+    "sgapicore": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Tim Berners-Lee\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "no",
+        "detail": "category titles missing"
+      },
+      "batched": {
+        "status": "no",
+        "detail": "47 queries for 20 items, 128 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "47 → 1 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "no",
+        "detail": "stale: item and list"
+      },
+      "freshRelated": {
+        "status": "no",
+        "detail": "stale: item and list"
+      },
+      "openApi": {
+        "status": "yes",
+        "detail": "/_sgapi/bench/v1/docs.json"
+      }
+    },
+    "recordapi": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Tim Berners-Lee\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "yes",
+        "detail": "3 of 3 titles embedded"
+      },
+      "batched": {
+        "status": "no",
+        "detail": "65 queries for 20 items, 305 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "65 → 0 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "freshRelated": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "openApi": {
+        "status": "no",
+        "detail": "not provided"
+      }
+    },
+    "extbase": {
+      "pagination": {
+        "status": "yes",
+        "detail": "total of 10,000 reported"
+      },
+      "item": {
+        "status": "yes",
+        "detail": "HTTP 200"
+      },
+      "author": {
+        "status": "yes",
+        "detail": "name \"Tim Berners-Lee\" embedded"
+      },
+      "tags": {
+        "status": "yes",
+        "detail": "4 of 4 titles embedded"
+      },
+      "categories": {
+        "status": "yes",
+        "detail": "3 of 3 titles embedded"
+      },
+      "batched": {
+        "status": "no",
+        "detail": "56 queries for 20 items, 217 for 100"
+      },
+      "cache": {
+        "status": "yes",
+        "detail": "56 → 4 queries on the second request"
+      },
+      "freshRecord": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "freshRelated": {
+        "status": "yes",
+        "detail": "item and list updated"
+      },
+      "openApi": {
+        "status": "no",
+        "detail": "not provided"
+      }
+    }
+  }
+}

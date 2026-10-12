@@ -5,3 +5,4 @@
 /.ddev/php/zz-bench-prod.ini
 /benchmark/results/*/*.urls.json
 /.ddev/.env
+/benchmark/results/*-dev/

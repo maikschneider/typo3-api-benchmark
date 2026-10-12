@@ -1,0 +1,144 @@
+{
+    "schema": "t3flare/report/1",
+    "profile": "20261012-145457-a11c9c",
+    "request": {
+        "method": "GET",
+        "host": "typo3-api-benchmark.ddev.site",
+        "path": "/_t3api/articles"
+    },
+    "environment": {
+        "typo3": "14.3.8",
+        "php": "8.4.22",
+        "context": "Production"
+    },
+    "summary": {
+        "wallMs": 207.67,
+        "queries": 55,
+        "contentElements": 0,
+        "attributedShare": 100,
+        "sampled": true,
+        "peakMemory": 21598208,
+        "includedFiles": 1243,
+        "logLevels": [
+            {
+                "level": "debug",
+                "count": 6
+            }
+        ],
+        "exception": null
+    },
+    "categories": {
+        "middleware": 122.5,
+        "bootstrap": 79,
+        "typoscript": 3.5
+    },
+    "units": [
+        {
+            "unit": "middleware: sourcebroker/t3api/process-api-request",
+            "ms": 102,
+            "queries": 51,
+            "queryMs": 22.97
+        },
+        {
+            "unit": "bootstrap: Bootstrap::init",
+            "ms": 72.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/page-resolver",
+            "ms": 14,
+            "queries": 2,
+            "queryMs": 0.94
+        },
+        {
+            "unit": "bootstrap: Application / middleware stack build",
+            "ms": 6,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "typoscript: Create PageInformation",
+            "ms": 3.5,
+            "queries": 2,
+            "queryMs": 0.83
+        },
+        {
+            "unit": "middleware: sgalinski/sg-apicore/api-cache",
+            "ms": 3.5,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "middleware: typo3/cms-frontend/prepare-tsfe-rendering",
+            "ms": 3,
+            "queries": 0,
+            "queryMs": 0
+        },
+        {
+            "unit": "bootstrap: Bootstrap::populateLocalConfiguration",
+            "ms": 0.5,
+            "queries": 0,
+            "queryMs": 0
+        }
+    ],
+    "findings": [
+        {
+            "rule": "repeated-query",
+            "severity": "notice",
+            "title": "page repeats 2 statements 40 times (14.9 ms)",
+            "scope": "page",
+            "detail": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_… · 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_ar…",
+            "whenThisIsFine": "A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).",
+            "fix": "load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.",
+            "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md",
+            "impactMs": 14.93,
+            "evidence": [
+                {
+                    "summary": "20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (8.8 ms)",
+                    "count": 20,
+                    "sql": "SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC",
+                    "ms": 8.84,
+                    "callSites": [
+                        {
+                            "site": "SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers (vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php:52)",
+                            "count": 20,
+                            "function": "SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers",
+                            "file": "vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php",
+                            "line": 52
+                        }
+                    ]
+                },
+                {
+                    "summary": "20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (6.1 ms)",
+                    "count": 20,
+                    "sql": "SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC",
+                    "ms": 6.1,
+                    "callSites": [
+                        {
+                            "site": "SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers (vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php:52)",
+                            "count": 20,
+                            "function": "SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers",
+                            "file": "vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php",
+                            "line": 52
+                        }
+                    ]
+                }
+            ],
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_t3api/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): page repeats 2 statements 40 times (14.9 ms)\n\nEvidence:\n- 20× SELECT `sys_category_record_mm`.*, `sys_category`.* FROM `sys_category_record_mm` LEFT JOIN `sys_category` `sys_category` ON `sys_category_record_mm`.`uid_local` = `sys_category`.`uid` WHERE ((((`sys_category_record_mm`.`uid_foreign` = ?) AND (`sys_category_record_mm`.`tablenames` = ?))) AND (`sys_category_record_mm`.`fieldname` = ?) AND (`sys_category`.`deleted` = ? AND ((`sys_category`.`t3ver_state` <= ?) AND (`sys_category`.`t3ver_wsid` = ?)) AND ((`sys_category`.`t3ver_oid` = ?) OR (`sys_category`.`t3ver_state` = ?)) AND `sys_category`.`hidden` = ? AND `sys_category`.`starttime` <= ? AND ((`sys_category`.`endtime` = ?) OR (`sys_category`.`endtime` > ?)))) ORDER BY `sys_category_record_mm`.`sorting_foreign` ASC (8.8 ms)\n  - called 20× from SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers (vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php:52)\n- 20× SELECT `tx_bench_article_tag_mm`.*, `tx_bench_tag`.* FROM `tx_bench_article_tag_mm` LEFT JOIN `tx_bench_tag` `tx_bench_tag` ON `tx_bench_article_tag_mm`.`uid_foreign` = `tx_bench_tag`.`uid` WHERE (`tx_bench_article_tag_mm`.`uid_local` = ?) AND (`tx_bench_tag`.`deleted` = ? AND `tx_bench_tag`.`hidden` = ?) ORDER BY `tx_bench_article_tag_mm`.`sorting` ASC (6.1 ms)\n  - called 20× from SourceBroker\\T3api\\Response\\AbstractCollectionResponse::getMembers (vendor/sourcebroker/t3api/Classes/Response/AbstractCollectionResponse.php:52)\n\nCall sites under vendor/ are TYPO3 core or third-party code: do not patch them. Find the project code, TypoScript or configuration that makes them run this often.\n\nDocumented fix: load the rows for all items in one query (`IN (...)`), or one `FilesProcessor` / `FileRepository` call over all records, and index the result in PHP.\n\nLeave the code unchanged if: A handful of cheap, indexed lookups in a menu of fixed size can be fine. It becomes a problem when the count grows with content: fetch the rows for all items in one query instead (for files: one FilesProcessor/FileRepository call over all records).\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_t3api/articles` (or `ddev t3flare /_t3api/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/RepeatedQuery.md"
+        },
+        {
+            "rule": "deprecations",
+            "severity": "notice",
+            "title": "12 deprecation(s) triggered, 1 distinct",
+            "scope": "",
+            "detail": "Most frequent (12×): GeneralUtility::getIndpEnv() is deprecated since TYPO3 v14.3 and will be removed in TYPO3 v15.0. Use NormalizedParams from the PSR-7 request instead. in GeneralUtility.php:2148",
+            "whenThisIsFine": "Deprecations cost little at runtime, but each one is code that breaks with the next major TYPO3 version. Fix them before the upgrade, not during it.",
+            "fix": "follow the changelog entry named in the message; `typo3/cms-install`'s upgrade scanner finds the same patterns statically.",
+            "documentation": "https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/Deprecations.md",
+            "impactMs": 0,
+            "evidence": [],
+            "agentPrompt": "T3Flare found a performance issue in the page `GET typo3-api-benchmark.ddev.site/_t3api/articles` of a TYPO3 14.3.8 project (application context: Production).\n\nProblem (notice): 12 deprecation(s) triggered, 1 distinct\n\nEvidence:\n- Most frequent (12×): GeneralUtility::getIndpEnv() is deprecated since TYPO3 v14.3 and will be removed in TYPO3 v15.0. Use NormalizedParams from the PSR-7 request instead. in GeneralUtility.php:2148\n\nDocumented fix: follow the changelog entry named in the message; `typo3/cms-install`'s upgrade scanner finds the same patterns statically.\n\nLeave the code unchanged if: Deprecations cost little at runtime, but each one is code that breaks with the next major TYPO3 version. Fix them before the upgrade, not during it.\n\nTask: locate the responsible code (file and line), explain the cause in one or two sentences, then make the smallest change that removes it without changing what the page shows. Verify by profiling again with `vendor/bin/typo3 t3flare:profile https://typo3-api-benchmark.ddev.site/_t3api/articles` (or `ddev t3flare /_t3api/articles`) and check that this finding is gone or much smaller.\nDetails: https://github.com/maikschneider/t3flare/blob/main/Documentation/Rules/Deprecations.md"
+        }
+    ]
+}
