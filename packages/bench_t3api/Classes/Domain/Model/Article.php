@@ -30,7 +30,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  *     attributes={
  *          "pagination_items_per_page"=20,
  *          "pagination_client_items_per_page"=true,
- *          "maximum_items_per_page"=100,
+ *          "maximum_items_per_page"=1000,
  *          "persistence"={
  *              "storagePid"="2"
  *          },

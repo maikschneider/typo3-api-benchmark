@@ -33,7 +33,7 @@ final readonly class ApiMiddleware implements MiddlewareInterface
         }
 
         $params = $request->getQueryParams();
-        $limit = max(1, min(100, (int)($params['itemsPerPage'] ?? 20)));
+        $limit = max(1, min(1000, (int)($params['itemsPerPage'] ?? 20)));
         $page = max(1, (int)($params['page'] ?? 1));
         $uid = (int)($matches[1] ?? 0);
 

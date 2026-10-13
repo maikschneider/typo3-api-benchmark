@@ -69,6 +69,9 @@ for (let repetition = 1; repetition <= repetitions; repetition++) {
       for (const suite of selectedSuites) {
         for (const point of suite.points) {
           for (const contender of phase) {
+            if (point.pageSize && contender.maxPageSize && point.pageSize > contender.maxPageSize.size) {
+              continue;
+            }
             const vus = point.vus ?? Number(args.vus);
             run(['ddev', 'exec', 'vendor/bin/typo3', 'cache:flush']);
             for (const path of point.warmup(contender)) {

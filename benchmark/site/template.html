@@ -481,6 +481,8 @@ bin/bench site</pre>
       return button;
     }));
 
+  const unsupported = (c, point) => Boolean(point.pageSize && c.maxPageSize && point.pageSize > c.maxPageSize.size);
+
   function lineChart(container, suite, sweep) {
     const metric = METRICS.find((m) => m.key === sweep.metric);
     const points = suite.points;
@@ -533,7 +535,11 @@ bin/bench site</pre>
         crosshair.setAttribute('x1', x(i));
         crosshair.setAttribute('x2', x(i));
         crosshair.setAttribute('visibility', 'visible');
-        showTip(target, () => [el('strong', {}, `${p.label} · ${p.useCase}`), ...ranked.map((s) => tipRow(s.c.key, `${fmt(s.values[i], metric.digits)} ${metric.unit}  ${s.c.label}`))], event);
+        showTip(target, () => [
+          el('strong', {}, `${p.label} · ${p.useCase}`),
+          ...ranked.map((s) => tipRow(s.c.key, `${fmt(s.values[i], metric.digits)} ${metric.unit}  ${s.c.label}`)),
+          ...series.filter((s) => unsupported(s.c, p)).map((s) => tipRow(s.c.key, `max. ${s.c.maxPageSize.size} per page  ${s.c.label}`)),
+        ], event);
       };
       const hide = () => { crosshair.setAttribute('visibility', 'hidden'); hideTip(); };
       target.addEventListener('pointermove', show);
@@ -564,7 +570,7 @@ bin/bench site</pre>
       lineChart(chart, suite, sweep);
       tableWrap.replaceChildren(table(
         [{ label: 'Step' }, { label: 'Use case' }, ...contenders.map((c) => ({ label: c.label, num: 1 }))],
-        suite.points.map((p) => [p.label, p.useCase, ...contenders.map((c) => fmt(data.load[suite.key]?.[p.key]?.[c.key]?.[sweep.pass]?.[metric.key], metric.digits))]),
+        suite.points.map((p) => [p.label, p.useCase, ...contenders.map((c) => (unsupported(c, p) ? `max. ${c.maxPageSize.size}` : fmt(data.load[suite.key]?.[p.key]?.[c.key]?.[sweep.pass]?.[metric.key], metric.digits)))]),
       ));
     };
     card.append(
@@ -573,6 +579,8 @@ bin/bench site</pre>
       controls,
       chart,
       el('ul', { class: 'legend chart-legend' }, ...contenders.map((c) => el('li', {}, el('span', { class: 'key', style: { color: color(c.key) } }), c.label))),
+      ...contenders.filter((c) => suite.points.some((p) => unsupported(c, p))).map((c) => el('p', { class: 'small muted', style: { margin: '8px 0 0' } }, `${c.label} serves at most ${c.maxPageSize.size} records per request (${c.maxPageSize.reason}), so its line ends there.`)),
+      data.sources?.[suite.key] ? el('p', { class: 'small muted', style: { margin: '6px 0 0' } }, `Measured ${new Date(data.sources[suite.key].date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}, median of ${data.sources[suite.key].repetitions} repetitions.`) : null,
       el('details', { class: 'table-view' }, el('summary', {}, 'Table view'), tableWrap),
     );
     document.getElementById('sweeps').append(card);

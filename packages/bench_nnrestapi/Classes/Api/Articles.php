@@ -28,7 +28,7 @@ class Articles extends AbstractCachedApi
     {
         $arguments = $this->request->getArguments();
         $page = max(1, (int)($arguments['page'] ?? 1));
-        $size = min(100, max(1, (int)($arguments['itemsPerPage'] ?? 20)));
+        $size = min(1000, max(1, (int)($arguments['itemsPerPage'] ?? 20)));
 
         return $this->cached([__METHOD__ => [$page, $size]], function () use ($page, $size): array {
             $query = $this->articleRepository->createQuery();

@@ -28,7 +28,7 @@ final readonly class DepthApiMiddleware implements MiddlewareInterface
 
         $params = $request->getQueryParams();
         $depth = (int)$matches[1];
-        $limit = max(1, min(100, (int)($params['itemsPerPage'] ?? 20)));
+        $limit = max(1, min(1000, (int)($params['itemsPerPage'] ?? 20)));
         $page = max(1, (int)($params['page'] ?? 1));
 
         $cacheIdentifier = sha1('depth-' . $depth . '-' . $page . '-' . $limit);

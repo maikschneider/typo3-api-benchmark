@@ -9,8 +9,10 @@ routeEnhancers:
         _controller: 'Article::list'
       - routePath: '/_extbase/articles/{article}'
         _controller: 'Article::show'
-      - routePath: '/_extbase/articles-depth/{depth}/{page}/{size}'
+      - routePath: '/_extbase/articles-depth/{depth}/{page}/{depthSize}'
         _controller: 'Depth::list'
+        _arguments:
+          depthSize: size
     defaultController: 'Article::list'
     aspects:
       page:
@@ -25,6 +27,12 @@ routeEnhancers:
           '20': '20'
           '50': '50'
           '100': '100'
+          '500': '500'
+          '1000': '1000'
+      depthSize:
+        type: StaticValueMapper
+        map:
+          '20': '20'
       depth:
         type: StaticRangeMapper
         start: '0'

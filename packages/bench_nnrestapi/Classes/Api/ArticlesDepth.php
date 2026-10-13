@@ -31,7 +31,7 @@ class ArticlesDepth extends AbstractCachedApi
         $arguments = $this->request->getArguments();
         $depth = min(3, max(0, $depth));
         $page = max(1, (int)($arguments['page'] ?? 1));
-        $size = min(100, max(1, (int)($arguments['itemsPerPage'] ?? 20)));
+        $size = min(1000, max(1, (int)($arguments['itemsPerPage'] ?? 20)));
 
         // The response wraps the articles in two array levels.
         return $this->cached([__METHOD__ => [$depth, $page, $size]], function () use ($page, $size): array {

@@ -3,19 +3,21 @@ import { join } from 'node:path';
 import { contenders, suites } from './contenders';
 import { FEATURES } from './features';
 import { measureFootprints } from './footprint';
-import { latestRunDir, readLoadRun } from './load-results';
+import { readLatestPerSuite, readLoadRun } from './load-results';
 
 // Builds the self-contained overview page docs/index.html from benchmark/results/.
+// Every suite comes from the newest prod run that contains it, unless a run is given.
 // Usage: bun benchmark/site.ts [results/<load run>]
 
 const root = join(import.meta.dir, '..');
 const resultsDir = join(import.meta.dir, 'results');
-const runDir = process.argv[2] ?? latestRunDir(resultsDir);
-if (!runDir) throw new Error('No load run in benchmark/results/, run `bin/bench load` first.');
+const runArgument = process.argv[2];
+const loaded = runArgument ? { ...readLoadRun(runArgument), sources: {} } : readLatestPerSuite(resultsDir);
+if (!loaded) throw new Error('No load run in benchmark/results/, run `bin/bench load` first.');
 
 const readJson = <T>(path: string): T | null => (existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null);
 
-const { meta, results } = readLoadRun(runDir);
+const { meta, results, sources } = loaded;
 const features = readJson<{ date: string; results: Record<string, Record<string, { status: string; detail: string }>> }>(join(resultsDir, 'features.json'));
 
 interface ProfileReport {
@@ -52,8 +54,9 @@ const data = {
     php: ddevValue(/php_version:\s*"?([\d.]+)/),
     database: `${ddevValue(/database:\s*\n\s+type:\s*(\w+)/)} ${ddevValue(/database:\s*\n\s+type:\s*\w+\s*\n\s+version:\s*"?([\d.]+)/)}`,
   },
-  contenders: contenders.map(({ key, label, package: pkg, isolated }) => ({ key, label, package: pkg, isolated: isolated?.reason ?? null })),
-  suites: suites.map(({ key, label, axis, question, points }) => ({ key, label, axis, question, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase })) })),
+  contenders: contenders.map(({ key, label, package: pkg, isolated, maxPageSize }) => ({ key, label, package: pkg, isolated: isolated?.reason ?? null, maxPageSize: maxPageSize ?? null })),
+  sources,
+  suites: suites.map(({ key, label, axis, question, points }) => ({ key, label, axis, question, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase, pageSize: p.pageSize ?? null })) })),
   load: results,
   features: features && { date: features.date, list: FEATURES, results: features.results },
   footprint: measureFootprints(),
@@ -64,4 +67,4 @@ const template = readFileSync(join(import.meta.dir, 'site', 'template.html'), 'u
 const json = JSON.stringify(data).replace(/</g, '\\u003c');
 mkdirSync(join(root, 'docs'), { recursive: true });
 writeFileSync(join(root, 'docs', 'index.html'), template.replace('"__BENCHMARK_DATA__"', json));
-console.log(`docs/index.html built from ${runDir.split('/').pop()}`);
+console.log(`docs/index.html built from ${Object.entries(sources).map(([suite, source]) => `${suite}: ${source.run}`).join(', ') || runArgument}`);

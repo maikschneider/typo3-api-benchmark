@@ -10,6 +10,8 @@ export interface Contender {
   depth: (depth: number, page: number, size: number) => string;
   /** Files of the package that exist only for the depth sweep, as globs relative to the package. */
   depthFiles: string[];
+  /** Largest page the API can serve, when it is smaller than the largest step, with the reason. */
+  maxPageSize?: { size: number; reason: string };
   /** Configuration the package cannot carry itself and the project has to add. */
   projectConfig: string[];
   /** Public URL of a generated OpenAPI document, or a note where the API documents itself otherwise. */
@@ -60,6 +62,7 @@ export const contenders: Contender[] = [
     item: (uid) => `/_sgapi/bench/v1/articles/${uid}`,
     depth: (depth, page, size) => `/_sgapi/bench-depth-${depth}/v1/articles?sort=uid&page=${page}&perPage=${size}`,
     depthFiles: ['Configuration/DepthResources.php'],
+    maxPageSize: { size: 100, reason: 'PaginationService::MAX_LIMIT is a constant' },
     projectConfig: ['`apiPathPrefix` and `activateDemoApis` in `config/system/additional.php`'],
     openApi: { url: '/_sgapi/bench/v1/docs.json' },
   },
@@ -120,6 +123,8 @@ export interface Point {
   warmup: (c: Contender) => string[];
   /** Concurrent virtual users; the runner's --vus when not set. */
   vus?: number;
+  /** Records per request, for APIs with a maximum page size. */
+  pageSize?: number;
 }
 
 export interface Suite {
@@ -134,13 +139,18 @@ export interface Suite {
 const range = (from: number, to: number): number[] => Array.from({ length: to - from + 1 }, (_, i) => from + i);
 const ARTICLES = 10000;
 
-const sizePoint = (size: number, useCase: string): Point => ({
-  key: String(size),
-  label: size === 1 ? '1 record' : `${size} records`,
-  useCase,
-  urls: (c) => range(1, 50).map((page) => c.list(page, size)),
-  warmup: (c) => range(ARTICLES / size - 5, ARTICLES / size - 1).map((page) => c.list(page, size)),
-});
+// Up to 50 pages per pass; the last two pages of the data set are kept for the warm-up.
+const sizePoint = (size: number, useCase: string): Point => {
+  const pages = ARTICLES / size;
+  return {
+    key: String(size),
+    label: size === 1 ? '1 record' : `${size} records`,
+    useCase,
+    pageSize: size,
+    urls: (c) => range(1, Math.min(50, pages - 2)).map((page) => c.list(page, size)),
+    warmup: (c) => range(pages - 1, pages).map((page) => c.list(page, size)),
+  };
+};
 
 const depthPoint = (depth: number, label: string, useCase: string): Point => ({
   key: String(depth),
@@ -200,6 +210,8 @@ export const suites: Suite[] = [
       sizePoint(20, 'News list'),
       sizePoint(50, 'Archive page'),
       sizePoint(100, 'Sync or export'),
+      sizePoint(500, 'Bulk export'),
+      sizePoint(1000, 'Search index feed'),
     ],
   },
   {

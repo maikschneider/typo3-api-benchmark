@@ -78,3 +78,29 @@ export function readLoadRun(dir: string): { meta: LoadMeta; results: LoadResults
   }
   return { meta, results };
 }
+
+/**
+ * Every suite from the newest run that contains it, preferring prod runs, so a single suite can be
+ * re-run without discarding the others.
+ */
+export function readLatestPerSuite(resultsDir: string): { meta: LoadMeta; results: LoadResults; sources: Record<string, { run: string; date: string; repetitions: number }> } | null {
+  if (!existsSync(resultsDir)) return null;
+  const all = readdirSync(resultsDir).filter((name) => /^\d{4}-.*-(prod|dev)$/.test(name) && existsSync(join(resultsDir, name, 'meta.json'))).sort().reverse();
+  const prod = all.filter((name) => name.endsWith('-prod'));
+  const runs = prod.length > 0 ? prod : all;
+  if (runs.length === 0) return null;
+
+  const results: LoadResults = {};
+  const sources: Record<string, { run: string; date: string; repetitions: number }> = {};
+  let newest: LoadMeta | null = null;
+  for (const run of runs) {
+    const loaded = readLoadRun(join(resultsDir, run));
+    newest ??= loaded.meta;
+    for (const [suite, points] of Object.entries(loaded.results)) {
+      if (results[suite]) continue;
+      results[suite] = points;
+      sources[suite] = { run, date: loaded.meta.date, repetitions: loaded.meta.repetitions };
+    }
+  }
+  return { meta: newest as LoadMeta, results, sources };
+}
