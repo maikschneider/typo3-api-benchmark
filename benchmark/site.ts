@@ -39,7 +39,16 @@ const data = {
     mode: meta.mode,
     vus: meta.vus,
     repetitions: meta.repetitions,
-    versions: meta.versions,
+    versions: {
+      ...meta.versions,
+      // Isolated APIs are not in composer.lock while the run starts; their pinned versions come from contenders.ts.
+      ...Object.fromEntries(
+        contenders.flatMap((c) => c.isolated?.packages ?? []).map((spec) => {
+          const [name, version] = spec.split(':');
+          return [name, version.replace(/#(.{7}).*/, ' ($1)')];
+        }),
+      ),
+    },
     php: ddevValue(/php_version:\s*"?([\d.]+)/),
     database: `${ddevValue(/database:\s*\n\s+type:\s*(\w+)/)} ${ddevValue(/database:\s*\n\s+type:\s*\w+\s*\n\s+version:\s*"?([\d.]+)/)}`,
   },

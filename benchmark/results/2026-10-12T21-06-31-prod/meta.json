@@ -1,0 +1,5522 @@
+{
+  "mode": "prod",
+  "vus": 8,
+  "repetitions": 3,
+  "versions": {
+    "maikschneider/tca-api": "2.2.0",
+    "sgalinski/sg-apicore": "3.1.7",
+    "sourcebroker/t3api": "dev-release/5.0.0",
+    "typo3/cms-core": "v14.3.8"
+  },
+  "date": "2026-10-13T04:24:31.870Z",
+  "runs": [
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-t3api-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-t3api-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-recordapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-recordapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-extbase-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-extbase-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-t3api-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-t3api-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-recordapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-recordapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-extbase-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-extbase-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-t3api-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-t3api-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-recordapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-recordapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-extbase-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-extbase-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-t3api-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-t3api-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-recordapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-recordapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-extbase-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-extbase-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-t3api-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-t3api-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-recordapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-recordapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-extbase-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-extbase-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-t3api-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-t3api-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-recordapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-recordapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-extbase-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-extbase-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-t3api-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-t3api-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-recordapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-recordapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-extbase-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-extbase-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-t3api-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-t3api-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-recordapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-recordapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-extbase-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-extbase-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-t3api-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-t3api-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-recordapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-recordapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-extbase-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-extbase-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-t3api-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-t3api-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-recordapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-recordapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-extbase-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-extbase-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-t3api-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-t3api-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-recordapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-recordapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-extbase-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-extbase-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-t3api-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-t3api-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-recordapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-recordapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-extbase-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-extbase-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-t3api-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-t3api-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-extbase-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-extbase-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-t3api-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-t3api-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-extbase-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-extbase-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-t3api-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-t3api-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-extbase-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-extbase-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-t3api-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-t3api-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-extbase-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-extbase-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-t3api-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-t3api-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-extbase-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-extbase-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "base-item-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-1-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-5-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-20-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-50-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "size-100-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-miss-1.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 1,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-hit-1.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-t3api-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-t3api-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-recordapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-recordapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-extbase-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-extbase-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-t3api-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-t3api-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-recordapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-recordapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-extbase-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-extbase-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-t3api-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-t3api-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-recordapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-recordapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-extbase-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-extbase-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-t3api-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-t3api-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-recordapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-recordapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-extbase-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-extbase-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-t3api-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-t3api-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-recordapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-recordapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-extbase-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-extbase-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-t3api-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-t3api-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-recordapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-recordapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-extbase-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-extbase-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-t3api-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-t3api-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-recordapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-recordapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-extbase-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-extbase-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-t3api-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-t3api-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-recordapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-recordapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-extbase-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-extbase-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-t3api-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-t3api-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-recordapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-recordapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-extbase-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-extbase-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-t3api-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-t3api-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-recordapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-recordapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-extbase-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-extbase-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-t3api-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-t3api-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-recordapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-recordapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-extbase-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-extbase-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-t3api-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-t3api-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-recordapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-recordapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-extbase-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-extbase-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-t3api-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-t3api-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-extbase-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-extbase-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-t3api-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-t3api-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-extbase-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-extbase-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-t3api-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-t3api-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-extbase-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-extbase-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-t3api-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-t3api-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-extbase-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-extbase-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-t3api-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-t3api-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-extbase-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-extbase-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "base-item-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-1-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-5-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-20-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-50-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "size-100-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-miss-2.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 2,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-hit-2.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-t3api-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-t3api-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-recordapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-recordapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-extbase-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-extbase-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-t3api-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-t3api-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-recordapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-recordapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-extbase-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-extbase-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-t3api-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-t3api-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-recordapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-recordapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-extbase-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-extbase-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-t3api-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-t3api-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-recordapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-recordapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-extbase-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-extbase-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-t3api-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-t3api-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-recordapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-recordapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-extbase-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-extbase-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-t3api-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-t3api-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-recordapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-recordapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-extbase-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-extbase-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-t3api-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-t3api-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-recordapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-recordapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-extbase-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-extbase-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-t3api-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-t3api-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-recordapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-recordapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-extbase-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-extbase-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-t3api-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-t3api-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-recordapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-recordapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-extbase-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-extbase-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-t3api-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-t3api-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-recordapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-recordapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-extbase-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-extbase-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-t3api-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-t3api-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-recordapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-recordapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-extbase-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-extbase-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-t3api-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-t3api-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-recordapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-recordapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-extbase-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-extbase-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-t3api-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-t3api-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-recordapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-extbase-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-extbase-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-t3api-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-t3api-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-recordapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-extbase-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-extbase-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-t3api-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-t3api-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-recordapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-extbase-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-extbase-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-t3api-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-t3api-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-recordapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-extbase-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-extbase-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "tcaapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-tcaapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-t3api-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "t3api",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-t3api-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "sgapicore",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-sgapicore-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "recordapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-recordapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-extbase-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "extbase",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-extbase-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-20-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "list-100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-list-100-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "base",
+      "point": "item",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "base-item-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-1-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "5",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-5-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "20",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-20-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "50",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-50-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "size",
+      "point": "100",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "size-100-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "0",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-0-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-1-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "2",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-2-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "depth",
+      "point": "3",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "depth-3-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "1",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 1,
+      "file": "concurrency-1-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "4",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 4,
+      "file": "concurrency-4-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "8",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 8,
+      "file": "concurrency-8-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "16",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 16,
+      "file": "concurrency-16-nnrestapi-hit-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "miss",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-miss-3.json"
+    },
+    {
+      "suite": "concurrency",
+      "point": "32",
+      "contender": "nnrestapi",
+      "pass": "hit",
+      "repetition": 3,
+      "vus": 32,
+      "file": "concurrency-32-nnrestapi-hit-3.json"
+    }
+  ]
+}
