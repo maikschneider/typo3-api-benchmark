@@ -1,7 +1,6 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { contenders, suites } from './contenders';
-import { FEATURES } from './features';
 import { measureFootprints } from './footprint';
 import { readLatestPerSuite, readLoadRun } from './load-results';
 
@@ -15,21 +14,7 @@ const runArgument = process.argv[2];
 const loaded = runArgument ? { ...readLoadRun(runArgument), sources: {} } : readLatestPerSuite(resultsDir);
 if (!loaded) throw new Error('No load run in benchmark/results/, run `bin/bench load` first.');
 
-const readJson = <T>(path: string): T | null => (existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null);
-
 const { meta, results, sources } = loaded;
-const features = readJson<{ date: string; results: Record<string, Record<string, { status: string; detail: string }>> }>(join(resultsDir, 'features.json'));
-
-interface ProfileReport {
-  summary: { wallMs: number; queries: number; peakMemory: number; includedFiles: number };
-  findings: Array<{ title: string; severity: string }>;
-}
-const profiles = Object.fromEntries(
-  contenders.map((contender) => {
-    const report = readJson<ProfileReport>(join(resultsDir, 'profiles', `${contender.key}.json`));
-    return [contender.key, report && { includedFiles: report.summary.includedFiles, queries: report.summary.queries, findings: report.findings.map((f) => f.title) }];
-  }),
-);
 
 const ddevConfig = readFileSync(join(root, '.ddev/config.yaml'), 'utf8');
 const ddevValue = (pattern: RegExp): string => ddevConfig.match(pattern)?.[1] ?? '?';
@@ -56,11 +41,9 @@ const data = {
   },
   contenders: contenders.map(({ key, label, package: pkg, isolated, maxPageSize }) => ({ key, label, package: pkg, isolated: isolated?.reason ?? null, maxPageSize: maxPageSize ?? null })),
   sources,
-  suites: suites.map(({ key, label, axis, question, points }) => ({ key, label, axis, question, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase, pageSize: p.pageSize ?? null })) })),
+  suites: suites.map(({ key, label, axis, question, xScale, points }) => ({ key, label, axis, question, xScale: xScale ?? null, points: points.map((p) => ({ key: p.key, label: p.label, useCase: p.useCase, pageSize: p.pageSize ?? null })) })),
   load: results,
-  features: features && { date: features.date, list: FEATURES, results: features.results },
   footprint: measureFootprints(),
-  profiles,
 };
 
 const template = readFileSync(join(import.meta.dir, 'site', 'template.html'), 'utf8');

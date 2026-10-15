@@ -2,7 +2,7 @@
 
 Six ways to serve the same TYPO3 records as JSON, side by side: four API extensions and two hand-written endpoints on TYPO3 core, each in its own package, load-tested cold and cached, probed for correct and fresh data, and counted in lines of configuration.
 
-**Results: [`docs/index.html`](docs/index.html)**, a self-contained page with charts, the feature matrix and every number in table form.
+**Results: [`docs/index.html`](docs/index.html)**, a self-contained page with charts and every number in table form. The feature probes (`bin/bench features`) write `benchmark/results/features.json`.
 
 | API | Package | Version |
 |---|---|---|

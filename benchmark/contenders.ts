@@ -133,6 +133,8 @@ export interface Suite {
   /** What the suite varies, as an axis title. */
   axis: string;
   question: string;
+  /** Places numeric steps by the square root of their page size instead of evenly. */
+  xScale?: 'sqrt';
   points: Point[];
 }
 
@@ -204,6 +206,7 @@ export const suites: Suite[] = [
     label: 'Records per request',
     axis: 'Articles per request, each with author, tags and categories',
     question: 'What does every additional record cost?',
+    xScale: 'sqrt',
     points: [
       sizePoint(1, 'Detail page'),
       sizePoint(5, 'Teaser box'),
