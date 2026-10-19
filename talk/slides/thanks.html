@@ -15,12 +15,4 @@
 <p style="font-size:28px">Maik Schneider</p>
 </div>
 </div>
-<aside>[35:00] Q&amp;A, rund 10 Minuten. Vorbereitete Antworten:
-Warum nicht auf die Delivery API warten? Ihr API-Teil ist noch Zukunft, ohne Auth-, Caching- oder Performance-Story. tca_api läuft heute, mit CRUD. Liefert der Core etwas Besseres, gut.
-Warum nicht typisierte Content Models? Die lösen Typen für Templates und IDEs, tca_api löst die Auslieferung. Generierte Klassen brauchen einen Build-Schritt, und Lazy Collections bringen N+1 zurück. Beides kann nebeneinander existieren.
-Warum nicht t3api weiter nutzen? Haben wir lange. Model pro Tabelle, Extbase-DataMapper, N+1 und die Serialisierung als Engpass bei kalten Requests.
-sg_apicore? Auf der kalten Zeit nah dran und 27 Zeilen, aber keine Kategorien und ein veralteter Cache nach Änderungen (bin/bench invalidation).
-Seiten und Content-Elemente? Nicht Aufgabe von tca_api: separate Extension headless-pages.
-Auth? Rollen PUBLIC bis OWNER auf Frontend-Usern, noch kein OAuth.
-Ist eine Extension bei „API-first“-Ausschreibungen nicht schlechter als Core? Ja, fürs Häkchen. Deshalb ist die Core-Initiative willkommen, und das Design von tca_api ist als Input gedacht.</aside>
 </section>

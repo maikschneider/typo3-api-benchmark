@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCA rein, JSON-LD raus</title>
-<meta name="description" content="Vortrag zu tca_api auf dem TYPO3 Camp Berlin 2026: alle Folien mit Sprechertext.">
+<meta name="description" content="Vortrag zu tca_api auf dem TYPO3 Camp Berlin 2026: alle Folien.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -48,20 +48,16 @@ header h1 { margin: 8px 0 12px; font-size: clamp(32px, 6vw, 52px); line-height: 
 header p { margin: 0 0 8px; color: var(--ink-2); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 20px; }
 button.present { font: 600 16px/1 'IBM Plex Sans', Arial, sans-serif; padding: 12px 20px; border: 0; border-radius: 6px; background: var(--accent); color: #12161d; cursor: pointer; }
-.entry { padding: 40px 0; border-top: 1px solid var(--border); }
+.entry { padding: 32px 0 24px; border-top: 1px solid var(--border); }
 .frame { position: relative; outline: 1px solid var(--border); aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 24px rgba(18, 22, 29, 0.12); }
 .slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; transform: scale(var(--scale, 0.5)); }
 .slide > section { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
 .slide section * { margin: 0; }
-.notes { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; margin-top: 20px; color: var(--ink-2); }
-.notes .number { grid-row: 1 / 99; font: 500 15px/1.9 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; }
-.notes p { grid-column: 2; margin: 0 0 12px; max-width: 68ch; }
-@media (max-width: 520px) { .notes { grid-template-columns: 1fr; } .notes .number { grid-row: auto; } .notes p { grid-column: 1; } }
-.notes { overflow-wrap: anywhere; }
+.number { display: inline-block; margin-top: 12px; font: 500 15px/1.6 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; }
 footer { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 15px; }
 
 body.presenting { overflow: hidden; background: #000; }
-body.presenting > :not(main), body.presenting .entry:not(.current), body.presenting .notes { display: none; }
+body.presenting > :not(main), body.presenting .entry:not(.current), body.presenting .number { display: none; }
 body.presenting main { max-width: none; padding: 0; }
 body.presenting .entry.current { position: fixed; inset: 0; display: grid; place-items: center; padding: 0; border: 0; }
 body.presenting .frame { width: min(100vw, calc(100vh * 16 / 9)); border-radius: 0; box-shadow: none; }
@@ -73,7 +69,7 @@ body.presenting .hint { display: block; }
 <header>
   <p class="eyebrow">TYPO3 Camp Berlin 2026 · Maik Schneider</p>
   <h1>TCA rein, JSON-LD raus.</h1>
-  <p>Einfach konfiguriert, schnell ausgeliefert: eine REST-API für jede TCA-Tabelle mit <a href="https://github.com/maikschneider/tca-api">tca_api</a>. Alle Folien mit dem Sprechertext, die Messwerte stammen aus dem <a href="../">Benchmark</a> in diesem Repository.</p>
+  <p>Einfach konfiguriert, schnell ausgeliefert: eine REST-API für jede TCA-Tabelle mit <a href="https://github.com/maikschneider/tca-api">tca_api</a>. Alle Folien zum Durchblättern, die Messwerte stammen aus dem <a href="../">Benchmark</a> in diesem Repository.</p>
   <div class="actions">
     <button class="present" type="button">Präsentieren</button>
     <span>Pfeiltasten blättern, F für Vollbild, Esc beendet</span>
@@ -91,12 +87,8 @@ body.presenting .hint { display: block; }
 <p style="font-size:32px;color:#F4F2EC"><b>Maik Schneider</b><br><span style="color:#C5CCD6">Technical Lead TYPO3 · xima</span></p>
 <p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;color:#C5CCD6">github.com/maikschneider/tca-api</p>
 </div>
-
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-1">1</a>
-    <p>Hallo, ich bin Maik, Technical Lead TYPO3 bei xima in Dresden. Es geht um tca_api, eine Extension, die ich in meiner Freizeit pflege. Sie macht aus jeder TCA-Tabelle eine REST-API. Der Titel beschreibt die Idee: Unsere Daten beschreiben wir ohnehin schon im TCA, und genau daraus soll die API entstehen, ohne Models, Controller oder Mapping. Und sie soll dabei schnell bleiben, auch bei kaltem Cache. Einfach konfigurieren und schnell ausliefern, beides gleich wichtig.</p>
-  </div>
+  <a class="number" href="#folie-1">1</a>
 </article>
 <article class="entry" id="folie-2">
   <div class="frame"><div class="slide"><section id="hook" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;gap:48px">
@@ -112,12 +104,8 @@ body.presenting .hint { display: block; }
 <div style="flex:1;display:flex;flex-direction:column;background:#1B2130;padding:32px;border-radius:16px">
 <p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#D6DCE5;white-space:nowrap">{<br>&#160;&#160;<span style="color:#F2A65A">"@context"</span>: <span style="color:#8FC7FF">"http://www.w3.org/ns/hydra/context.jsonld"</span>,&#160;<span style="color:#F28C28"><b>← 1</b></span><br>&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"hydra:Collection"</span>,<br>&#160;&#160;<span style="color:#F2A65A">"hydra:totalItems"</span>: 10000,&#160;<span style="color:#F28C28"><b>← 3</b></span><br>&#160;&#160;<span style="color:#F2A65A">"hydra:member"</span>: [{<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@id"</span>: <span style="color:#8FC7FF">"/_api/articles/4"</span>,&#160;<span style="color:#F28C28"><b>← 2</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"Article"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"title"</span>: <span style="color:#8FC7FF">"Caching in TYPO3"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"reading_time"</span>: 12,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"author"</span>: <span style="color:#8FC7FF">"/_api/authors/7"</span>,&#160;<span style="color:#F28C28"><b>← 4</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"tags"</span>: [{<span style="color:#F2A65A">"@id"</span>: <span style="color:#8FC7FF">"/_api/tags/1"</span>, <span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"Tag"</span>,&#160;<span style="color:#F28C28"><b>← 5</b></span><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"title"</span>: <span style="color:#8FC7FF">"PHP"</span>}, …]<br>&#160;&#160;}, <span style="color:#8A93A1">… 19 weitere</span>],<br>&#160;&#160;<span style="color:#F2A65A">"hydra:view"</span>: {&#160;<span style="color:#F28C28"><b>← 3</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"hydra:PartialCollectionView"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:first"</span>: <span style="color:#8FC7FF">"/_api/articles?page=1"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:next"</span>: <span style="color:#8FC7FF">"/_api/articles?page=2"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:last"</span>: <span style="color:#8FC7FF">"/_api/articles?page=500"</span><br>&#160;&#160;}<br>}</p>
 </div>
-
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-2">2</a>
-    <p>Bevor ich erzähle, warum es diese Extension gibt: So sieht das Ergebnis aus. Ein ganz normaler Listen-Request, und heraus kommt Hydra JSON-LD. Das ist kein eigenes Format, sondern ein offener W3C-Standard, den zum Beispiel auch API Platform spricht. Eins: @context sagt jedem Client, welches Vokabular gilt. Zwei: Jede Ressource hat eine @id, also ihre eigene Adresse, und einen @type. Drei: Gesamtzahl und Pagination-Links kommen standardisiert mit, hydra:totalItems und hydra:view, man muss sich nichts selbst ausdenken. Für Relationen gibt es zwei Wege, beide im selben Beispiel. Vier: verlinkt. Der Autor ist nur seine @id, ein Hydra-Client kann sie bei Bedarf auflösen. Fünf: eingebettet. Die Tags stehen als ganze Datensätze drin, wieder mit eigener @id und eigenem Typ, ohne zweiten Request. Ein Frontend, das einmal Hydra versteht, versteht jede Ressource. Wie das im Vergleich abschneidet, zeigt die nächste Folie.</p>
-  </div>
+  <a class="number" href="#folie-2">2</a>
 </article>
 <article class="entry" id="folie-3">
   <div class="frame"><div class="slide"><section id="hook-table" data-transition="fade" style="display:flex; flex-direction:column; gap:32px; padding:112px 128px 150px; background:#f4f2ec">
@@ -155,10 +143,7 @@ body.presenting .hint { display: block; }
   <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">¹ ohne Kategorien: sg_apicore kann sie nicht einbetten, die Response enthält also eine Relation weniger.</p>
   <p style="position:absolute; bottom:56px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Kalter Cache · TYPO3 14.3.8 · Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen&nbsp;</p>
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-3">3</a>
-    
-  </div>
+  <a class="number" href="#folie-3">3</a>
 </article>
 <article class="entry" id="folie-4">
   <div class="frame"><div class="slide"><section id="journey" data-transition="fade" style="display:flex; flex-direction:column; justify-content:space-between; padding:128px; background:#12161d">
@@ -195,10 +180,7 @@ body.presenting .hint { display: block; }
   </div>
   <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:44px; font-weight:600; line-height:1.25; color:#f4f2ec">Das Ziel: <span style="color:#f28c28">einfach konfigurieren</span> und <span style="color:#f28c28">schnell ausliefern</span>, beides zugleich.</p>
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-4">4</a>
-    
-  </div>
+  <a class="number" href="#folie-4">4</a>
 </article>
 <article class="entry" id="folie-5">
   <div class="frame"><div class="slide"><section id="coldrequests" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:128px; background:#12161d">
@@ -286,12 +268,8 @@ body.presenting .hint { display: block; }
       <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:44px; font-weight:600; line-height:1.2; color:#e66767">die Serialisierung</p>
     </div>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-5">5</a>
-    <p>Das Problem im Alltag: Der Cache bleibt nie lange warm. Neue Personen im Backend, Profilpflege im Frontend, Deployments, und jedes Mal ist der nächste Request kalt. Bei tausenden Datensätzen mit vielen Relationen war genau dieser kalte Request bei t3api zu langsam, und die meiste Zeit ging in die Serialisierung. Also habe ich eine Extension gebaut, die genauso einfach zu konfigurieren ist, aber hier nicht einbricht.</p>
-  </div>
+  <a class="number" href="#folie-5">5</a>
 </article>
 <article class="entry" id="folie-6">
   <div class="frame"><div class="slide"><section id="ter" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:88px 128px 72px; background:#f4f2ec">
@@ -340,12 +318,8 @@ body.presenting .hint { display: block; }
       <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; line-height:1.5; white-space:nowrap; color:#d6dce5; background:#12161d; border-radius:8px"><span style="color:#8a93a1">Configuration/TcaApi/Articles.php</span><br>→ <span style="color:#8fc7ff">GET /_api/articles</span></p>
     </div>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-6">6</a>
-    <p>Kurz zur Extension selbst. tca_api ist frei verfügbar: auf GitHub, im TER und mit Doku auf docs.typo3.org, aktuell Version 2.2.0 für TYPO3 13 und 14, unter GPL. Ein Freizeitprojekt von mir. Loslegen sind drei Schritte: per Composer installieren, das Site Set in die Site-Konfiguration aufnehmen, dann antwortet die API unter /_api. Und als dritter Schritt eine Datei pro Ressource unter Configuration/TcaApi. Wie diese Datei aussieht, zeigt die nächste Folie. Der Rest des Vortrags folgt dem Ziel von vorhin: erst wie einfach die Konfiguration ist, danach warum es auch bei kaltem Cache schnell bleibt.</p>
-  </div>
+  <a class="number" href="#folie-6">6</a>
 </article>
 <article class="entry" id="folie-7">
   <div class="frame"><div class="slide"><section id="config" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:128px 128px 160px; background:#f4f2ec">
@@ -363,12 +337,8 @@ body.presenting .hint { display: block; }
       <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#4a5260">Felder und Typen kommen aus dem TCA. Nichts läuft auseinander.</p>
     </div>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-7">7</a>
-    <p>Das ist Schritt 3 von eben, ausgeschrieben: eine Datei, drei Zeilen. Tabelle, Name in der URL, Typ im JSON-LD. Daraus entstehen Liste, Detail, Pagination und die OpenAPI-Doku. Welche Felder es gibt und welchen Typ sie haben, steht schon im TCA, deshalb muss ich es hier nicht wiederholen.</p>
-  </div>
+  <a class="number" href="#folie-7">7</a>
 </article>
 <article class="entry" id="folie-8">
   <div class="frame"><div class="slide"><section id="6e55a0f3" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:96px 128px 80px; background:#f4f2ec">
@@ -398,12 +368,8 @@ body.presenting .hint { display: block; }
       </div>
     </div>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-8">8</a>
-    <p>Was man aus den paar Zeilen Konfiguration bekommt, sieht man auch im Backend, hier am Beispiel der Petstore-Demo. Links das Configuration-Modul unter System: Die komplette TCA-API-Konfiguration aller Ressourcen als Baum, inklusive aller Werte, die aus dem TCA und den Defaults kommen. Die Suche hilft, wenn man wissen will, wo zum Beispiel welche Tabelle hängt. Rechts unter Integrations die Swagger UI: Für jede Ressource werden die Endpunkte aus derselben Konfiguration als OpenAPI 3.1 erzeugt, mit GET, POST, PUT, PATCH und DELETE, je nachdem, welche Operationen freigeschaltet sind. Man kann direkt ausprobieren oder die openapi.json herunterladen, etwa um einen typisierten Client fürs Frontend zu generieren. Doku und API laufen damit nie auseinander.</p>
-  </div>
+  <a class="number" href="#folie-8">8</a>
 </article>
 <article class="entry" id="folie-9">
   <div class="frame"><div class="slide"><section id="uc-overview" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px; background:#12161d">
@@ -440,12 +406,8 @@ body.presenting .hint { display: block; }
   </div>
   <div style="flex:1"></div>
   <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#c5ccd6"><span style="color:#f4f2ec"><b>Ohne Konfiguration dabei:</b></span> Mehrsprachigkeit, Pagination, OpenAPI und Swagger UI.</p>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-9">9</a>
-    <p>Statt Theorie jetzt die Fälle, die in fast jedem Projekt vorkommen. Fünf Stück, und jeder kostet nur ein paar Zeilen Konfiguration. In anderen API-Extensions ist jeder davon ein eigenes Stück Code. Mehrsprachigkeit über die Sprach-URL, Pagination und die OpenAPI-Doku bekommt man sogar ganz ohne Konfiguration.</p>
-  </div>
+  <a class="number" href="#folie-9">9</a>
 </article>
 <article class="entry" id="folie-10">
   <div class="frame"><div class="slide"><section id="uc-embed" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
@@ -467,12 +429,8 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Eine Query pro Relation, egal ob 20 oder 1.000 Datensätze.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: Model pro Tabelle, Mapping, Serializer-Gruppen und oft eine Query pro Datensatz.</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-10">10</a>
-    <p>Der häufigste Fall überhaupt: Eine Liste, und jeder Eintrag braucht seinen Autor und seine Tags. Ohne embed kommt nur die @id, wie auf Folie 2 gezeigt. Mit 'embed' => true steht der ganze Datensatz drin. Unter der Haube ist das eine Query pro Relation für die ganze Seite, nicht eine pro Zeile. Wer tiefer will, setzt 'embed' => ['depth' => 2].</p>
-  </div>
+  <a class="number" href="#folie-10">10</a>
 </article>
 <article class="entry" id="folie-11">
   <div class="frame"><div class="slide"><section id="uc-filter" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
@@ -494,12 +452,8 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Ein Punkt im Namen genügt, um über Relationen zu filtern.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: pro Filter eine eigene Repository-Methode mit Joins.</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-11">11</a>
-    <p>Zweiter Klassiker: Facetten und eine Suchbox. categories.title heißt: folge der Relation categories und vergleiche dort den Titel. Die Joins baut tca_api aus dem TCA. Der Suchfilter durchsucht mehrere Spalten auf einmal, auch verknüpfte wie author.name. Mehrfachauswahl braucht keinen Extra-Code, man schickt einfach filters[x][] mehrfach.</p>
-  </div>
+  <a class="number" href="#folie-11">11</a>
 </article>
 <article class="entry" id="folie-12">
   <div class="frame"><div class="slide"><section id="uc-images" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
@@ -521,12 +475,8 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Die Crops aus dem Backend kommen fertig verarbeitet an.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: pro Variante ein Getter mit eigener Bildverarbeitung.</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-12">12</a>
-    <p>Redakteure pflegen Crop Variants im Backend, und das Frontend braucht sie für picture und srcset. tca_api verarbeitet jede Variante mit den angegebenen Grenzen, hier maximal 1200 Pixel als WebP, und liefert sie als Map. Mit 'cropVariant' => 'mobile' kommt genau eine Variante, flach ausgegeben. Alt-Text und Copyright aus den Metadaten sind gleich dabei.</p>
-  </div>
+  <a class="number" href="#folie-12">12</a>
 </article>
 <article class="entry" id="folie-13">
   <div class="frame"><div class="slide"><section id="uc-links" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
@@ -548,12 +498,8 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Jedes Link-Feld wird automatisch aufgelöst, Detail-URLs laufen über den Site-Router.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: TypoScript-Setup plus eigener Link-Builder pro Datensatz.</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-13">13</a>
-    <p>Zwei Arten von Links. Felder vom TCA-Typ link löst tca_api automatisch zu echten URLs auf, ohne eine Zeile Konfiguration. Und die Detail-URL eines Datensatzes, etwa einer News, entsteht als virtuelle Property über den normalen Site-Router. Damit greifen die Route Enhancer der Seite, und die URL ist dieselbe wie im Frontend.</p>
-  </div>
+  <a class="number" href="#folie-13">13</a>
 </article>
 <article class="entry" id="folie-14">
   <div class="frame"><div class="slide"><section id="uc-write" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
@@ -575,21 +521,14 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Gespeichert wird über den DataHandler: Hooks, Historie und Cache-Leerung inklusive.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: Controller, Validatoren, Datei-Handling und oft ein zweiter Request für den Upload.</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-14">14</a>
-    <p>Lesen ist die halbe Miete, irgendwann will ein Formular schreiben. Operation freischalten, Speicherort und Rolle festlegen, fertig. Pflichtfelder, Längen und erlaubte Dateitypen kommen aus dem TCA, Fehler kommen als 422 mit Feldnamen zurück. Die Datei geht im selben multipart-POST mit, und gespeichert wird über den DataHandler als eingeloggter User, also mit Hooks, sys_history und Cache-Invalidierung.</p>
-  </div>
+  <a class="number" href="#folie-14">14</a>
 </article>
 <article class="entry" id="folie-15">
   <div class="frame"><div class="slide"><section id="demo" data-transition="fade" style="background:#f28c28">
   <h2 id="p746408223679r0-b005b647" style="position:absolute; top:128px; left:128px; width:1665px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:160px; font-weight:700; line-height:1; letter-spacing:-3px; color:#12161d">Live-Demo</h2>
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-15">15</a>
-    
-  </div>
+  <a class="number" href="#folie-15">15</a>
 </article>
 <article class="entry" id="folie-16">
   <div class="frame"><div class="slide"><section id="perf-intro" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px; background:#12161d">
@@ -614,12 +553,8 @@ body.presenting .hint { display: block; }
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; letter-spacing:2px; text-transform:uppercase; color:#8a93a1">So wurde gemessen</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#c5ccd6">6 APIs, dieselbe Aufgabe, jede im eigenen Paket mit eigenem Cache · TYPO3 14.3.8, Production-Modus · k6 mit 8 virtuellen Usern · Median aus 3 Läufen · Code und Rohdaten öffentlich</p>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-16">16</a>
-    <p>Zur Performance. Bevor Zahlen kommen: Es gibt zwei Zustände, und die muss man auseinanderhalten. Mit warmem Cache liegt die Antwort fertig bereit, da ist fast jede API schnell, auch die selbst gebaute. Spannend wird der kalte Cache: der erste Request nach jeder Änderung. Dann muss die API wirklich arbeiten, und es zählt, wie viele Queries sie absetzt und wie teuer die Serialisierung ist. Gemessen habe ich sechs APIs mit derselben Aufgabe, jede in ihrem eigenen Paket, so eingerichtet wie ihre Doku es beschreibt, mit ihrem eigenen Cache. Ich habe tca_api geschrieben, deshalb sind Code und Rohdaten öffentlich.</p>
-  </div>
+  <a class="number" href="#folie-16">16</a>
 </article>
 <article class="entry" id="folie-17">
   <div class="frame"><div class="slide"><section id="perf-warm" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
@@ -668,12 +603,8 @@ body.presenting .hint { display: block; }
   <div style="flex:1"></div>
   <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Warm entscheidet der Cache, nicht die API. Die Record API mit eigenem Antwort-Cache ist hier vorn.</p>
   <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · ¹ ohne Kategorien</p>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-17">17</a>
-    <p>Erst der warme Fall, 100 Artikel mit Relationen, zweiter Durchlauf derselben URLs. Alle liegen zwischen 14 und 90 Millisekunden, und tca_api ist hier nicht vorn. Am schnellsten ist die von Hand gebaute Record-API-Variante: Sie prüft in einer Middleware ihren eigenen Cache und antwortet, bevor viel von TYPO3 läuft. Das ist ein gutes Muster. Die Unterschiede im warmen Fall sind klein und schwanken auf dem Laptop. Für den Nutzer ist das alles schnell.</p>
-  </div>
+  <a class="number" href="#folie-17">17</a>
 </article>
 <article class="entry" id="folie-18">
   <div class="frame"><div class="slide"><section id="perf-cold" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
@@ -722,12 +653,8 @@ body.presenting .hint { display: block; }
   <div style="flex:1"></div>
   <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Ohne Cache zählt, wie viele Queries eine API absetzt: tca_api 5, die anderen 216 bis 307.</p>
   <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · ¹ ohne Kategorien, eine Relation weniger</p>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-18">18</a>
-    <p>Jetzt derselbe Request direkt nach dem Leeren aller Caches. tca_api braucht 57 Millisekunden, die anderen zwischen 107 und 716. Der Grund steht unten: Die meisten APIs laden Relationen pro Datensatz nach, das sind bei 100 Artikeln gut 300 Queries. Die von Hand gebaute Record API liegt im Mittelfeld, wer sie selbst schreibt und die Relationen gezielt vorlädt, kommt weiter nach vorn. tca_api macht das Vorladen automatisch, für jede Ressource. Warum das so ist, zeigt die nächste Folie.</p>
-  </div>
+  <a class="number" href="#folie-18">18</a>
 </article>
 <article class="entry" id="folie-19">
   <div class="frame"><div class="slide"><section id="three-choices" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:112px 128px 150px; background:#12161d">
@@ -801,12 +728,8 @@ body.presenting .hint { display: block; }
       <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Invalidierung über den DataHandler</p>
     </div>
   </div>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-19">19</a>
-    <p>Einfach war die eine Hälfte des Versprechens, jetzt die andere: schnell, auch bei kaltem Cache wie im Personenverzeichnis. Dahinter stecken drei Entscheidungen. Erstens Konfiguration statt Code, das haben wir gerade gesehen. Zweitens Arrays statt Objekte: Die Datenbankzeile wird direkt nach TCA-Typ normalisiert und als JSON-LD ausgegeben, ohne DataMapper und Hydration. Drittens Preloading: pro Relation eine Query für die ganze Seite, nie eine pro Zeile, und das Ergebnis landet mit Cache-Tags im Cache, die der DataHandler gezielt leert. Was das in Zahlen bedeutet, zeigen die nächsten Folien.</p>
-  </div>
+  <a class="number" href="#folie-19">19</a>
 </article>
 <article class="entry" id="folie-20">
   <div class="frame"><div class="slide"><section id="scaling" data-transition="fade" style="display:flex; flex-direction:column; gap:24px; padding:128px; background:#f4f2ec">
@@ -838,10 +761,7 @@ body.presenting .hint { display: block; }
   <p style="position:absolute; top:690px; left:1640px; width:152px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:700; color:#b45309">5</p>
   <p style="position:absolute; top:336px; left:1640px; width:152px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:700; color:#4a5260">3.007</p>
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-20">20</a>
-    
-  </div>
+  <a class="number" href="#folie-20">20</a>
 </article>
 <article class="entry" id="folie-21">
   <div class="frame"><div class="slide"><section id="perf-1000" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
@@ -884,12 +804,8 @@ body.presenting .hint { display: block; }
   <div style="flex:1"></div>
   <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Genau der Fall aus dem Personenverzeichnis: alle Daten auf einmal zum Client.</p>
   <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · sg_apicore fehlt: höchstens 100 Datensätze pro Seite</p>
-  
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-21">21</a>
-    <p>Und das Extrem, 1.000 Artikel in einem Request, kalt. Das ist der Suchindex-Feed oder eben das Personenverzeichnis, das alle Daten zum Client schiebt. tca_api braucht 140 Millisekunden, die schnellste Alternative anderthalb Sekunden, t3api sechs. Genau hier ist damals das Telefonbuch an seine Grenze gekommen. sg_apicore fehlt, weil es höchstens 100 Datensätze pro Seite ausliefert.</p>
-  </div>
+  <a class="number" href="#folie-21">21</a>
 </article>
 <article class="entry" id="folie-22">
   <div class="frame"><div class="slide"><section id="footprint" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px 128px 160px; background:#f4f2ec">
@@ -934,10 +850,7 @@ body.presenting .hint { display: block; }
   </div>
   <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#5f6672">Gezählt pro Benchmark-Paket: PHP-, YAML- und Config-Dateien für dieselbe Artikel-Aufgabe, ohne Site-Set-Dependency oder Routen-Import.</p>
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-22">22</a>
-    
-  </div>
+  <a class="number" href="#folie-22">22</a>
 </article>
 <article class="entry" id="folie-23">
   <div class="frame"><div class="slide"><section id="thanks" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
@@ -957,12 +870,8 @@ body.presenting .hint { display: block; }
 <p style="font-size:28px">Maik Schneider</p>
 </div>
 </div>
-
 </section></div></div>
-  <div class="notes">
-    <a class="number" href="#folie-23">23</a>
-    
-  </div>
+  <a class="number" href="#folie-23">23</a>
 </article>
 </main>
 <footer>Folien und Benchmark: <a href="https://github.com/maikschneider/typo3-api-benchmark">github.com/maikschneider/typo3-api-benchmark</a> · Extension: <a href="https://github.com/maikschneider/tca-api">github.com/maikschneider/tca-api</a></footer>

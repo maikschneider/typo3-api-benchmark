@@ -17,5 +17,4 @@
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Eine Query pro Relation, egal ob 20 oder 1.000 Datensätze.</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: Model pro Tabelle, Mapping, Serializer-Gruppen und oft eine Query pro Datensatz.</p>
   </div>
-  <aside>Der häufigste Fall überhaupt: Eine Liste, und jeder Eintrag braucht seinen Autor und seine Tags. Ohne embed kommt nur die @id, wie auf Folie 2 gezeigt. Mit 'embed' => true steht der ganze Datensatz drin. Unter der Haube ist das eine Query pro Relation für die ganze Seite, nicht eine pro Zeile. Wer tiefer will, setzt 'embed' => ['depth' => 2].</aside>
 </section>

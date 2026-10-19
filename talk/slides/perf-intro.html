@@ -20,5 +20,4 @@
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; letter-spacing:2px; text-transform:uppercase; color:#8a93a1">So wurde gemessen</p>
     <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#c5ccd6">6 APIs, dieselbe Aufgabe, jede im eigenen Paket mit eigenem Cache · TYPO3 14.3.8, Production-Modus · k6 mit 8 virtuellen Usern · Median aus 3 Läufen · Code und Rohdaten öffentlich</p>
   </div>
-  <aside>Zur Performance. Bevor Zahlen kommen: Es gibt zwei Zustände, und die muss man auseinanderhalten. Mit warmem Cache liegt die Antwort fertig bereit, da ist fast jede API schnell, auch die selbst gebaute. Spannend wird der kalte Cache: der erste Request nach jeder Änderung. Dann muss die API wirklich arbeiten, und es zählt, wie viele Queries sie absetzt und wie teuer die Serialisierung ist. Gemessen habe ich sechs APIs mit derselben Aufgabe, jede in ihrem eigenen Paket, so eingerichtet wie ihre Doku es beschreibt, mit ihrem eigenen Cache. Ich habe tca_api geschrieben, deshalb sind Code und Rohdaten öffentlich.</aside>
 </section>

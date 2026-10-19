@@ -1,8 +1,7 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Builds docs/talk/index.html from talk/: every slide with its speaker notes as a readable page,
-// plus a presentation mode. Images live in docs/talk/assets/ and are referenced as /_blob/<id> in the slides.
+// Builds docs/talk/index.html from talk/: all slides on one page, plus a presentation mode. Images live in docs/talk/assets/ and are referenced as /_blob/<id> in the slides.
 // Usage: bun benchmark/talk.ts
 
 const root = join(import.meta.dir, '..');
@@ -11,9 +10,6 @@ const outDir = join(root, 'docs/talk');
 const assets = Object.fromEntries(
   readdirSync(join(outDir, 'assets')).map((file) => [file.replace(/\.\w+$/, ''), `assets/${file}`]),
 );
-
-// The notes of these slides are preparation for the Q&A, not part of the talk.
-const unpublishedNotes = new Set(['thanks']);
 
 const { order } = JSON.parse(readFileSync(join(talkDir, 'deck.json'), 'utf8')) as { order: string[] };
 
@@ -25,19 +21,11 @@ const slides = order.map((id, index) => {
   const missing = html.match(/\/_blob\/[0-9a-f]{32}/);
   if (missing) throw new Error(`${id}: no file in docs/talk/assets/ for ${missing[0]}`);
 
-  const notes = unpublishedNotes.has(id)
-    ? []
-    : [...html.matchAll(/<aside[^>]*>([\s\S]*?)<\/aside>/g)]
-        .flatMap((m) => m[1].split('\n'))
-        .map((line) => line.replace(/^\[\d+:\d{2}\]\s*/, '').trim())
-        .filter(Boolean);
+  if (/<aside/.test(html)) throw new Error(`${id}: speaker notes are not published, remove the <aside>`);
 
   return `<article class="entry" id="folie-${index + 1}">
-  <div class="frame"><div class="slide">${html.replace(/<aside[^>]*>[\s\S]*?<\/aside>/g, '').trim()}</div></div>
-  <div class="notes">
-    <a class="number" href="#folie-${index + 1}">${index + 1}</a>
-    ${notes.map((p) => `<p>${p}</p>`).join('\n    ')}
-  </div>
+  <div class="frame"><div class="slide">${html.trim()}</div></div>
+  <a class="number" href="#folie-${index + 1}">${index + 1}</a>
 </article>`;
 });
 
@@ -47,7 +35,7 @@ const page = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCA rein, JSON-LD raus</title>
-<meta name="description" content="Vortrag zu tca_api auf dem TYPO3 Camp Berlin 2026: alle Folien mit Sprechertext.">
+<meta name="description" content="Vortrag zu tca_api auf dem TYPO3 Camp Berlin 2026: alle Folien.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -91,20 +79,16 @@ header h1 { margin: 8px 0 12px; font-size: clamp(32px, 6vw, 52px); line-height: 
 header p { margin: 0 0 8px; color: var(--ink-2); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 20px; }
 button.present { font: 600 16px/1 'IBM Plex Sans', Arial, sans-serif; padding: 12px 20px; border: 0; border-radius: 6px; background: var(--accent); color: #12161d; cursor: pointer; }
-.entry { padding: 40px 0; border-top: 1px solid var(--border); }
+.entry { padding: 32px 0 24px; border-top: 1px solid var(--border); }
 .frame { position: relative; outline: 1px solid var(--border); aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 24px rgba(18, 22, 29, 0.12); }
 .slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; transform: scale(var(--scale, 0.5)); }
 .slide > section { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
 .slide section * { margin: 0; }
-.notes { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; margin-top: 20px; color: var(--ink-2); }
-.notes .number { grid-row: 1 / 99; font: 500 15px/1.9 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; }
-.notes p { grid-column: 2; margin: 0 0 12px; max-width: 68ch; }
-@media (max-width: 520px) { .notes { grid-template-columns: 1fr; } .notes .number { grid-row: auto; } .notes p { grid-column: 1; } }
-.notes { overflow-wrap: anywhere; }
+.number { display: inline-block; margin-top: 12px; font: 500 15px/1.6 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; }
 footer { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 15px; }
 
 body.presenting { overflow: hidden; background: #000; }
-body.presenting > :not(main), body.presenting .entry:not(.current), body.presenting .notes { display: none; }
+body.presenting > :not(main), body.presenting .entry:not(.current), body.presenting .number { display: none; }
 body.presenting main { max-width: none; padding: 0; }
 body.presenting .entry.current { position: fixed; inset: 0; display: grid; place-items: center; padding: 0; border: 0; }
 body.presenting .frame { width: min(100vw, calc(100vh * 16 / 9)); border-radius: 0; box-shadow: none; }
@@ -116,7 +100,7 @@ body.presenting .hint { display: block; }
 <header>
   <p class="eyebrow">TYPO3 Camp Berlin 2026 · Maik Schneider</p>
   <h1>TCA rein, JSON-LD raus.</h1>
-  <p>Einfach konfiguriert, schnell ausgeliefert: eine REST-API für jede TCA-Tabelle mit <a href="https://github.com/maikschneider/tca-api">tca_api</a>. Alle Folien mit dem Sprechertext, die Messwerte stammen aus dem <a href="../">Benchmark</a> in diesem Repository.</p>
+  <p>Einfach konfiguriert, schnell ausgeliefert: eine REST-API für jede TCA-Tabelle mit <a href="https://github.com/maikschneider/tca-api">tca_api</a>. Alle Folien zum Durchblättern, die Messwerte stammen aus dem <a href="../">Benchmark</a> in diesem Repository.</p>
   <div class="actions">
     <button class="present" type="button">Präsentieren</button>
     <span>Pfeiltasten blättern, F für Vollbild, Esc beendet</span>
