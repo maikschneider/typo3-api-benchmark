@@ -1,0 +1,73 @@
+<section id="three-choices" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:112px 128px 150px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#f28c28">Und warum ist das schnell?</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#f4f2ec">Drei Entscheidungen gegen den üblichen TYPO3-Weg</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">01</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Konfiguration statt Code</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Ein PHP-Array pro Ressource. Keine Controller, Models oder generierten Klassen.</p>
+      <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:19px; line-height:1.6; white-space:nowrap; color:#c5ccd6; background:#252e40; border-radius:8px">my_ext/<br><span style="color:#8a93a1">└──</span> Configuration/<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> TcaApi/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">├──</span> <span style="color:#f4f2ec"><b>Articles.php</b></span> <span style="color:#f28c28">← Ressource</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">├──</span> <span style="color:#f4f2ec"><b>People.php</b></span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> Overrides/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> <span style="color:#f4f2ec"><b>Extend.php</b></span> <span style="color:#f28c28">← erweitern</span></p>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Erweitern wie im TCA: <span style="color:#f28c28"><b>Overrides/</b></span></p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">02</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Arrays statt Objekte</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Von der Datenbankzeile direkt zu JSON-LD.</p>
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">TCA</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Spalten, Typen, Relationen</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">QueryBuilder-Zeilen</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">einfache Arrays</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Nach TCA-Typ normalisiert</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Datum, Bilder, Links, Relationen</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border:2px solid #f28c28; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f28c28">Hydra JSON-LD</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">kompatibel mit API Platform</p>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Kein DataMapper, keine Hydration, keine Proxies</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">03</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Preloading statt Lazy Loading</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Eine Query pro Relation, nie eine pro Zeile.</p>
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Cache-Lookup</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Treffer: 0 Queries</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Basis-Query</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Filter, Sortierung, Seite, Count</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border:2px solid #f28c28; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f28c28">EmbedPreloader</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">ein WHERE uid IN (…) pro Relation</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">JSON-LD</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">mit Cache-Tags gespeichert</p>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Invalidierung über den DataHandler</p>
+    </div>
+  </div>
+  <aside>Einfach war die eine Hälfte des Versprechens, jetzt die andere: schnell, auch bei kaltem Cache wie im Personenverzeichnis. Dahinter stecken drei Entscheidungen. Erstens Konfiguration statt Code, das haben wir gerade gesehen. Zweitens Arrays statt Objekte: Die Datenbankzeile wird direkt nach TCA-Typ normalisiert und als JSON-LD ausgegeben, ohne DataMapper und Hydration. Drittens Preloading: pro Relation eine Query für die ganze Seite, nie eine pro Zeile, und das Ergebnis landet mit Cache-Tags im Cache, die der DataHandler gezielt leert. Was das in Zahlen bedeutet, zeigen die nächsten Folien.</aside>
+</section>

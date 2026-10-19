@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCA rein, JSON-LD raus</title>
+<meta name="description" content="Vortrag zu tca_api auf dem TYPO3 Camp Berlin 2026: alle Folien mit Sprechertext.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f4f2ec;
+  --ink: #1b2028;
+  --ink-2: #4a5260;
+  --muted: #5f6672;
+  --accent: #b45309;
+  --border: #ddd8cc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #12161d;
+    --ink: #f4f2ec;
+    --ink-2: #c5ccd6;
+    --muted: #8a93a1;
+    --accent: #f28c28;
+    --border: #3a4150;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #12161d;
+  --ink: #f4f2ec;
+  --ink-2: #c5ccd6;
+  --muted: #8a93a1;
+  --accent: #f28c28;
+  --border: #3a4150;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 18px/1.6 'IBM Plex Sans', Arial, sans-serif; }
+a { color: var(--accent); }
+header, main { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 56px; padding-bottom: 24px; }
+header .eyebrow { margin: 0; font: 500 14px/1.4 'JetBrains Mono', monospace; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+header h1 { margin: 8px 0 12px; font-size: clamp(32px, 6vw, 52px); line-height: 1.1; }
+header p { margin: 0 0 8px; color: var(--ink-2); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 20px; }
+button.present { font: 600 16px/1 'IBM Plex Sans', Arial, sans-serif; padding: 12px 20px; border: 0; border-radius: 6px; background: var(--accent); color: #12161d; cursor: pointer; }
+.entry { padding: 40px 0; border-top: 1px solid var(--border); }
+.frame { position: relative; outline: 1px solid var(--border); aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 24px rgba(18, 22, 29, 0.12); }
+.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; transform: scale(var(--scale, 0.5)); }
+.slide > section { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+.slide section * { margin: 0; }
+.notes { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; margin-top: 20px; color: var(--ink-2); }
+.notes .number { grid-row: 1 / 99; font: 500 15px/1.9 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; }
+.notes p { grid-column: 2; margin: 0 0 12px; max-width: 68ch; }
+@media (max-width: 520px) { .notes { grid-template-columns: 1fr; } .notes .number { grid-row: auto; } .notes p { grid-column: 1; } }
+.notes { overflow-wrap: anywhere; }
+footer { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 15px; }
+
+body.presenting { overflow: hidden; background: #000; }
+body.presenting > :not(main), body.presenting .entry:not(.current), body.presenting .notes { display: none; }
+body.presenting main { max-width: none; padding: 0; }
+body.presenting .entry.current { position: fixed; inset: 0; display: grid; place-items: center; padding: 0; border: 0; }
+body.presenting .frame { width: min(100vw, calc(100vh * 16 / 9)); border-radius: 0; box-shadow: none; }
+.hint { position: fixed; right: 16px; bottom: 12px; font: 13px 'JetBrains Mono', monospace; color: #8a93a1; display: none; }
+body.presenting .hint { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">TYPO3 Camp Berlin 2026 · Maik Schneider</p>
+  <h1>TCA rein, JSON-LD raus.</h1>
+  <p>Einfach konfiguriert, schnell ausgeliefert: eine REST-API für jede TCA-Tabelle mit <a href="https://github.com/maikschneider/tca-api">tca_api</a>. Alle Folien mit dem Sprechertext, die Messwerte stammen aus dem <a href="../">Benchmark</a> in diesem Repository.</p>
+  <div class="actions">
+    <button class="present" type="button">Präsentieren</button>
+    <span>Pfeiltasten blättern, F für Vollbild, Esc beendet</span>
+  </div>
+</header>
+<main>
+<article class="entry" id="folie-1">
+  <div class="frame"><div class="slide"><section id="cover" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;letter-spacing:2px;text-transform:uppercase;color:#F28C28">TYPO3 Camp Berlin 2026</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<h1 style="font-size:120px;font-weight:700;line-height:1.05;letter-spacing:-2px">TCA rein,<br><span style="color:#F28C28">JSON-LD raus.</span></h1>
+<p style="font-size:44px;color:#C5CCD6;line-height:1.3">Einfach konfiguriert, schnell ausgeliefert:<br>eine REST-API für jede TCA-Tabelle mit tca_api</p>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:end">
+<p style="font-size:32px;color:#F4F2EC"><b>Maik Schneider</b><br><span style="color:#C5CCD6">Technical Lead TYPO3 · xima</span></p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;color:#C5CCD6">github.com/maikschneider/tca-api</p>
+</div>
+
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-1">1</a>
+    <p>Hallo, ich bin Maik, Technical Lead TYPO3 bei xima in Dresden. Es geht um tca_api, eine Extension, die ich in meiner Freizeit pflege. Sie macht aus jeder TCA-Tabelle eine REST-API. Der Titel beschreibt die Idee: Unsere Daten beschreiben wir ohnehin schon im TCA, und genau daraus soll die API entstehen, ohne Models, Controller oder Mapping. Und sie soll dabei schnell bleiben, auch bei kaltem Cache. Einfach konfigurieren und schnell ausliefern, beides gleich wichtig.</p>
+  </div>
+</article>
+<article class="entry" id="folie-2">
+  <div class="frame"><div class="slide"><section id="hook" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;gap:48px">
+<div style="width:460px;display:flex;flex-direction:column;gap:22px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#F28C28">GET /_api/articles</p>
+<h2 style="font-size:52px;font-weight:700;line-height:1.1">Hydra JSON-LD, ein offener Standard</h2>
+<div style="display:flex;gap:16px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;font-weight:700;color:#F28C28">1</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:28px;font-weight:600">@context</h3><p style="font-size:24px;color:#C5CCD6;line-height:1.4">Welches Vokabular gilt</p></div></div>
+<div style="display:flex;gap:16px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;font-weight:700;color:#F28C28">2</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:28px;font-weight:600">@id und @type</h3><p style="font-size:24px;color:#C5CCD6;line-height:1.4">Adresse und Typ jeder Ressource</p></div></div>
+<div style="display:flex;gap:16px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;font-weight:700;color:#F28C28">3</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:28px;font-weight:600">totalItems und view</h3><p style="font-size:24px;color:#C5CCD6;line-height:1.4">Pagination nach Standard</p></div></div>
+<div style="display:flex;gap:16px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;font-weight:700;color:#F28C28">4</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:28px;font-weight:600">Verlinkt</h3><p style="font-size:24px;color:#C5CCD6;line-height:1.4">Nur die @id, der Client löst sie auf</p></div></div>
+<div style="display:flex;gap:16px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;font-weight:700;color:#F28C28">5</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:28px;font-weight:600">Eingebettet</h3><p style="font-size:24px;color:#C5CCD6;line-height:1.4">Ganzer Datensatz, kein zweiter Request</p></div></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;background:#1B2130;padding:32px;border-radius:16px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#D6DCE5;white-space:nowrap">{<br>&#160;&#160;<span style="color:#F2A65A">"@context"</span>: <span style="color:#8FC7FF">"http://www.w3.org/ns/hydra/context.jsonld"</span>,&#160;<span style="color:#F28C28"><b>← 1</b></span><br>&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"hydra:Collection"</span>,<br>&#160;&#160;<span style="color:#F2A65A">"hydra:totalItems"</span>: 10000,&#160;<span style="color:#F28C28"><b>← 3</b></span><br>&#160;&#160;<span style="color:#F2A65A">"hydra:member"</span>: [{<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@id"</span>: <span style="color:#8FC7FF">"/_api/articles/4"</span>,&#160;<span style="color:#F28C28"><b>← 2</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"Article"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"title"</span>: <span style="color:#8FC7FF">"Caching in TYPO3"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"reading_time"</span>: 12,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"author"</span>: <span style="color:#8FC7FF">"/_api/authors/7"</span>,&#160;<span style="color:#F28C28"><b>← 4</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"tags"</span>: [{<span style="color:#F2A65A">"@id"</span>: <span style="color:#8FC7FF">"/_api/tags/1"</span>, <span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"Tag"</span>,&#160;<span style="color:#F28C28"><b>← 5</b></span><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"title"</span>: <span style="color:#8FC7FF">"PHP"</span>}, …]<br>&#160;&#160;}, <span style="color:#8A93A1">… 19 weitere</span>],<br>&#160;&#160;<span style="color:#F2A65A">"hydra:view"</span>: {&#160;<span style="color:#F28C28"><b>← 3</b></span><br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"@type"</span>: <span style="color:#8FC7FF">"hydra:PartialCollectionView"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:first"</span>: <span style="color:#8FC7FF">"/_api/articles?page=1"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:next"</span>: <span style="color:#8FC7FF">"/_api/articles?page=2"</span>,<br>&#160;&#160;&#160;&#160;<span style="color:#F2A65A">"hydra:last"</span>: <span style="color:#8FC7FF">"/_api/articles?page=500"</span><br>&#160;&#160;}<br>}</p>
+</div>
+
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-2">2</a>
+    <p>Bevor ich erzähle, warum es diese Extension gibt: So sieht das Ergebnis aus. Ein ganz normaler Listen-Request, und heraus kommt Hydra JSON-LD. Das ist kein eigenes Format, sondern ein offener W3C-Standard, den zum Beispiel auch API Platform spricht. Eins: @context sagt jedem Client, welches Vokabular gilt. Zwei: Jede Ressource hat eine @id, also ihre eigene Adresse, und einen @type. Drei: Gesamtzahl und Pagination-Links kommen standardisiert mit, hydra:totalItems und hydra:view, man muss sich nichts selbst ausdenken. Für Relationen gibt es zwei Wege, beide im selben Beispiel. Vier: verlinkt. Der Autor ist nur seine @id, ein Hydra-Client kann sie bei Bedarf auflösen. Fünf: eingebettet. Die Tags stehen als ganze Datensätze drin, wieder mit eigener @id und eigenem Typ, ohne zweiten Request. Ein Frontend, das einmal Hydra versteht, versteht jede Ressource. Wie das im Vergleich abschneidet, zeigt die nächste Folie.</p>
+  </div>
+</article>
+<article class="entry" id="folie-3">
+  <div class="frame"><div class="slide"><section id="hook-table" data-transition="fade" style="display:flex; flex-direction:column; gap:32px; padding:112px 128px 150px; background:#f4f2ec">
+  <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Dieselbe Aufgabe, sechs APIs</h2>
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:26px; color:#b45309">GET /_api/articles?page=1&amp;itemsPerPage=100</p>
+    <div style="display:grid; gap:20px; grid-template-columns:1fr 1fr 1fr 1fr">
+      <div style="display:flex; flex-direction:column; gap:6px; padding:20px 24px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:12px">
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">100 Artikel</h3>
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; line-height:1.35; color:#4a5260">aus 10.000, mit Gesamtzahl und Pagination</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; padding:20px 24px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:12px">
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">4 Felder</h3>
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; line-height:1.35; color:#4a5260">title, teaser, published, reading_time</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; padding:20px 24px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:12px">
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">3 Relationen eingebettet</h3>
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; line-height:1.35; color:#4a5260">1 Autor, 2–4 Tags, 1–3 Kategorien je Artikel</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; padding:20px 24px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:12px">
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">Tiefe 1</h3>
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; line-height:1.35; color:#4a5260">eingebettete Datensätze ohne weitere Relationen</p>
+      </div>
+    </div>
+  </div>
+  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-variant-numeric:tabular-nums; color:#1b2028">
+    <tr><th style="width:34%">API</th><th style="width:22%; text-align:right">Zeilen Config/Code</th><th style="width:22%; text-align:right">Queries</th><th style="width:22%; text-align:right">App-Zeit</th></tr>
+    <tr style="background:#fce3c8"><td>tca_api</td><td style="text-align:right">30</td><td style="text-align:right">5</td><td style="text-align:right">15,7 ms</td></tr>
+    <tr><td>sg_apicore¹</td><td style="text-align:right">27</td><td style="text-align:right">216</td><td style="text-align:right">49,0 ms</td></tr>
+    <tr><td>t3api</td><td style="text-align:right">184</td><td style="text-align:right">304</td><td style="text-align:right">412,4 ms</td></tr>
+    <tr><td>Record API, von Hand</td><td style="text-align:right">201</td><td style="text-align:right">305</td><td style="text-align:right">154,4 ms</td></tr>
+    <tr><td>nnrestapi</td><td style="text-align:right">221</td><td style="text-align:right">307</td><td style="text-align:right">673,4 ms</td></tr>
+    <tr><td>Extbase, von Hand</td><td style="text-align:right">281</td><td style="text-align:right">307</td><td style="text-align:right">148,6 ms</td></tr>
+  </table>
+  <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">¹ ohne Kategorien: sg_apicore kann sie nicht einbetten, die Response enthält also eine Relation weniger.</p>
+  <p style="position:absolute; bottom:56px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Kalter Cache · TYPO3 14.3.8 · Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen&nbsp;</p>
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-3">3</a>
+    
+  </div>
+</article>
+<article class="entry" id="folie-4">
+  <div class="frame"><div class="slide"><section id="journey" data-transition="fade" style="display:flex; flex-direction:column; justify-content:space-between; padding:128px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#f28c28">Warum noch eine API-Extension?</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#f4f2ec">Wie es zu tca_api kam</h2>
+  </div>
+  <div style="display:flex; flex-direction:row">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px 32px 0 0; border-top:6px solid #3a4150">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#8a93a1">01</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Statische Seiten</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#c5ccd6">Static File Cache ist extrem performant, also kein USER_INT</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px 32px 0 0; border-top:6px solid #3a4150">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#8a93a1">02</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Web Components</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#c5ccd6">Dynamische Daten-Elemente überall platzieren</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px 32px 0 0; border-top:6px solid #3a4150">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#8a93a1">03</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">APIs</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#c5ccd6">Liefern die dynamischen Daten, erste Wahl: t3api</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px 32px 0 0; border-top:6px solid #e66767">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#e66767">04</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Kalter Cache</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#c5ccd6">Häufige Änderungen, im Extremfall tausende Datensätze im Client: Serialisierung wird zur Grenze</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:32px 32px 0 0; border-top:6px solid #f28c28">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#f28c28">05</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f28c28">tca_api</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#c5ccd6">So einfach wie t3api, ohne Limit bei der Performance</p>
+    </div>
+  </div>
+  <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:44px; font-weight:600; line-height:1.25; color:#f4f2ec">Das Ziel: <span style="color:#f28c28">einfach konfigurieren</span> und <span style="color:#f28c28">schnell ausliefern</span>, beides zugleich.</p>
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-4">4</a>
+    
+  </div>
+</article>
+<article class="entry" id="folie-5">
+  <div class="frame"><div class="slide"><section id="coldrequests" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:128px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#e66767">06 · Beispiel Personenverzeichnis</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#f4f2ec">Der Cache ist ständig kalt</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:40px">
+    <div style="display:flex; flex-direction:row; gap:12px; align-items:center">
+      <div style="width:6px; height:32px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#c5ccd6">Backend: neue Person, Austritt</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:12px; align-items:center">
+      <div style="width:8px; height:32px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#c5ccd6">Frontend-Update: Profil gepflegt</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:12px; align-items:center">
+      <div style="width:10px; height:32px; display:flex; flex-direction:column; background:#f28c28">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#c5ccd6">Deployment</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <div style="position:relative; width:1664px; height:160px; display:flex; flex-direction:column; align-self:stretch">
+      <div style="position:absolute; top:138px; left:0; width:1664px; height:4px; display:flex; flex-direction:column; background:#3a4150">
+      </div>
+      <div style="position:absolute; top:80px; left:92px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:50px; left:254px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:80px; left:404px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:80px; left:566px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:50px; left:659px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:80px; left:740px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:80px; left:948px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:50px; left:1029px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:80px; left:1202px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:80px; left:1317px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:50px; left:1514px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:80px; left:1595px; width:6px; height:60px; display:flex; flex-direction:column; background:#8a93a1">
+      </div>
+      <div style="position:absolute; top:50px; left:160px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:50px; left:505px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:50px; left:880px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:50px; left:1260px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:50px; left:1390px; width:8px; height:90px; display:flex; flex-direction:column; background:#8fc7ff">
+      </div>
+      <div style="position:absolute; top:20px; left:416px; width:10px; height:120px; display:flex; flex-direction:column; background:#f28c28">
+      </div>
+      <div style="position:absolute; top:20px; left:797px; width:10px; height:120px; display:flex; flex-direction:column; background:#f28c28">
+      </div>
+      <div style="position:absolute; top:20px; left:1156px; width:10px; height:120px; display:flex; flex-direction:column; background:#f28c28">
+      </div>
+      <div style="position:absolute; top:20px; left:1456px; width:10px; height:120px; display:flex; flex-direction:column; background:#f28c28">
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:row; justify-content:space-between">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#8a93a1">07:00</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#8a93a1">10:00</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#8a93a1">13:00</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#8a93a1">16:00</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#8a93a1">19:00</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="display:flex; flex-direction:row; gap:64px; align-items:end">
+    <p style="flex:1; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:44px; font-weight:600; line-height:1.25; color:#f4f2ec">Jeder Strich leert den Cache. Der nächste Request ist kalt.</p>
+    <div style="display:flex; flex-direction:column; gap:12px; flex:1; padding:24px 0 0; border-top:4px solid #e66767">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#f4f2ec">Der Engpass bei t3api:</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:44px; font-weight:600; line-height:1.2; color:#e66767">die Serialisierung</p>
+    </div>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-5">5</a>
+    <p>Das Problem im Alltag: Der Cache bleibt nie lange warm. Neue Personen im Backend, Profilpflege im Frontend, Deployments, und jedes Mal ist der nächste Request kalt. Bei tausenden Datensätzen mit vielen Relationen war genau dieser kalte Request bei t3api zu langsam, und die meiste Zeit ging in die Serialisierung. Also habe ich eine Extension gebaut, die genauso einfach zu konfigurieren ist, aber hier nicht einbricht.</p>
+  </div>
+</article>
+<article class="entry" id="folie-6">
+  <div class="frame"><div class="slide"><section id="ter" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:88px 128px 72px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Die Extension</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:56px; font-weight:700; line-height:1.1; color:#1b2028">tca_api: frei verfügbar, in drei Schritten startklar</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:48px; align-items:center">
+    <img src="assets/e5f0a44433648177db971e74de1ccf00.png" alt="TER-Eintrag TCA API, tca_api / stable: REST API based on TYPO3 TCA, exposes database tables as Hydra JSON-LD resources. Unterstützt TYPO3 13 LTS und 14 LTS, Tags Api, REST, tca, hydra, headless, json-ld" style="width:920px; height:400px; object-fit:contain; background:#f5f5f5; border:1px solid #ddd8cc; border-radius:12px; box-shadow:0 12px 32px rgba(18,22,29,0.10)">
+    <div style="display:flex; flex-direction:column; gap:22px; flex:1">
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; letter-spacing:2px; text-transform:uppercase; color:#5f6672">GitHub</p>
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#1b2028">github.com/maikschneider/tca-api</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; letter-spacing:2px; text-transform:uppercase; color:#5f6672">TER</p>
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#1b2028">extensions.typo3.org/extension/tca_api</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; letter-spacing:2px; text-transform:uppercase; color:#5f6672">Doku</p>
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; color:#1b2028">docs.typo3.org/p/maikschneider/tca-api</p>
+      </div>
+      <p style="padding:16px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#4a5260; border-top:1px solid #ddd8cc">Version 2.2.0 · TYPO3 13.4 und 14.3 · PHP 8.2+ · GPL-2.0-or-later</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:14px; flex:1; padding:28px 32px; background:#fbfaf6; border:1px solid #ddd8cc; border-top:4px solid #b45309; border-radius:12px">
+      <div style="display:flex; flex-direction:row; gap:14px; align-items:baseline">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#b45309">1</p>
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">Installieren</h3>
+      </div>
+      <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; line-height:1.5; white-space:nowrap; color:#d6dce5; background:#12161d; border-radius:8px">composer require \<br>&nbsp;&nbsp;<span style="color:#8fc7ff">maikschneider/tca-api</span></p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px; flex:1; padding:28px 32px; background:#fbfaf6; border:1px solid #ddd8cc; border-top:4px solid #b45309; border-radius:12px">
+      <div style="display:flex; flex-direction:row; gap:14px; align-items:baseline">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#b45309">2</p>
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">Site Set hinzufügen</h3>
+      </div>
+      <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; line-height:1.5; white-space:nowrap; color:#d6dce5; background:#12161d; border-radius:8px"><span style="color:#f2a65a">dependencies</span>:<br>&nbsp;&nbsp;- <span style="color:#8fc7ff">maikschneider/tca-api</span></p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px; flex:1; padding:28px 32px; background:#fbfaf6; border:1px solid #ddd8cc; border-top:4px solid #b45309; border-radius:12px">
+      <div style="display:flex; flex-direction:row; gap:14px; align-items:baseline">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#b45309">3</p>
+        <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">Ressource anlegen</h3>
+      </div>
+      <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; line-height:1.5; white-space:nowrap; color:#d6dce5; background:#12161d; border-radius:8px"><span style="color:#8a93a1">Configuration/TcaApi/Articles.php</span><br>→ <span style="color:#8fc7ff">GET /_api/articles</span></p>
+    </div>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-6">6</a>
+    <p>Kurz zur Extension selbst. tca_api ist frei verfügbar: auf GitHub, im TER und mit Doku auf docs.typo3.org, aktuell Version 2.2.0 für TYPO3 13 und 14, unter GPL. Ein Freizeitprojekt von mir. Loslegen sind drei Schritte: per Composer installieren, das Site Set in die Site-Konfiguration aufnehmen, dann antwortet die API unter /_api. Und als dritter Schritt eine Datei pro Ressource unter Configuration/TcaApi. Wie diese Datei aussieht, zeigt die nächste Folie. Der Rest des Vortrags folgt dem Ziel von vorhin: erst wie einfach die Konfiguration ist, danach warum es auch bei kaltem Cache schnell bleibt.</p>
+  </div>
+</article>
+<article class="entry" id="folie-7">
+  <div class="frame"><div class="slide"><section id="config" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:128px 128px 160px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Schritt 3 · Ressource anlegen</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Das ist eine komplette Ressource</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:48px; align-items:center">
+    <div style="display:flex; flex-direction:column; flex:1.3; padding:56px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:32px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#8a93a1">// Configuration/TcaApi/Articles.php</span><br>return [<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'general'</span> =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'table'</span> =&gt; <span style="color:#8fc7ff">'tx_bench_article'</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'resourceName'</span> =&gt; <span style="color:#8fc7ff">'articles'</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'resourceType'</span> =&gt; <span style="color:#8fc7ff">'Article'</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>];</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#1b2028"><b>Man bekommt:</b> Liste, Detail, Pagination, Hydra JSON-LD, OpenAPI und Swagger UI.</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#4a5260"><span style="color:#1b2028"><b>Man spart sich:</b></span> Controller, Extbase-Models, Routen, generierte Klassen.</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#4a5260">Felder und Typen kommen aus dem TCA. Nichts läuft auseinander.</p>
+    </div>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-7">7</a>
+    <p>Das ist Schritt 3 von eben, ausgeschrieben: eine Datei, drei Zeilen. Tabelle, Name in der URL, Typ im JSON-LD. Daraus entstehen Liste, Detail, Pagination und die OpenAPI-Doku. Welche Felder es gibt und welchen Typ sie haben, steht schon im TCA, deshalb muss ich es hier nicht wiederholen.</p>
+  </div>
+</article>
+<article class="entry" id="folie-8">
+  <div class="frame"><div class="slide"><section id="6e55a0f3" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:96px 128px 80px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Und im Backend?</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Konfiguration und Doku, ohne eine Zeile Code mehr</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:64px; justify-content:center; align-items:flex-start">
+    <div style="display:flex; flex-direction:column; gap:24px; width:532px">
+      <img src="assets/e6737415b7f2c0ff99fcd58431087024.png" alt="TYPO3-Backend, System › Configuration: Baum der TCA API Configuration mit Ressourcen categories, customers, orders, pets, tags; Suche nach table ergibt 13 Treffer" style="width:532px; height:600px; object-fit:contain; border:1px solid #ddd8cc; border-radius:12px; box-shadow:0 12px 32px rgba(18,22,29,0.12)">
+      <div style="display:flex; flex-direction:row; gap:16px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#b45309">1</p>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">System › Configuration</h3>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#4a5260">Die fertige Konfiguration aller Ressourcen als durchsuchbarer Baum</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:24px; width:794px">
+      <img src="assets/3a0e243c48e652b06ed72835aaa0215c.png" alt="TYPO3-Backend, Administration › Integrations › TCA API: Swagger UI der Petstore API mit OpenAPI 3.1 und GET, POST, PUT, PATCH, DELETE für /_api/categories" style="width:794px; height:600px; object-fit:contain; border:1px solid #ddd8cc; border-radius:12px; box-shadow:0 12px 32px rgba(18,22,29,0.12)">
+      <div style="display:flex; flex-direction:row; gap:16px">
+        <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:28px; font-weight:700; color:#b45309">2</p>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-weight:600; color:#1b2028">Administration › Integrations</h3>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#4a5260">Swagger UI mit OpenAPI 3.1, zum Ausprobieren oder als openapi.json</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-8">8</a>
+    <p>Was man aus den paar Zeilen Konfiguration bekommt, sieht man auch im Backend, hier am Beispiel der Petstore-Demo. Links das Configuration-Modul unter System: Die komplette TCA-API-Konfiguration aller Ressourcen als Baum, inklusive aller Werte, die aus dem TCA und den Defaults kommen. Die Suche hilft, wenn man wissen will, wo zum Beispiel welche Tabelle hängt. Rechts unter Integrations die Swagger UI: Für jede Ressource werden die Endpunkte aus derselben Konfiguration als OpenAPI 3.1 erzeugt, mit GET, POST, PUT, PATCH und DELETE, je nachdem, welche Operationen freigeschaltet sind. Man kann direkt ausprobieren oder die openapi.json herunterladen, etwa um einen typisierten Client fürs Frontend zu generieren. Doku und API laufen damit nie auseinander.</p>
+  </div>
+</article>
+<article class="entry" id="folie-9">
+  <div class="frame"><div class="slide"><section id="uc-overview" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#f28c28">Highlights</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#f4f2ec">Die häufigsten Fälle, jeweils ein paar Zeilen Konfiguration</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:24px">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px 32px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">01</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Relationen einbetten</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Autor und Tags im selben Request</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px 32px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">02</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Filtern und Suchen</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">auch über Relationen hinweg</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px 32px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">03</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Responsive Bilder</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">alle Crop Variants, fertig verarbeitet</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px 32px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">04</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Links und Detail-URLs</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">ohne TypoScript</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px 32px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">05</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.15; color:#f4f2ec">Formulare und Uploads</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Schreiben mit Datei in einem Request</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; line-height:1.4; color:#c5ccd6"><span style="color:#f4f2ec"><b>Ohne Konfiguration dabei:</b></span> Mehrsprachigkeit, Pagination, OpenAPI und Swagger UI.</p>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-9">9</a>
+    <p>Statt Theorie jetzt die Fälle, die in fast jedem Projekt vorkommen. Fünf Stück, und jeder kostet nur ein paar Zeilen Konfiguration. In anderen API-Extensions ist jeder davon ein eigenes Stück Code. Mehrsprachigkeit über die Sprach-URL, Pagination und die OpenAPI-Doku bekommt man sogar ganz ohne Konfiguration.</p>
+  </div>
+</article>
+<article class="entry" id="folie-10">
+  <div class="frame"><div class="slide"><section id="uc-embed" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Anwendungsfall 1 · Relationen</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Artikel mit Autor und Tags in einem Request</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#f28c28"><b>Konfiguration</b> · Articles.php</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#f2a65a">'columns'</span> =&gt; [<br>&nbsp;&nbsp;<span style="color:#f2a65a">'author'</span> =&gt; [<span style="color:#f2a65a">'embed'</span> =&gt; true],<br>&nbsp;&nbsp;<span style="color:#f2a65a">'tags'</span>   =&gt; [<span style="color:#f2a65a">'embed'</span> =&gt; true],<br>],</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#5f6672"><b>Ergebnis</b></p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#1b2028"><span style="color:#8a93a1">GET /_api/articles</span><br>{<br>&nbsp;&nbsp;<span style="color:#b45309">"title"</span>: <span style="color:#1d5f8a">"Caching in TYPO3"</span>,<br>&nbsp;&nbsp;<span style="color:#b45309">"author"</span>: {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b45309">"@id"</span>: <span style="color:#1d5f8a">"/_api/authors/7"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b45309">"name"</span>: <span style="color:#1d5f8a">"Ada Lovelace"</span><br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;<span style="color:#b45309">"tags"</span>: [{<span style="color:#b45309">"title"</span>: <span style="color:#1d5f8a">"PHP"</span>}, {<span style="color:#b45309">"title"</span>: <span style="color:#1d5f8a">"Cache"</span>}]<br>}</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 24px; border-left:6px solid #b45309">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Eine Query pro Relation, egal ob 20 oder 1.000 Datensätze.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: Model pro Tabelle, Mapping, Serializer-Gruppen und oft eine Query pro Datensatz.</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-10">10</a>
+    <p>Der häufigste Fall überhaupt: Eine Liste, und jeder Eintrag braucht seinen Autor und seine Tags. Ohne embed kommt nur die @id, wie auf Folie 2 gezeigt. Mit 'embed' => true steht der ganze Datensatz drin. Unter der Haube ist das eine Query pro Relation für die ganze Seite, nicht eine pro Zeile. Wer tiefer will, setzt 'embed' => ['depth' => 2].</p>
+  </div>
+</article>
+<article class="entry" id="folie-11">
+  <div class="frame"><div class="slide"><section id="uc-filter" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Anwendungsfall 2 · Filter und Suche</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Filtern und Suchen, auch über Relationen</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#f28c28"><b>Konfiguration</b> · Articles.php</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#f2a65a">'filters'</span> =&gt; [<br>&nbsp;&nbsp;<span style="color:#f2a65a">'categories.title'</span> =&gt; ExactFilter::class,<br>&nbsp;&nbsp;<span style="color:#f2a65a">'q'</span> =&gt; [SearchFilter::class, [<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'columns'</span> =&gt; [<span style="color:#f2a65a">'title'</span>, <span style="color:#f2a65a">'author.name'</span>],<br>&nbsp;&nbsp;]],<br>],</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#5f6672"><b>Ergebnis</b></p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#1b2028"><span style="color:#8a93a1">GET /_api/articles</span><br><span style="color:#8a93a1">  ?filters[categories.title]=Technik</span><br><span style="color:#8a93a1">  &amp;filters[q]=hopper</span><br><br>→ nur Artikel aus <span style="color:#1d5f8a">„Technik“</span>,<br>&nbsp;&nbsp;deren Titel oder Autor <span style="color:#1d5f8a">„hopper“</span> enthält</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 24px; border-left:6px solid #b45309">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Ein Punkt im Namen genügt, um über Relationen zu filtern.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: pro Filter eine eigene Repository-Methode mit Joins.</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-11">11</a>
+    <p>Zweiter Klassiker: Facetten und eine Suchbox. categories.title heißt: folge der Relation categories und vergleiche dort den Titel. Die Joins baut tca_api aus dem TCA. Der Suchfilter durchsucht mehrere Spalten auf einmal, auch verknüpfte wie author.name. Mehrfachauswahl braucht keinen Extra-Code, man schickt einfach filters[x][] mehrfach.</p>
+  </div>
+</article>
+<article class="entry" id="folie-12">
+  <div class="frame"><div class="slide"><section id="uc-images" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Anwendungsfall 3 · Bilder</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Responsive Bilder mit allen Crop Variants</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#f28c28"><b>Konfiguration</b> · Articles.php</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#f2a65a">'columns'</span> =&gt; [<br>&nbsp;&nbsp;<span style="color:#f2a65a">'image'</span> =&gt; [<span style="color:#f2a65a">'image'</span> =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'maxWidth'</span>      =&gt; 1200,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'fileExtension'</span> =&gt; <span style="color:#f2a65a">'webp'</span>,<br>&nbsp;&nbsp;]],<br>],</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#5f6672"><b>Ergebnis</b></p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#1b2028"><span style="color:#b45309">"image"</span>: {<br>&nbsp;&nbsp;<span style="color:#b45309">"publicUrl"</span>: <span style="color:#1d5f8a">"/fileadmin/hero.jpg"</span>,<br>&nbsp;&nbsp;<span style="color:#b45309">"metadata"</span>: {<span style="color:#b45309">"alternative"</span>: <span style="color:#1d5f8a">"…"</span>},<br>&nbsp;&nbsp;<span style="color:#b45309">"cropVariants"</span>: {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b45309">"desktop"</span>: {<span style="color:#b45309">"publicUrl"</span>: <span style="color:#1d5f8a">"…/hero_d.webp"</span>},<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b45309">"mobile"</span>:  {<span style="color:#b45309">"publicUrl"</span>: <span style="color:#1d5f8a">"…/hero_m.webp"</span>}<br>&nbsp;&nbsp;}<br>}</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 24px; border-left:6px solid #b45309">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Die Crops aus dem Backend kommen fertig verarbeitet an.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: pro Variante ein Getter mit eigener Bildverarbeitung.</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-12">12</a>
+    <p>Redakteure pflegen Crop Variants im Backend, und das Frontend braucht sie für picture und srcset. tca_api verarbeitet jede Variante mit den angegebenen Grenzen, hier maximal 1200 Pixel als WebP, und liefert sie als Map. Mit 'cropVariant' => 'mobile' kommt genau eine Variante, flach ausgegeben. Alt-Text und Copyright aus den Metadaten sind gleich dabei.</p>
+  </div>
+</article>
+<article class="entry" id="folie-13">
+  <div class="frame"><div class="slide"><section id="uc-links" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Anwendungsfall 4 · Links</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Links und Detail-URLs ohne TypoScript</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#f28c28"><b>Konfiguration</b> · News.php</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#8a93a1">// Link-Felder: nichts zu tun</span><br><span style="color:#f2a65a">'virtualProperties'</span> =&gt; [<br>&nbsp;&nbsp;<span style="color:#f2a65a">'url'</span> =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'processor'</span> =&gt; RouteEnhancerProcessor::class,<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'route'</span> =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'pid'</span> =&gt; 12, <span style="color:#f2a65a">'extension'</span> =&gt; <span style="color:#f2a65a">'News'</span>, …<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'arguments'</span> =&gt; [<span style="color:#f2a65a">'news'</span> =&gt; <span style="color:#f2a65a">'{uid}'</span>],<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;],<br>],</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#5f6672"><b>Ergebnis</b></p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#1b2028"><span style="color:#8a93a1">GET /_api/news/4</span><br>{<br>&nbsp;&nbsp;<span style="color:#b45309">"title"</span>: <span style="color:#1d5f8a">"Caching in TYPO3"</span>,<br>&nbsp;&nbsp;<span style="color:#b45309">"link"</span>: <span style="color:#1d5f8a">"https://typo3.org"</span>,<br>&nbsp;&nbsp;<span style="color:#b45309">"url"</span>: <span style="color:#1d5f8a">"/news/caching-in-typo3"</span><br>}</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 24px; border-left:6px solid #b45309">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Jedes Link-Feld wird automatisch aufgelöst, Detail-URLs laufen über den Site-Router.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: TypoScript-Setup plus eigener Link-Builder pro Datensatz.</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-13">13</a>
+    <p>Zwei Arten von Links. Felder vom TCA-Typ link löst tca_api automatisch zu echten URLs auf, ohne eine Zeile Konfiguration. Und die Detail-URL eines Datensatzes, etwa einer News, entsteht als virtuelle Property über den normalen Site-Router. Damit greifen die Route Enhancer der Seite, und die URL ist dieselbe wie im Frontend.</p>
+  </div>
+</article>
+<article class="entry" id="folie-14">
+  <div class="frame"><div class="slide"><section id="uc-write" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:104px 128px 96px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Anwendungsfall 5 · Formulare</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#1b2028">Datensatz anlegen, mit Datei, in einem Request</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#12161d; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#f28c28"><b>Konfiguration</b> · Articles.php</p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#d6dce5"><span style="color:#f2a65a">'general'</span> =&gt; [<br>&nbsp;&nbsp;…<br>&nbsp;&nbsp;<span style="color:#f2a65a">'operations'</span> =&gt; [<span style="color:#f2a65a">'list'</span>, <span style="color:#f2a65a">'show'</span>, <span style="color:#f2a65a">'create'</span>],<br>&nbsp;&nbsp;<span style="color:#f2a65a">'storagePid'</span> =&gt; 2,<br>],<br><span style="color:#f2a65a">'security'</span> =&gt; [<span style="color:#f2a65a">'create'</span> =&gt; AccessRole::FE_USER],<br><span style="color:#f2a65a">'columns'</span> =&gt; [<br>&nbsp;&nbsp;<span style="color:#f2a65a">'image'</span> =&gt; [<span style="color:#f2a65a">'upload'</span> =&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f2a65a">'folder'</span> =&gt; <span style="color:#f2a65a">'1:/user_upload/'</span>,<br>&nbsp;&nbsp;]],<br>],</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1; padding:36px 40px; background:#fbfaf6; border:1px solid #ddd8cc; border-radius:16px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:20px; letter-spacing:1px; text-transform:uppercase; color:#5f6672"><b>Ergebnis</b></p>
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:23px; line-height:1.55; white-space:nowrap; color:#1b2028">curl -X POST /_api/articles \<br>&nbsp;&nbsp;-F <span style="color:#1d5f8a">"title=Neuer Artikel"</span> \<br>&nbsp;&nbsp;-F <span style="color:#1d5f8a">"image=@foto.jpg"</span><br><br>→ 201 Created<br>→ 422 mit Feldfehlern, Regeln aus dem TCA</p>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 24px; border-left:6px solid #b45309">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; font-weight:600; line-height:1.3; color:#1b2028">Gespeichert wird über den DataHandler: Hooks, Historie und Cache-Leerung inklusive.</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.35; color:#5f6672">Anderswo: Controller, Validatoren, Datei-Handling und oft ein zweiter Request für den Upload.</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-14">14</a>
+    <p>Lesen ist die halbe Miete, irgendwann will ein Formular schreiben. Operation freischalten, Speicherort und Rolle festlegen, fertig. Pflichtfelder, Längen und erlaubte Dateitypen kommen aus dem TCA, Fehler kommen als 422 mit Feldnamen zurück. Die Datei geht im selben multipart-POST mit, und gespeichert wird über den DataHandler als eingeloggter User, also mit Hooks, sys_history und Cache-Invalidierung.</p>
+  </div>
+</article>
+<article class="entry" id="folie-15">
+  <div class="frame"><div class="slide"><section id="demo" data-transition="fade" style="background:#f28c28">
+  <h2 id="p746408223679r0-b005b647" style="position:absolute; top:128px; left:128px; width:1665px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:160px; font-weight:700; line-height:1; letter-spacing:-3px; color:#12161d">Live-Demo</h2>
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-15">15</a>
+    
+  </div>
+</article>
+<article class="entry" id="folie-16">
+  <div class="frame"><div class="slide"><section id="perf-intro" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#f28c28">Performance</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#f4f2ec">Zwei Zustände, die zählen</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:40px; background:#1b2130; border-top:4px solid #8a93a1; border-radius:8px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:40px; font-weight:600; color:#f4f2ec">Warmer Cache</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#c5ccd6">Die Antwort liegt fertig bereit. Hier ist fast jede API schnell.</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#8a93a1">Der Normalfall zwischen zwei Änderungen</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:40px; background:#1b2130; border-top:4px solid #e66767; border-radius:8px">
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:40px; font-weight:600; color:#f4f2ec">Kalter Cache</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#c5ccd6">Der erste Request nach jeder Änderung. Jetzt zählen Queries und Serialisierung.</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#8a93a1">Im Personenverzeichnis: ständig</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="display:flex; flex-direction:column; gap:10px; padding:24px 0 0; border-top:1px solid #3a4150">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; letter-spacing:2px; text-transform:uppercase; color:#8a93a1">So wurde gemessen</p>
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; line-height:1.4; color:#c5ccd6">6 APIs, dieselbe Aufgabe, jede im eigenen Paket mit eigenem Cache · TYPO3 14.3.8, Production-Modus · k6 mit 8 virtuellen Usern · Median aus 3 Läufen · Code und Rohdaten öffentlich</p>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-16">16</a>
+    <p>Zur Performance. Bevor Zahlen kommen: Es gibt zwei Zustände, und die muss man auseinanderhalten. Mit warmem Cache liegt die Antwort fertig bereit, da ist fast jede API schnell, auch die selbst gebaute. Spannend wird der kalte Cache: der erste Request nach jeder Änderung. Dann muss die API wirklich arbeiten, und es zählt, wie viele Queries sie absetzt und wie teuer die Serialisierung ist. Gemessen habe ich sechs APIs mit derselben Aufgabe, jede in ihrem eigenen Paket, so eingerichtet wie ihre Doku es beschreibt, mit ihrem eigenen Cache. Ich habe tca_api geschrieben, deshalb sind Code und Rohdaten öffentlich.</p>
+  </div>
+</article>
+<article class="entry" id="folie-17">
+  <div class="frame"><div class="slide"><section id="perf-warm" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Warmer Cache · 100 Datensätze</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Mit warmem Cache sind alle schnell</h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:22px">
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Record API, von Hand</p>
+      <div style="width:138px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">14 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">t3api</p>
+      <div style="width:209px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">21 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Extbase, von Hand</p>
+      <div style="width:211px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">21 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028"><b>tca_api</b></p>
+      <div style="width:353px; height:44px; display:flex; flex-direction:column; background:#d9731a; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#1b2028"><b>35 ms</b></p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">sg_apicore¹</p>
+      <div style="width:358px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">36 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">nnrestapi</p>
+      <div style="width:900px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">90 ms</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Warm entscheidet der Cache, nicht die API. Die Record API mit eigenem Antwort-Cache ist hier vorn.</p>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · ¹ ohne Kategorien</p>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-17">17</a>
+    <p>Erst der warme Fall, 100 Artikel mit Relationen, zweiter Durchlauf derselben URLs. Alle liegen zwischen 14 und 90 Millisekunden, und tca_api ist hier nicht vorn. Am schnellsten ist die von Hand gebaute Record-API-Variante: Sie prüft in einer Middleware ihren eigenen Cache und antwortet, bevor viel von TYPO3 läuft. Das ist ein gutes Muster. Die Unterschiede im warmen Fall sind klein und schwanken auf dem Laptop. Für den Nutzer ist das alles schnell.</p>
+  </div>
+</article>
+<article class="entry" id="folie-18">
+  <div class="frame"><div class="slide"><section id="perf-cold" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#c2410c">Kalter Cache · 100 Datensätze</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Kalt trennt sich das Feld</h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:22px">
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028"><b>tca_api</b></p>
+      <div style="width:79px; height:44px; display:flex; flex-direction:column; background:#d9731a; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#1b2028"><b>57 ms</b></p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">sg_apicore¹</p>
+      <div style="width:148px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">107 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Record API, von Hand</p>
+      <div style="width:299px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">216 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Extbase, von Hand</p>
+      <div style="width:344px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">248 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">t3api</p>
+      <div style="width:668px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">481 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">nnrestapi</p>
+      <div style="width:995px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">716 ms</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Ohne Cache zählt, wie viele Queries eine API absetzt: tca_api 5, die anderen 216 bis 307.</p>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · ¹ ohne Kategorien, eine Relation weniger</p>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-18">18</a>
+    <p>Jetzt derselbe Request direkt nach dem Leeren aller Caches. tca_api braucht 57 Millisekunden, die anderen zwischen 107 und 716. Der Grund steht unten: Die meisten APIs laden Relationen pro Datensatz nach, das sind bei 100 Artikeln gut 300 Queries. Die von Hand gebaute Record API liegt im Mittelfeld, wer sie selbst schreibt und die Relationen gezielt vorlädt, kommt weiter nach vorn. tca_api macht das Vorladen automatisch, für jede Ressource. Warum das so ist, zeigt die nächste Folie.</p>
+  </div>
+</article>
+<article class="entry" id="folie-19">
+  <div class="frame"><div class="slide"><section id="three-choices" data-transition="fade" style="display:flex; flex-direction:column; gap:40px; padding:112px 128px 150px; background:#12161d">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#f28c28">Und warum ist das schnell?</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:700; line-height:1.1; color:#f4f2ec">Drei Entscheidungen gegen den üblichen TYPO3-Weg</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:32px; flex:1">
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">01</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Konfiguration statt Code</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Ein PHP-Array pro Ressource. Keine Controller, Models oder generierten Klassen.</p>
+      <p style="padding:14px 18px; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:19px; line-height:1.6; white-space:nowrap; color:#c5ccd6; background:#252e40; border-radius:8px">my_ext/<br><span style="color:#8a93a1">└──</span> Configuration/<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> TcaApi/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">├──</span> <span style="color:#f4f2ec"><b>Articles.php</b></span> <span style="color:#f28c28">← Ressource</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">├──</span> <span style="color:#f4f2ec"><b>People.php</b></span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> Overrides/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a93a1">└──</span> <span style="color:#f4f2ec"><b>Extend.php</b></span> <span style="color:#f28c28">← erweitern</span></p>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Erweitern wie im TCA: <span style="color:#f28c28"><b>Overrides/</b></span></p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">02</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Arrays statt Objekte</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Von der Datenbankzeile direkt zu JSON-LD.</p>
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">TCA</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Spalten, Typen, Relationen</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">QueryBuilder-Zeilen</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">einfache Arrays</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Nach TCA-Typ normalisiert</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Datum, Bilder, Links, Relationen</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border:2px solid #f28c28; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f28c28">Hydra JSON-LD</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">kompatibel mit API Platform</p>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Kein DataMapper, keine Hydration, keine Proxies</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:16px; flex:1; padding:36px; background:#1b2130; border-top:4px solid #f28c28; border-radius:8px">
+      <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:36px; font-weight:700; color:#f28c28">03</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:36px; font-weight:600; line-height:1.15; color:#f4f2ec">Preloading statt Lazy Loading</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; line-height:1.4; color:#c5ccd6">Eine Query pro Relation, nie eine pro Zeile.</p>
+      <div style="display:flex; flex-direction:column; gap:6px">
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Cache-Lookup</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Treffer: 0 Queries</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">Basis-Query</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">Filter, Sortierung, Seite, Count</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border:2px solid #f28c28; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f28c28">EmbedPreloader</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">ein WHERE uid IN (…) pro Relation</p>
+        </div>
+        <p style="padding:0 0 0 16px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:20px; line-height:1; color:#f28c28">↓</p>
+        <div style="display:flex; flex-direction:column; gap:2px; padding:10px 16px; background:#252e40; border-radius:8px">
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; font-weight:600; color:#f4f2ec">JSON-LD</p>
+          <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:18px; color:#c5ccd6">mit Cache-Tags gespeichert</p>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <p style="padding:12px 0 0; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#f4f2ec; border-top:1px solid #3a4150">Invalidierung über den DataHandler</p>
+    </div>
+  </div>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-19">19</a>
+    <p>Einfach war die eine Hälfte des Versprechens, jetzt die andere: schnell, auch bei kaltem Cache wie im Personenverzeichnis. Dahinter stecken drei Entscheidungen. Erstens Konfiguration statt Code, das haben wir gerade gesehen. Zweitens Arrays statt Objekte: Die Datenbankzeile wird direkt nach TCA-Typ normalisiert und als JSON-LD ausgegeben, ohne DataMapper und Hydration. Drittens Preloading: pro Relation eine Query für die ganze Seite, nie eine pro Zeile, und das Ergebnis landet mit Cache-Tags im Cache, die der DataHandler gezielt leert. Was das in Zahlen bedeutet, zeigen die nächsten Folien.</p>
+  </div>
+</article>
+<article class="entry" id="folie-20">
+  <div class="frame"><div class="slide"><section id="scaling" data-transition="fade" style="display:flex; flex-direction:column; gap:24px; padding:128px; background:#f4f2ec">
+  <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Mehr Datensätze, dieselben fünf Queries</h2>
+  <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260"><span style="color:#b45309"><b>━ tca_api</b></span>&nbsp;&nbsp;&nbsp;<span style="color:#5f6672"><b>━ Extbase, von Hand</b></span><span style="color:#5f6672"> (Record API, t3api, nnrestapi verlaufen gleich)</span>&nbsp;&nbsp;&nbsp;· Queries pro Request, kalter Cache, log. Skala</p>
+  <svg xmlns="http://www.w3.org/2000/svg" aria-label="Liniendiagramm, Queries pro Request über Datensätze pro Request, logarithmische Skala. tca_api bleibt von 1 bis 1.000 Datensätzen bei 5 Queries. Extbase von Hand wächst von 10 Queries bei 1 Datensatz auf 3.007 bei 1.000 Datensätzen." viewBox="0 0 1400 520" style="position:absolute; top:296px; left:248px; width:1400px; height:520px">
+<line x1="0" y1="520" x2="1400" y2="520" stroke="#C7C2B6" stroke-width="2"/>
+<line x1="0" y1="390" x2="1400" y2="390" stroke="#E2DED4" stroke-width="2"/>
+<line x1="0" y1="260" x2="1400" y2="260" stroke="#E2DED4" stroke-width="2"/>
+<line x1="0" y1="130" x2="1400" y2="130" stroke="#E2DED4" stroke-width="2"/>
+<line x1="0" y1="2" x2="1400" y2="2" stroke="#E2DED4" stroke-width="2"/>
+<polyline points="40,390.0 260,345.5 480,282.6 700,234.5 920,196.7 1140,106.8 1360,67.8" fill="none" stroke="#7C8592" stroke-width="6" stroke-linejoin="round"/>
+<polyline points="40,429.1 260,429.1 480,429.1 700,429.1 920,429.1 1140,429.1 1360,429.1" fill="none" stroke="#D9731A" stroke-width="8" stroke-linejoin="round"/>
+<circle cx="40" cy="390.0" r="9" fill="#7C8592"/><circle cx="260" cy="345.5" r="9" fill="#7C8592"/><circle cx="480" cy="282.6" r="9" fill="#7C8592"/><circle cx="700" cy="234.5" r="9" fill="#7C8592"/><circle cx="920" cy="196.7" r="9" fill="#7C8592"/><circle cx="1140" cy="106.8" r="9" fill="#7C8592"/><circle cx="1360" cy="67.8" r="9" fill="#7C8592"/>
+<circle cx="40" cy="429.1" r="10" fill="#D9731A"/><circle cx="260" cy="429.1" r="10" fill="#D9731A"/><circle cx="480" cy="429.1" r="10" fill="#D9731A"/><circle cx="700" cy="429.1" r="10" fill="#D9731A"/><circle cx="920" cy="429.1" r="10" fill="#D9731A"/><circle cx="1140" cy="429.1" r="10" fill="#D9731A"/><circle cx="1360" cy="429.1" r="10" fill="#D9731A"/>
+</svg>
+  <p style="position:absolute; top:282px; left:128px; width:100px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#5f6672">10k</p>
+  <p style="position:absolute; top:409px; left:128px; width:100px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#5f6672">1.000</p>
+  <p style="position:absolute; top:539px; left:128px; width:100px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#5f6672">100</p>
+  <p style="position:absolute; top:669px; left:128px; width:100px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#5f6672">10</p>
+  <p style="position:absolute; top:799px; left:128px; width:100px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#5f6672">1</p>
+  <p style="position:absolute; top:836px; left:208px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">1</p>
+  <p style="position:absolute; top:836px; left:428px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">5</p>
+  <p style="position:absolute; top:836px; left:648px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">20</p>
+  <p style="position:absolute; top:836px; left:868px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">50</p>
+  <p style="position:absolute; top:836px; left:1088px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">100</p>
+  <p style="position:absolute; top:836px; left:1308px; width:160px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">500</p>
+  <p style="position:absolute; top:836px; left:1488px; width:240px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:center; color:#5f6672">1.000 Datensätze</p>
+  <p style="position:absolute; top:690px; left:1640px; width:152px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:700; color:#b45309">5</p>
+  <p style="position:absolute; top:336px; left:1640px; width:152px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:700; color:#4a5260">3.007</p>
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-20">20</a>
+    
+  </div>
+</article>
+<article class="entry" id="folie-21">
+  <div class="frame"><div class="slide"><section id="perf-1000" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#c2410c">Kalter Cache · 1.000 Datensätze</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Bei großen Datenmengen: Faktor 10 und mehr</h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:22px">
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028"><b>tca_api</b></p>
+      <div style="width:23px; height:44px; display:flex; flex-direction:column; background:#d9731a; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#1b2028"><b>140 ms</b></p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Record API, von Hand</p>
+      <div style="width:250px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">1.524 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Extbase, von Hand</p>
+      <div style="width:292px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">1.782 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">nnrestapi</p>
+      <div style="width:768px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">4.685 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">t3api</p>
+      <div style="width:991px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">6.045 ms</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Genau der Fall aus dem Personenverzeichnis: alle Daten auf einmal zum Client.</p>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · sg_apicore fehlt: höchstens 100 Datensätze pro Seite</p>
+  
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-21">21</a>
+    <p>Und das Extrem, 1.000 Artikel in einem Request, kalt. Das ist der Suchindex-Feed oder eben das Personenverzeichnis, das alle Daten zum Client schiebt. tca_api braucht 140 Millisekunden, die schnellste Alternative anderthalb Sekunden, t3api sechs. Genau hier ist damals das Telefonbuch an seine Grenze gekommen. sg_apicore fehlt, weil es höchstens 100 Datensätze pro Seite ausliefert.</p>
+  </div>
+</article>
+<article class="entry" id="folie-22">
+  <div class="frame"><div class="slide"><section id="footprint" data-transition="fade" style="display:flex; flex-direction:column; gap:56px; padding:128px 128px 160px; background:#f4f2ec">
+  <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Was Integratoren selbst schreiben</h2>
+  <div style="display:flex; flex-direction:column; gap:28px">
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028">sg_apicore</p>
+      <div style="width:86px; height:48px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260">27 Zeilen · 0 Klassen</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028"><b>tca_api</b></p>
+      <div style="width:96px; height:48px; display:flex; flex-direction:column; background:#d9731a; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#1b2028"><b>30 Zeilen · 0 Klassen</b></p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028">t3api</p>
+      <div style="width:589px; height:48px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260">184 Zeilen · 4 Klassen</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028">Record API</p>
+      <div style="width:644px; height:48px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260">201 Zeilen · 3 Klassen</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028">nnrestapi</p>
+      <div style="width:708px; height:48px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260">221 Zeilen · 7 Klassen</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; color:#1b2028">Extbase</p>
+      <div style="width:900px; height:48px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; color:#4a5260">281 Zeilen · 6 Klassen</p>
+    </div>
+  </div>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#5f6672">Gezählt pro Benchmark-Paket: PHP-, YAML- und Config-Dateien für dieselbe Artikel-Aufgabe, ohne Site-Set-Dependency oder Routen-Import.</p>
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-22">22</a>
+    
+  </div>
+</article>
+<article class="entry" id="folie-23">
+  <div class="frame"><div class="slide"><section id="thanks" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;letter-spacing:2px;text-transform:uppercase;color:#F28C28">TCA rein, JSON-LD raus.</p>
+<h2 style="font-size:160px;font-weight:700;line-height:1;letter-spacing:-3px">Fragen?</h2>
+<div style="display:flex;gap:64px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Extension</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px">github.com/maikschneider/tca-api</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Benchmark</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px">github.com/maikschneider/typo3-api-benchmark</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Kontakt</p>
+<p style="font-size:28px">Maik Schneider</p>
+</div>
+</div>
+
+</section></div></div>
+  <div class="notes">
+    <a class="number" href="#folie-23">23</a>
+    
+  </div>
+</article>
+</main>
+<footer>Folien und Benchmark: <a href="https://github.com/maikschneider/typo3-api-benchmark">github.com/maikschneider/typo3-api-benchmark</a> · Extension: <a href="https://github.com/maikschneider/tca-api">github.com/maikschneider/tca-api</a></footer>
+<p class="hint">← → · F · Esc</p>
+<script>
+const entries = [...document.querySelectorAll('.entry')];
+const resize = new ResizeObserver((items) => {
+  for (const item of items) item.target.style.setProperty('--scale', item.contentRect.width / 1920);
+});
+document.querySelectorAll('.frame').forEach((frame) => resize.observe(frame));
+
+let current = 0;
+const show = (index) => {
+  current = Math.max(0, Math.min(entries.length - 1, index));
+  entries.forEach((entry, i) => entry.classList.toggle('current', i === current));
+  history.replaceState(null, '', '#' + entries[current].id);
+};
+const start = () => {
+  const fromHash = entries.findIndex((entry) => '#' + entry.id === location.hash);
+  document.body.classList.add('presenting');
+  show(fromHash >= 0 ? fromHash : 0);
+};
+const stop = () => {
+  document.body.classList.remove('presenting');
+  if (document.fullscreenElement) document.exitFullscreen();
+  entries[current].scrollIntoView();
+};
+document.querySelector('.present').addEventListener('click', start);
+document.addEventListener('keydown', (event) => {
+  if (!document.body.classList.contains('presenting')) return;
+  if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) show(current + 1);
+  else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) show(current - 1);
+  else if (event.key === 'Home') show(0);
+  else if (event.key === 'End') show(entries.length - 1);
+  else if (event.key === 'Escape' && !document.fullscreenElement) stop();
+  else if (event.key === 'f' || event.key === 'F') {
+    document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  } else return;
+  event.preventDefault();
+});
+document.addEventListener('click', (event) => {
+  if (!document.body.classList.contains('presenting')) return;
+  show(event.clientX > innerWidth / 2 ? current + 1 : current - 1);
+});
+</script>
+</body>
+</html>

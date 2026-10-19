@@ -1,0 +1,26 @@
+<section id="thanks" data-transition="fade" style="background:#12161D;color:#F4F2EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px;letter-spacing:2px;text-transform:uppercase;color:#F28C28">TCA rein, JSON-LD raus.</p>
+<h2 style="font-size:160px;font-weight:700;line-height:1;letter-spacing:-3px">Fragen?</h2>
+<div style="display:flex;gap:64px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Extension</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px">github.com/maikschneider/tca-api</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Benchmark</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:28px">github.com/maikschneider/typo3-api-benchmark</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:3px solid #F28C28;padding:24px 0 0 0">
+<p style="font-size:24px;color:#9AA3B0;text-transform:uppercase;letter-spacing:2px">Kontakt</p>
+<p style="font-size:28px">Maik Schneider</p>
+</div>
+</div>
+<aside>[35:00] Q&amp;A, rund 10 Minuten. Vorbereitete Antworten:
+Warum nicht auf die Delivery API warten? Ihr API-Teil ist noch Zukunft, ohne Auth-, Caching- oder Performance-Story. tca_api läuft heute, mit CRUD. Liefert der Core etwas Besseres, gut.
+Warum nicht typisierte Content Models? Die lösen Typen für Templates und IDEs, tca_api löst die Auslieferung. Generierte Klassen brauchen einen Build-Schritt, und Lazy Collections bringen N+1 zurück. Beides kann nebeneinander existieren.
+Warum nicht t3api weiter nutzen? Haben wir lange. Model pro Tabelle, Extbase-DataMapper, N+1 und die Serialisierung als Engpass bei kalten Requests.
+sg_apicore? Auf der kalten Zeit nah dran und 27 Zeilen, aber keine Kategorien und ein veralteter Cache nach Änderungen (bin/bench invalidation).
+Seiten und Content-Elemente? Nicht Aufgabe von tca_api: separate Extension headless-pages.
+Auth? Rollen PUBLIC bis OWNER auf Frontend-Usern, noch kein OAuth.
+Ist eine Extension bei „API-first“-Ausschreibungen nicht schlechter als Core? Ja, fürs Häkchen. Deshalb ist die Core-Initiative willkommen, und das Design von tca_api ist als Input gedacht.</aside>
+</section>

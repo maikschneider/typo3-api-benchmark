@@ -1,0 +1,48 @@
+<section id="perf-warm" data-transition="fade" style="display:flex; flex-direction:column; gap:48px; padding:112px 128px 150px; background:#f4f2ec">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'JetBrains Mono', 'Courier New', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#b45309">Warmer Cache · 100 Datensätze</p>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#1b2028">Mit warmem Cache sind alle schnell</h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:22px">
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Record API, von Hand</p>
+      <div style="width:138px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">14 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">t3api</p>
+      <div style="width:209px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">21 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">Extbase, von Hand</p>
+      <div style="width:211px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">21 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028"><b>tca_api</b></p>
+      <div style="width:353px; height:44px; display:flex; flex-direction:column; background:#d9731a; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#1b2028"><b>35 ms</b></p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">sg_apicore¹</p>
+      <div style="width:358px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">36 ms</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:24px; align-items:center">
+      <p style="width:340px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; color:#1b2028">nnrestapi</p>
+      <div style="width:900px; height:44px; display:flex; flex-direction:column; background:#7c8592; border-radius:4px">
+      </div>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; font-variant-numeric:tabular-nums; color:#4a5260">90 ms</p>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <p style="padding:4px 0 4px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:32px; font-weight:600; line-height:1.3; color:#1b2028; border-left:6px solid #b45309">Warm entscheidet der Cache, nicht die API. Die Record API mit eigenem Antwort-Cache ist hier vorn.</p>
+  <p style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:22px; color:#5f6672">Antwortzeit p50 · TYPO3 14.3.8, Production-Modus · k6, 8 virtuelle User · Median aus 3 Läufen · ¹ ohne Kategorien</p>
+  <aside>Erst der warme Fall, 100 Artikel mit Relationen, zweiter Durchlauf derselben URLs. Alle liegen zwischen 14 und 90 Millisekunden, und tca_api ist hier nicht vorn. Am schnellsten ist die von Hand gebaute Record-API-Variante: Sie prüft in einer Middleware ihren eigenen Cache und antwortet, bevor viel von TYPO3 läuft. Das ist ein gutes Muster. Die Unterschiede im warmen Fall sind klein und schwanken auf dem Laptop. Für den Nutzer ist das alles schnell.</aside>
+</section>

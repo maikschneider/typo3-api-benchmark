@@ -1,0 +1,27 @@
+{
+  "order": [
+    "cover",
+    "hook",
+    "hook-table",
+    "journey",
+    "coldrequests",
+    "ter",
+    "config",
+    "6e55a0f3",
+    "uc-overview",
+    "uc-embed",
+    "uc-filter",
+    "uc-images",
+    "uc-links",
+    "uc-write",
+    "demo",
+    "perf-intro",
+    "perf-warm",
+    "perf-cold",
+    "three-choices",
+    "scaling",
+    "perf-1000",
+    "footprint",
+    "thanks"
+  ]
+}

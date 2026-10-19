@@ -2,7 +2,7 @@
 
 Six ways to serve the same TYPO3 records as JSON, side by side: four API extensions and two hand-written endpoints on TYPO3 core, each in its own package, load-tested cold and cached, probed for correct and fresh data, and counted in lines of configuration.
 
-**Results: [`docs/index.html`](docs/index.html)**, a self-contained page with charts and every number in table form. The feature probes (`bin/bench features`) write `benchmark/results/features.json`.
+**Results: [`docs/index.html`](docs/index.html)**, a self-contained page with charts and every number in table form. The talk built on these numbers, "TCA rein, JSON-LD raus" (TYPO3 Camp Berlin 2026, German), is in [`docs/talk/`](docs/talk/index.html): every slide with its speaker notes, plus a presentation mode. The feature probes (`bin/bench features`) write `benchmark/results/features.json`.
 
 | API | Package | Version |
 |---|---|---|
